@@ -4,7 +4,6 @@ namespace PodPoint\Reviews\Providers\ReviewsCoUk;
 
 use GuzzleHttp\Client;
 use PodPoint\Reviews\Service as ServiceInterface;
-use Psr\Http\Message\ResponseInterface;
 
 class Service implements ServiceInterface
 {
@@ -60,6 +59,8 @@ class Service implements ServiceInterface
      * @param array $options
      *
      * @return array|null
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get(array $options)
     {
