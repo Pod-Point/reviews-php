@@ -52,6 +52,7 @@ class GetOptionsTest extends TestCase
         $maxDate = $this->faker->date();
 
         $getOptions = new GetOptions([
+            'orderNumber' => $this->faker->numberBetween(),
             'minDate' => $minDate,
             'maxDate' => $maxDate,
         ]);
