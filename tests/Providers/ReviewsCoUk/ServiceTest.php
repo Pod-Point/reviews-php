@@ -84,7 +84,7 @@ class ServiceTest extends TestCase
         $this->response->shouldReceive('getBody')->andReturn($this->response)->once();
         $this->response
             ->shouldReceive('getContents')
-            ->andReturn(\GuzzleHttp\json_encode($testData))
+            ->andReturn(json_encode($testData))
             ->once();
 
         $this->mockClient
