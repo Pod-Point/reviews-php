@@ -76,7 +76,7 @@ class ServiceTest extends TestCase
     public function testCanPrepareARequestToGetReviewsForAnOrder()
     {
         $options = [
-            'orderNumber' => $this->faker->name,
+            'orderNumber' => $this->faker->uuid,
         ];
 
         $testData = $this->faker->text;
