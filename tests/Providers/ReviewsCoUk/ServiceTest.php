@@ -25,6 +25,11 @@ class ServiceTest extends TestCase
     private $client;
 
     /**
+     * @var Mockery\LegacyMockInterface|Mockery\MockInterface|response
+     */
+    private $response;
+
+    /**
      * Mocks the config & guzzle client and creates a client instance.
      */
     public function setUp()
@@ -32,6 +37,8 @@ class ServiceTest extends TestCase
         parent::setUp();
 
         $this->mockClient = Mockery::mock(GuzzleClient::class);
+
+        $this->response = Mockery::mock('response');
 
         $this->client = new Service($this->mockClient, new Configuration([
             'url' => self::URL,
@@ -41,9 +48,11 @@ class ServiceTest extends TestCase
     }
 
     /**
-     * Ensure the Service can send invites.
+     * Ensure the Service can prepare a request to send invites to review.
+     *
+     * @doesNotPerformAssertions
      */
-    public function testCanSendInviteToReview()
+    public function testCanPrepareARequestToSendInviteToReview()
     {
         $options = [
             'name' => $this->faker->name,
@@ -53,13 +62,39 @@ class ServiceTest extends TestCase
 
         $this->mockClient
             ->shouldReceive('request')
-            ->with( 'POST',
+            ->with('POST',
                 'merchant/invitation',
                 Mockery::subset(['base_uri' => self::URL])
-//                Mockery::subset(['form_params' => Mockery::contains(['name' => $options['name']])])
             )->once();
 
-//, , $this->returnValue(array()), $this->returnValue(array())
         $this->client->invite($options);
+    }
+
+    /**
+     * Ensure the Service can prepare a request to get reviews.
+     */
+    public function testCanPrepareARequestToGetReviewsForAnOrder()
+    {
+        $options = [
+            'orderNumber' => $this->faker->name,
+        ];
+
+        $testData = $this->faker->text;
+
+        $this->response->shouldReceive('getBody')->andReturn($this->response)->once();
+        $this->response
+            ->shouldReceive('getContents')
+            ->andReturn(\GuzzleHttp\json_encode($testData))
+            ->once();
+
+        $this->mockClient
+            ->shouldReceive('request')
+            ->with( 'GET',
+                'merchant/reviews',
+                Mockery::subset(['base_uri' => self::URL])
+            )->andReturn($this->response)->once();
+
+        $response = $this->client->get($options);
+        $this->assertEquals($testData, $response);
     }
 }
