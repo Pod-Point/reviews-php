@@ -9,14 +9,6 @@ use PodPoint\Reviews\Tests\TestCase;
 class GetOptionsTest extends TestCase
 {
     /**
-     * Setup
-     */
-    public function setUp()
-    {
-        parent::setUp();
-    }
-
-    /**
      * Tests that when you create a new GetOptions object from the GetOptions class the values are correctly
      * mapped from the array passed to the constructor to the relevant object's variables.
      *
