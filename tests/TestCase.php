@@ -4,6 +4,9 @@ namespace PodPoint\Reviews\Tests;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @var \Faker\Generator
+     */
     protected $faker;
 
     /**
