@@ -45,11 +45,11 @@ class ServiceTest extends TestCase
     public function testCanSendInviteToReview()
     {
         $options = [
-            'name',
-            'email',
-            'orderNumber'
+            'name' => $this->faker->name,
+            'email' => $this->faker->email,
+            'orderNumber' => $this->faker->randomNumber(),
         ];
 
-        $this->client->invite();
+        $this->client->invite($options);
     }
 }
