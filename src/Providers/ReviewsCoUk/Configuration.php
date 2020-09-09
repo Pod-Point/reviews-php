@@ -9,21 +9,21 @@ class Configuration
      *
      * @var string
      */
-    public string $url;
+    public $url;
 
     /**
      * The reviews.co.uk store.
      *
      * @var string
      */
-    public string $store;
+    public $store;
 
     /**
      * The reviews.co.uk api key.
      *
      * @var string
      */
-    public string $apiKey;
+    public $apiKey;
 
     /**
      * Sets all the configuration from the given array.

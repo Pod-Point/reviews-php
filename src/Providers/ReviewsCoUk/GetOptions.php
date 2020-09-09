@@ -9,21 +9,21 @@ class GetOptions
      *
      * @var string
      */
-    public string $orderNumber;
+    public $orderNumber;
 
     /**
      * The minimum date of reviews you would like to retrieve.
      *
      * @var string
      */
-    public string $minDate;
+    public $minDate;
 
     /**
      * The maximum date of reviews you would like to retrieve.
      *
      * @var string
      */
-    public string $maxDate;
+    public $maxDate;
 
     /**
      * @param array $options

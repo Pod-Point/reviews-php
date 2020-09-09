@@ -12,14 +12,14 @@ class Service implements ServiceInterface
      *
      * @var Client
      */
-    private Client $client;
+    private $client;
 
     /**
      * A reviews.co.uk configuration instance.
      *
      * @var Configuration
      */
-    private Configuration $config;
+    private $config;
 
     /**
      * Sets the client and configuration for the service.

@@ -9,21 +9,21 @@ class InviteOptions
      *
      * @var string
      */
-    public string $name;
+    public $name;
 
     /**
      * The email you would like to send the invite to.
      *
      * @var string
      */
-    public string $email;
+    public $email;
 
     /**
      * The order number for which you would like to send an invite.
      *
      * @var string
      */
-    public string $orderNumber;
+    public $orderNumber;
 
     /**
      * @param array $options
