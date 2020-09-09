@@ -50,6 +50,16 @@ class ServiceTest extends TestCase
             'orderNumber' => $this->faker->randomNumber(),
         ];
 
+        $this->mockClient->expects($this->any())
+            ->method('request')
+            ->with('POST', 'merchant/invitation', [
+                'base_uri' => self::URL,
+                'headers' => [
+                    'store' => self::STORE,
+                    'apikey' => self::API_KEY,
+                ],
+            ], []);
+
         $this->client->invite($options);
     }
 }
