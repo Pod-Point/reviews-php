@@ -31,7 +31,7 @@ Now we are all good to start developing and testing the package.
 
 ####  Testing
 
-This package uses PhpUnit. To run the test suites for this project run the following command.  Notice that in this command we add '--' in between the make and test words. This tells Make to ignore any of the options with '--' such as '--stop-on-error' 
+This package uses phpunit. To run the test suites for this project run the following command.  Notice that in this command we add '--' in between the make and test words. This tells Make to ignore any of the options with '--' such as '--stop-on-error' 
 ```bash
 make -- test
 ```
