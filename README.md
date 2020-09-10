@@ -1,13 +1,14 @@
 
 #  Reviews-php
+[![Build Status](https://travis-ci.com/Pod-Point/reviews-php.svg?branch=master)](https://travis-ci.com/Pod-Point/reviews-php) [![codecov](https://codecov.io/gh/Pod-Point/reviews-php/branch/master/graph/badge.svg)](https://codecov.io/gh/Pod-Point/reviews-php)
 
-A review package for our PHP applications. Currently only includes reviews.co.uk. But there are plans to Trustpilot.
+A review package for our PHP applications. Currently only includes reviews.co.uk but there are plans to add Trustpilot.
 
 ##  Installation
 
-Run the following in the desired project where you would live to install this package
+Run the following in the desired project where you would like to install this package
 ```bash
-composer require pod-point/TODO
+composer require pod-point/reviews-php
 ```
 ##  Development
 
