@@ -1,4 +1,5 @@
 
+
 #  Reviews-php
 [![Build Status](https://travis-ci.com/Pod-Point/reviews-php.svg?branch=master)](https://travis-ci.com/Pod-Point/reviews-php) [![codecov](https://codecov.io/gh/Pod-Point/reviews-php/branch/master/graph/badge.svg)](https://codecov.io/gh/Pod-Point/reviews-php)
 
@@ -6,9 +7,31 @@ A review package for our PHP applications. Currently only includes reviews.co.uk
 
 ##  Installation
 
-Run the following in the desired project where you would like to install this package
+follow the steps below in the desired project where you would like to install this package
+
+ 1. Add the following in the repository section of the composer.json .
+```json
+{  
+    "type": "git",  
+    "url": "git@github.com:pod-point/reviews-php.git"  
+}
+```
+2. Then add to this line providers section in the app.php config file.
+```php
+PodPoint\Reviews\Providers\ReviewsProvider::class,
+```
+3. Run the following command.
 ```bash
-composer require pod-point/reviews-php
+php artisan vendor:publish --provider="PodPoint\Reviews\Providers\ReviewsProvider"
+```
+4. Finally we need to update the .env to let the new package know the details of the review provider. The following are required.
+ ```env
+REVIEWS_CO_UK_STORE=
+REVIEWS_CO_UK_API_KEY=
+```
+If for any reason you need to change the url for reviews.co.uk the following is optional. The default is https://api.reviews.co.uk
+ ```env
+REVIEWS_CO_UK_URL=
 ```
 ##  Development
 
