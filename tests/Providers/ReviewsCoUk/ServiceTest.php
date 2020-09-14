@@ -1,6 +1,5 @@
 <?php
 
-
 namespace PodPoint\Reviews\Tests;
 
 use \GuzzleHttp\Client as GuzzleClient;

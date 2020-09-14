@@ -1,6 +1,5 @@
 <?php
 
-
 namespace PodPoint\Reviews\Tests\Providers\ReviewsCoUK;
 
 use PodPoint\Reviews\Providers\ReviewsCoUk\InviteOptions;
