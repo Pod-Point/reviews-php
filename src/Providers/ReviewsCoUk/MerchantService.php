@@ -3,9 +3,10 @@
 namespace PodPoint\Reviews\Providers\ReviewsCoUk;
 
 use GuzzleHttp\Client;
+use Illuminate\Config\Repository as Config;
 use PodPoint\Reviews\Service as ServiceInterface;
 
-class Service implements ServiceInterface
+class MerchantService implements ServiceInterface
 {
     /**
      * A HTTP client instance.
@@ -15,28 +16,26 @@ class Service implements ServiceInterface
     private $client;
 
     /**
-     * A reviews.co.uk configuration instance.
-     *
-     * @var Configuration
+     * @var Config
      */
     private $config;
 
     /**
      * Sets the client and configuration for the service.
      *
-     * @param Client $client
-     * @param Configuration $config
+     * @param  Client  $client
+     * @param  Config  $config
      */
-    public function __construct(Client $client, Configuration $config)
+    public function __construct(Client $client, Config $config)
     {
         $this->client = $client;
         $this->config = $config;
     }
 
     /**
-     * Creates an invite.
+     * Creates a merchant invite.
      *
-     * @param array $options
+     * @param  array  $options
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -44,7 +43,7 @@ class Service implements ServiceInterface
     {
         $options = new InviteOptions($options);
 
-        return $this->request('POST', 'merchant/invitation', [
+        $this->request('POST', 'merchant/invitation', [
             'form_params' => [
                 'name' => $options->name,
                 'email' => $options->email,
@@ -54,7 +53,7 @@ class Service implements ServiceInterface
     }
 
     /**
-     * Get review(s).
+     * Get merchant review(s).
      *
      * @param array $options
      *
@@ -67,7 +66,7 @@ class Service implements ServiceInterface
         $options = new GetOptions($options);
 
         $parameters = [
-            'store' => $this->config->store,
+            'store' => $this->config->get('reviews.reviewsCoUk.store'),
         ];
 
         if ($options->hasOrderNumber()) {
@@ -98,10 +97,10 @@ class Service implements ServiceInterface
     private function request(string $method, string $uri = '', array $options = [])
     {
         return $this->client->request($method, $uri, array_merge([
-            'base_uri' => $this->config->url,
+            'base_uri' => $this->config->get('reviews.reviewsCoUk.url'),
             'headers' => [
-                'store' => $this->config->store,
-                'apikey' => $this->config->apiKey,
+                'store' => $this->config->get('reviews.reviewsCoUk.store'),
+                'apikey' => $this->config->get('reviews.reviewsCoUk.api_key'),
             ],
         ], $options));
     }

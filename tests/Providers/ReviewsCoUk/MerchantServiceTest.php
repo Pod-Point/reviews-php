@@ -3,11 +3,11 @@
 namespace PodPoint\Reviews\Tests;
 
 use \GuzzleHttp\Client as GuzzleClient;
+use Illuminate\Config\Repository as Config;
 use Mockery;
-use PodPoint\Reviews\Providers\ReviewsCoUk\Configuration;
-use PodPoint\Reviews\Providers\ReviewsCoUk\Service;
+use PodPoint\Reviews\Providers\ReviewsCoUk\MerchantService;
 
-class ServiceTest extends TestCase
+class MerchantServiceTest extends TestCase
 {
     const URL = 'localhost';
     const STORE = 'someStore';
@@ -19,7 +19,7 @@ class ServiceTest extends TestCase
     private $mockClient;
 
     /**
-     * @var Service
+     * @var MerchantService
      */
     private $client;
 
@@ -39,11 +39,21 @@ class ServiceTest extends TestCase
 
         $this->response = Mockery::mock('response');
 
-        $this->client = new Service($this->mockClient, new Configuration([
-            'url' => self::URL,
-            'store' => self::STORE,
-            'apiKey' => self::API_KEY,
-        ]));
+        $config = Mockery::mock(Config::class)->shouldReceive('get')
+            ->andReturnUsing(function ($argument)
+            {
+                switch ($argument)
+                {
+                    case 'reviews.reviewsCoUk.url':
+                        return self::URL;
+                    case 'reviews.reviewsCoUk.store':
+                        return self::STORE;
+                    case 'reviews.reviewsCoUk.api_key':
+                        return self::API_KEY;
+                }
+            })->getMock();
+
+        $this->client = new MerchantService($this->mockClient, $config);
     }
 
     /**
