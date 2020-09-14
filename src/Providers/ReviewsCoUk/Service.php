@@ -71,7 +71,6 @@ class Service implements ServiceInterface
         ];
 
         if ($options->hasOrderNumber()) {
-            $parameters['apikey'] = $this->config->apiKey;
             $parameters['order_number'] = $options->orderNumber;
         } else {
             $parameters['min_date'] = $options->minDate;
