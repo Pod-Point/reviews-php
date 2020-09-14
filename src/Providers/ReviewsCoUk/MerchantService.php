@@ -66,7 +66,7 @@ class MerchantService implements ServiceInterface
         $options = new GetOptions($options);
 
         $parameters = [
-            'store' => $this->config->get('reviews.reviewsCoUk.store'),
+            'store' => $this->config->get('review-providers.reviewsCoUk.store'),
         ];
 
         if ($options->hasOrderNumber()) {
@@ -97,10 +97,10 @@ class MerchantService implements ServiceInterface
     private function request(string $method, string $uri = '', array $options = [])
     {
         return $this->client->request($method, $uri, array_merge([
-            'base_uri' => $this->config->get('reviews.reviewsCoUk.url'),
+            'base_uri' => $this->config->get('review-providers.reviewsCoUk.url'),
             'headers' => [
-                'store' => $this->config->get('reviews.reviewsCoUk.store'),
-                'apikey' => $this->config->get('reviews.reviewsCoUk.api_key'),
+                'store' => $this->config->get('review-providers.reviewsCoUk.store'),
+                'apikey' => $this->config->get('review-providers.reviewsCoUk.api_key'),
             ],
         ], $options));
     }

@@ -15,7 +15,7 @@ class ReviewsProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../../config/reviews.php' => config_path('reviews.php'),
+            __DIR__.'/../config/reviews.php' => config_path('review-providers.php'),
         ]);
     }
 }

@@ -44,11 +44,11 @@ class MerchantServiceTest extends TestCase
             {
                 switch ($argument)
                 {
-                    case 'reviews.reviewsCoUk.url':
+                    case 'review-providers.reviewsCoUk.url':
                         return self::URL;
-                    case 'reviews.reviewsCoUk.store':
+                    case 'review-providers.reviewsCoUk.store':
                         return self::STORE;
-                    case 'reviews.reviewsCoUk.api_key':
+                    case 'review-providers.reviewsCoUk.api_key':
                         return self::API_KEY;
                 }
             })->getMock();
