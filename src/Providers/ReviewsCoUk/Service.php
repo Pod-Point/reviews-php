@@ -44,11 +44,11 @@ class Service implements ServiceInterface
     {
         $options = new InviteOptions($options);
 
-        $this->request('POST', 'merchant/invitation', [
+        return $this->request('POST', 'merchant/invitation', [
             'form_params' => [
                 'name' => $options->name,
                 'email' => $options->email,
-                'order_number' => $options->orderNumber,
+                'order_id' => $options->orderNumber,
             ],
         ]);
     }
@@ -71,7 +71,7 @@ class Service implements ServiceInterface
         ];
 
         if ($options->hasOrderNumber()) {
-            $parameters['order_number'] = $options->orderNumber;
+            $parameters['order_id'] = $options->orderNumber;
         } else {
             $parameters['min_date'] = $options->minDate;
             $parameters['max_date'] = $options->maxDate;
