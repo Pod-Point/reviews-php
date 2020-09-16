@@ -7,7 +7,7 @@ A review package for our PHP applications. Currently only includes reviews.co.uk
 
 ##  Installation
 
-follow the steps below in the desired project where you would like to install this package
+Follow the steps below in the desired project where you would like to install this package
 
  1. Add the following in the repository section of the composer.json .
 ```json
