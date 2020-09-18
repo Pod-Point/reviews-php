@@ -41,11 +41,10 @@ REVIEWS_CO_UK_URL=
 ```bash
 git clone git@github.com:Pod-Point/reviews-php.git
 ```
-2. Copy the .env.example to .env
+2. Copy the .env.example to .env and head to the docker image document we have [here](https://podpoint.atlassian.net/wiki/spaces/SKB/pages/2086305838/Base+images+for+docker+containers) and copy the reviews-php base container image to the ECS_IMAGE_URL value inside of the .env
 ```bash
 cp .env.example .env
 ```
-3. Get the reviews-php base containter image from here.
 4. Next we need to build the docker container.
 ```bash
 make start
