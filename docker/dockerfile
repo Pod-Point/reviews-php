@@ -1,4 +1,5 @@
-FROM 959744386191.dkr.ecr.eu-west-1.amazonaws.com/podpoint/php:7.1-dev
+ARG IMAGE_NAME
+FROM $IMAGE_NAME
 
 COPY . /app/.
 

@@ -24,7 +24,7 @@ endif
 
 # Tasks
 start: ## Start the php container
-	docker-compose up -d
+	docker-compose up -d --build
 run: ## Run a command in the container
 	docker-compose exec php $(RUN_ARGS)
 test: ## Run the tests
