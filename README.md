@@ -41,12 +41,16 @@ REVIEWS_CO_UK_URL=
 ```bash
 git clone git@github.com:Pod-Point/reviews-php.git
 ```
-2. Next we need to build the docker container.
+2. Copy the .env.example to .env
 ```bash
-cd reviews-php
+cp .env.example .env
+```
+3. Get the reviews-php base containter image from here.
+4. Next we need to build the docker container.
+```bash
 make start
 ```
-3. And finally we need to run composer install
+5. And finally we need to run composer install
 ```bash
 make run composer install
 ```
