@@ -6,9 +6,6 @@ php:
   - 7.1
 
 before_script:
-  - composer clear-cache
-  - composer diagnose
-  - composer dump-autoload
   - composer install --prefer-source --no-interaction
 
 script:
