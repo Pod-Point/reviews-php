@@ -16,15 +16,9 @@ Follow the steps below in the desired project where you would like to install th
     "url": "git@github.com:pod-point/reviews-php.git"  
 }
 ```
-2. Add the package into the reqiured secion of the composer.json. TO BE UPDATE ONCE PACKAGE IS PUBLISHED
-```json
-"require": {
-    "pod-point/reviews-php": "*",
-},
-```
-2. Run composer install inside of the desired project workspace.
+2. Run the following command inside of the the desired project workspace.
 ```bash
-composer install
+composer require pod-point/reviews-php
 ```
 2. Run the following command.
 ```bash
