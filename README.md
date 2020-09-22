@@ -9,12 +9,18 @@ A review package for our PHP applications. Currently only includes reviews.co.uk
 
 Follow the steps below in the desired project where you would like to install this package
 
- 1. Add the following in the repository section of the composer.json .
+ 1. Add the following in the repository section of the composer.json. TO BE UPDATE ONCE PACKAGE IS PUBLISHED
 ```json
 {  
     "type": "git",  
     "url": "git@github.com:pod-point/reviews-php.git"  
 }
+```
+2. Add the package into the reqiured secion of the composer.json. TO BE UPDATE ONCE PACKAGE IS PUBLISHED
+```json
+"require": {
+        "pod-point/reviews-php": "*",
+},
 ```
 2. Run composer install inside of the desired project workspace.
 ```bash
