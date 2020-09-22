@@ -16,7 +16,6 @@ Follow the steps below in the desired project where you would like to install th
     "url": "git@github.com:pod-point/reviews-php.git"  
 }
 ```
-```
 2. Run the following command.
 ```bash
 php artisan vendor:publish --provider="PodPoint\Reviews\Providers\ReviewsProvider"
