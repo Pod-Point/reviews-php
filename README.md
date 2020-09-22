@@ -19,7 +19,7 @@ Follow the steps below in the desired project where you would like to install th
 2. Add the package into the reqiured secion of the composer.json. TO BE UPDATE ONCE PACKAGE IS PUBLISHED
 ```json
 "require": {
-        "pod-point/reviews-php": "*",
+    "pod-point/reviews-php": "*",
 },
 ```
 2. Run composer install inside of the desired project workspace.
