@@ -20,11 +20,11 @@ Follow the steps below in the desired project where you would like to install th
 ```bash
 composer require pod-point/reviews-php
 ```
-2. Run the following command.
+3. Run the following command.
 ```bash
 php artisan vendor:publish --provider="PodPoint\Reviews\Providers\ReviewsProvider"
 ```
-3. Finally we need to update the .env to let the new package know the details of the review provider. The following are required.
+4. Finally we need to update the .env to let the new package know the details of the review provider. The following are required.
  ```env
 REVIEWS_CO_UK_STORE=
 REVIEWS_CO_UK_API_KEY=
