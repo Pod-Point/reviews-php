@@ -5,18 +5,32 @@ namespace PodPoint\Reviews;
 interface Service
 {
     /**
-     * Creates an invite.
+     * Sends an invite to review an order.
      *
-     * @param array $options
+     * @param string $email
+     * @param string $name
+     * @param string $order
+     *
+     * @return void
      */
-    public function invite(array $options);
+    public function sendOrderReviewInvite(string $email, string $name, string $order): void;
 
     /**
-     * Get review(s).
+     * Get review(s) between dates.
      *
-     * @param array $options
+     * @param string|null $from
+     * @param string|null $to
      *
      * @return array|null
      */
-    public function get(array $options);
+    public function getCompanyReviewsBetweenDates(string $from = null, string $to = null): ?array;
+
+    /**
+     * Get review(s) for an order.
+     *
+     * @param string|null $orderId
+     *
+     * @return array|null
+     */
+    public function getOrderReview(string $orderId): ?array;
 }

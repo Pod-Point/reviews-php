@@ -2,6 +2,7 @@
 
 namespace PodPoint\Reviews\Tests;
 
+use Carbon\Carbon;
 use \GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Config\Repository as Config;
 use Mockery;
@@ -39,19 +40,19 @@ class MerchantServiceTest extends TestCase
 
         $this->response = Mockery::mock('response');
 
-        $config = Mockery::mock(Config::class)->shouldReceive('get')
-            ->andReturnUsing(function ($argument)
-            {
-                switch ($argument)
-                {
-                    case 'review-providers.reviews_co_uk.url':
+        $config = Mockery::mock(Config::class)
+            ->shouldReceive('get')
+            ->andReturnUsing(function ($argument) {
+                switch ($argument) {
+                    case 'review-providers.providers.reviews_co_uk.url':
                         return self::URL;
-                    case 'review-providers.reviews_co_uk.store':
+                    case 'review-providers.providers.reviews_co_uk.store':
                         return self::STORE;
-                    case 'review-providers.reviews_co_uk.api_key':
+                    case 'review-providers.providers.reviews_co_uk.api_key':
                         return self::API_KEY;
                 }
-            })->getMock();
+            })
+            ->getMock();
 
         $this->client = new MerchantService($this->mockClient, $config);
     }
@@ -63,12 +64,6 @@ class MerchantServiceTest extends TestCase
      */
     public function testCanPrepareARequestToSendInviteToReview()
     {
-        $options = [
-            'name' => $this->faker->name,
-            'email' => $this->faker->email,
-            'orderNumber' => $this->faker->randomNumber(),
-        ];
-
         $this->mockClient
             ->shouldReceive('request')
             ->with('POST',
@@ -76,7 +71,7 @@ class MerchantServiceTest extends TestCase
                 Mockery::subset(['base_uri' => self::URL])
             )->once();
 
-        $this->client->invite($options);
+        $this->client->sendOrderReviewInvite($this->faker->name, $this->faker->email, $this->faker->randomNumber());
     }
 
     /**
@@ -84,26 +79,52 @@ class MerchantServiceTest extends TestCase
      */
     public function testCanPrepareARequestToGetReviewsForAnOrder()
     {
-        $options = [
-            'orderNumber' => $this->faker->uuid,
-        ];
-
-        $testData = $this->faker->text;
+        $responseData = ['text' => $this->faker->text];
 
         $this->response->shouldReceive('getBody')->andReturn($this->response)->once();
         $this->response
             ->shouldReceive('getContents')
-            ->andReturn(json_encode($testData))
+            ->andReturn(json_encode($responseData))
             ->once();
 
         $this->mockClient
             ->shouldReceive('request')
-            ->with( 'GET',
+            ->with('GET',
                 'merchant/reviews',
                 Mockery::subset(['base_uri' => self::URL])
-            )->andReturn($this->response)->once();
+            )
+            ->andReturn($this->response)
+            ->once();
 
-        $response = $this->client->get($options);
-        $this->assertEquals($testData, $response);
+        $response = $this->client->getOrderReview($this->faker->uuid);
+        $this->assertEquals($responseData, $response);
+    }
+
+    /**
+     * Ensure the service can prepare a request to get reviews between dates.
+     */
+    public function testCanPrepareARequestToGetReviewsBetweenDates()
+    {
+        $from = Carbon::now()->subMonth(1);
+        $to = Carbon::now();
+        $responseData = ['text' => $this->faker->text];
+
+        $this->response->shouldReceive('getBody')->andReturn($this->response)->once();
+        $this->response
+            ->shouldReceive('getContents')
+            ->andReturn(json_encode($responseData))
+            ->once();
+
+        $this->mockClient
+            ->shouldReceive('request')
+            ->with('GET',
+                'merchant/reviews',
+                Mockery::subset(['base_uri' => self::URL])
+            )
+            ->andReturn($this->response)
+            ->once();
+
+        $response = $this->client->getCompanyReviewsBetweenDates($from->toDateTimeString(), $to->toDateTimeString());
+        $this->assertEquals($responseData, $response);
     }
 }

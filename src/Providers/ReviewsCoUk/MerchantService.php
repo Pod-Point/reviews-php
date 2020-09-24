@@ -16,6 +16,13 @@ class MerchantService implements ServiceInterface
     private $client;
 
     /**
+     * A The Store Id.
+     *
+     * @var string
+     */
+    private $store;
+
+    /**
      * @var Config
      */
     private $config;
@@ -23,31 +30,30 @@ class MerchantService implements ServiceInterface
     /**
      * Sets the client and configuration for the service.
      *
-     * @param  Client  $client
-     * @param  Config  $config
+     * @param  Client $client
+     * @param  Config $config
      */
     public function __construct(Client $client, Config $config)
     {
         $this->client = $client;
         $this->config = $config;
+        $this->store = $this->config->get('review-providers.providers.reviews_co_uk.store');
     }
 
     /**
      * Creates a merchant invite.
      *
-     * @param  array  $options
+     * @inheritdoc
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function invite(array $options)
+    public function sendOrderReviewInvite(string $name, string $email, string $orderNumber): void
     {
-        $options = new InviteOptions($options);
-
         $this->request('POST', 'merchant/invitation', [
             'form_params' => [
-                'name' => $options->name,
-                'email' => $options->email,
-                'order_id' => $options->orderNumber,
+                'name' => $name,
+                'email' => $email,
+                'order_id' => $orderNumber,
             ],
         ]);
     }
@@ -55,32 +61,48 @@ class MerchantService implements ServiceInterface
     /**
      * Get merchant review(s).
      *
-     * @param array $options
-     *
-     * @return array|null
+     * @inheritdoc
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function get(array $options)
+    public function getOrderReview(string $orderNumber): ?array
     {
-        $options = new GetOptions($options);
+        $response = $this->request('GET', 'merchant/reviews', [
+            'query' => [
+                'order_id' => $orderNumber,
+                'store' => $this->store,
+            ],
+        ]);
 
+        return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * Get merchant review(s) between dates.
+     *
+     * @inheritdoc
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getCompanyReviewsBetweenDates(string $from = null, string $to = null): ?array
+    {
         $parameters = [
-            'store' => $this->config->get('review-providers.reviews_co_uk.store'),
+            'store' => $this->store,
         ];
 
-        if ($options->hasOrderNumber()) {
-            $parameters['order_id'] = $options->orderNumber;
-        } else {
-            $parameters['min_date'] = $options->minDate;
-            $parameters['max_date'] = $options->maxDate;
+        if ($from) {
+            $parameters['min_date'] = $from;
+        }
+
+        if ($to) {
+            $parameters['max_date'] = $to;
         }
 
         $response = $this->request('GET', 'merchant/reviews', [
             'query' => $parameters,
         ]);
 
-        return json_decode($response->getBody()->getContents());
+        return json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -97,10 +119,10 @@ class MerchantService implements ServiceInterface
     private function request(string $method, string $uri = '', array $options = [])
     {
         return $this->client->request($method, $uri, array_merge([
-            'base_uri' => $this->config->get('review-providers.reviews_co_uk.url'),
+            'base_uri' => $this->config->get('review-providers.providers.reviews_co_uk.url'),
             'headers' => [
-                'store' => $this->config->get('review-providers.reviews_co_uk.store'),
-                'apikey' => $this->config->get('review-providers.reviews_co_uk.api_key'),
+                'store' => $this->config->get('review-providers.providers.reviews_co_uk.store'),
+                'apikey' => $this->config->get('review-providers.providers.reviews_co_uk.api_key'),
             ],
         ], $options));
     }
