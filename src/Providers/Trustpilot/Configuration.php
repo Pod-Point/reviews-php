@@ -9,35 +9,35 @@ class Configuration
      *
      * @var string
      */
-    public string $apiKey;
+    public $apiKey;
 
     /**
      * The Trustpilot business unit ID.
      *
      * @var string
      */
-    public string $businessUnitId;
+    public $businessUnitId;
 
     /**
      * The Trustpilot account password.
      *
      * @var string
      */
-    public string $password;
+    public $password;
 
     /**
      * The Trustpilot application secret key.
      *
      * @var string
      */
-    public string $secretKey;
+    public $secretKey;
 
     /**
      * The Trustpilot account username.
      *
      * @var string
      */
-    public string $username;
+    public $username;
 
     /**
      * Sets all the configuration from the given array.

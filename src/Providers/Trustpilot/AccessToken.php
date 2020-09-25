@@ -9,21 +9,21 @@ class AccessToken
      *
      * @var string
      */
-    public string $accessToken;
+    public $accessToken;
 
     /**
      * The tokens TTL in seconds.
      *
      * @var int
      */
-    public int $expiresIn;
+    public $expiresIn;
 
     /**
      * The OAuth2 refresh token.
      *
      * @var string
      */
-    public string $refreshToken;
+    public $refreshToken;
 
     /**
      * Sets the access token properties from the given array.
