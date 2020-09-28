@@ -2,7 +2,9 @@
 
 namespace PodPoint\Reviews\Providers\Trustpilot;
 
-class Configuration
+use Illuminate\Support\Facades\Config;
+
+class AuthenticationConfiguration
 {
     /**
      * The Trustpilot application API key.
@@ -10,13 +12,6 @@ class Configuration
      * @var string
      */
     public $apiKey;
-
-    /**
-     * The Trustpilot business unit ID.
-     *
-     * @var string
-     */
-    public $businessUnitId;
 
     /**
      * The Trustpilot account password.
@@ -42,14 +37,15 @@ class Configuration
     /**
      * Sets all the configuration from the given array.
      *
-     * @param array $config
+     * @param Config $config
      */
-    public function __construct(array $config)
+    public function __construct(Config $config)
     {
-        $this->apiKey = $config['apiKey'];
-        $this->businessUnitId = $config['businessUnitId'];
-        $this->password = $config['password'];
-        $this->secretKey = $config['secretKey'];
-        $this->username = $config['username'];
+        $authConfig = 'review-providers.providers.trustpilot.auth';
+
+        $this->apiKey = $config->get("$authConfig.apiKey");
+        $this->secretKey = $config->get("$authConfig.secretKey");
+        $this->username = $config->get("$authConfig.username");
+        $this->password = $config->get("$authConfig.password");
     }
 }

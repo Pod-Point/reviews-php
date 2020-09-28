@@ -3,6 +3,7 @@
 namespace PodPoint\Reviews\Providers\Trustpilot;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Config;
 use PodPoint\Reviews\Service as ServiceInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -18,9 +19,16 @@ class Service implements ServiceInterface
     /**
      * A Trustpilot configuration instance.
      *
-     * @var Configuration
+     * @var AuthenticationConfiguration
      */
-    private $config;
+    private $authConfig;
+
+    /**
+     * A Trustpilot configuration instance.
+     *
+     * @var InviteConfiguration
+     */
+    private $inviteConfiguration;
 
     /**
      * A Trustpilot api domain.
@@ -30,16 +38,31 @@ class Service implements ServiceInterface
     private $apiDomain;
 
     /**
+     * The Trustpilot business unit ID.
+     *
+     * @var string
+     */
+    public $businessUnitId;
+
+    /**
      * Sets the client and configuration for the service.
      *
      * @param Client $client
-     * @param Configuration $config
+     * @param AuthenticationConfiguration $authConfig
+     * @param InviteConfiguration $inviteConfig
+     * @param Config $config
      */
-    public function __construct(Client $client, Configuration $config)
-    {
+    public function __construct(
+        Client $client,
+        AuthenticationConfiguration $authConfig,
+        InviteConfiguration $inviteConfig,
+        Config $config
+    ) {
         $this->client = $client;
-        $this->config = $config;
+        $this->authConfig = $authConfig;
+        $this->inviteConfiguration = $inviteConfig;
         $this->apiDomain = 'https://invitations-api.trustpilot.com/v1';
+        $this->businessUnitId = $config->get('review-providers.providers.trustpilot.businessUnitId');
     }
 
     /**
@@ -51,7 +74,7 @@ class Service implements ServiceInterface
     {
         $accessToken = $this->getAccessToken();
 
-        $this->client->post("{$this->apiDomain}/private/business-units/{$this->config->businessUnitId}/email-invitations",
+        $this->client->post("{$this->apiDomain}/private/business-units/{$this->businessUnitId}/email-invitations",
             [
                 'headers' => [
                     'authorization' => "Bearer {$accessToken->accessToken}",
@@ -59,27 +82,56 @@ class Service implements ServiceInterface
                 'json' => [
                     'consumerEmail' => $email,
                     'consumerName' => $name,
-                    'locale' => $this->config->locale,
+                    'locale' => $this->inviteConfiguration->locale,
                     'referenceNumber' => $orderId,
-                    'replyTo' => $this->config->replyTo,
-                    'senderEmail' => $this->config->senderEmail,
-                    'senderName' => $this->config->senderName,
+                    'replyTo' => $this->inviteConfiguration->replyTo,
+                    'senderEmail' => $this->inviteConfiguration->senderEmail,
+                    'senderName' => $this->inviteConfiguration->senderName,
                     'serviceReviewInvitation' => [
-                        'redirectUri' => $this->config->redirectUri,
-                        'templateId' => $this->config->templateId,
+                        'redirectUri' => $this->inviteConfiguration->redirectUri,
+                        'templateId' => $this->inviteConfiguration->templateId,
                     ],
                 ],
             ]);
     }
 
+    /**
+     * Get the company reviews between dates.
+     *
+     * @inheritdoc
+     */
     public function getCompanyReviewsBetweenDates(string $from = null, string $to = null): ?array
     {
-        // TODO: Implement getCompanyReviewsBetweenDates() method.
+        $response = $this->client->get(
+            "{$this->apiDomain}/private/business-units/{$this->businessUnitId}/reviews",
+            [
+                'params' => [
+                    'startDateTime' => $from,
+                    'endDateTime' => $to,
+                ],
+            ]
+        );
+
+        return $this->getResponseJson($response);
     }
 
+    /**
+     * Get the company review for an order.
+     *
+     * @inheritdoc
+     */
     public function getOrderReview(string $orderId): ?array
     {
-        // TODO: Implement getOrderReview() method.
+        $response = $this->client->get(
+            "{$this->apiDomain}/private/business-units/{$this->businessUnitId}/reviews",
+            [
+                'params' => [
+                    'referenceId' => $orderId,
+                ],
+            ]
+        );
+
+        return $this->getResponseJson($response);
     }
 
     /**
@@ -89,7 +141,7 @@ class Service implements ServiceInterface
      */
     protected function getAccessToken(): AccessToken
     {
-        $key = base64_encode("{$this->config->apiKey}:{$this->config->secretKey}");
+        $key = base64_encode("{$this->authConfig->apiKey}:{$this->authConfig->secretKey}");
 
         $response = $this->client->post("{$this->apiDomain}/oauth/oauth-business-users-for-applications/accesstoken",
             [
@@ -98,8 +150,8 @@ class Service implements ServiceInterface
                 ],
                 'form_params' => [
                     'grant_type' => 'password',
-                    'password' => $this->config->password,
-                    'username' => $this->config->username,
+                    'password' => $this->authConfig->password,
+                    'username' => $this->authConfig->username,
                 ],
             ]);
 
