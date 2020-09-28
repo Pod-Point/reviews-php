@@ -17,7 +17,6 @@ return [
             'api_key' => env('REVIEWS_CO_UK_API_KEY'),
         ],
         'trustpilot' => [
-            'url' => env('TRUSTPILOT_URL'),
             'businessUnitId' => null,
             'locale' => 'en-GB',
             'invites' => [

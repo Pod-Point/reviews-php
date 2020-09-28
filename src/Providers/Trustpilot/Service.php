@@ -61,7 +61,6 @@ class Service implements ServiceInterface
         $this->client = $client;
         $this->authConfig = $authConfig;
         $this->inviteConfiguration = $inviteConfig;
-        $this->apiDomain = 'https://invitations-api.trustpilot.com/v1';
         $this->businessUnitId = $config->get('review-providers.providers.trustpilot.businessUnitId');
     }
 
@@ -74,7 +73,7 @@ class Service implements ServiceInterface
     {
         $accessToken = $this->getAccessToken();
 
-        $this->client->post("{$this->apiDomain}/private/business-units/{$this->businessUnitId}/email-invitations",
+        $this->client->post("https://invitations-api.trustpilot.com/v1/private/business-units/{$this->businessUnitId}/email-invitations",
             [
                 'headers' => [
                     'authorization' => "Bearer {$accessToken->accessToken}",
@@ -103,7 +102,7 @@ class Service implements ServiceInterface
     public function getCompanyReviewsBetweenDates(string $from = null, string $to = null): ?array
     {
         $response = $this->client->get(
-            "{$this->apiDomain}/private/business-units/{$this->businessUnitId}/reviews",
+            "https://api.trustpilot.com/v1/private/business-units/{$this->businessUnitId}/reviews",
             [
                 'params' => [
                     'startDateTime' => $from,
@@ -123,7 +122,7 @@ class Service implements ServiceInterface
     public function getOrderReview(string $orderId): ?array
     {
         $response = $this->client->get(
-            "{$this->apiDomain}/private/business-units/{$this->businessUnitId}/reviews",
+            "https://api.trustpilot.com/v1/private/business-units/{$this->businessUnitId}/reviews",
             [
                 'params' => [
                     'referenceId' => $orderId,
