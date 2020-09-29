@@ -2,21 +2,46 @@
 
 namespace PodPoint\Reviews\Providers\Trustpilot;
 
-class AbstractTrustpilotApiClient extends \PodPoint\Reviews\AbstractApiClient
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
+
+abstract class AbstractTrustpilotApiClient extends \PodPoint\Reviews\AbstractApiClient
 {
-    /**
-     * @inheritDoc
-     */
-    public function getEndpoint()
+    protected $authConfig;
+
+    public function __construct(ClientInterface $httpClient, AuthenticationConfiguration $authConfig)
     {
-        // TODO: Implement getEndpoint() method.
+        parent::__construct($httpClient);
+
+        $this->authConfig = $authConfig;
     }
 
     /**
-     * @inheritDoc
+     * Retrieves an OAuth2 access token.
+     *
+     * @return AccessToken
+     *
+     * @throws GuzzleException
      */
-    public function send()
+    protected function getAccessToken(): AccessToken
     {
-        // TODO: Implement send() method.
+        $key = base64_encode("{$this->authConfig->apiKey}:{$this->authConfig->secretKey}");
+
+        $response = $this->httpClient->request(
+            'POST',
+            'https://api.trustpilot.com/v1/oauth/oauth-business-users-for-applications/accesstoken', [
+            'headers' => [
+                'authorization' => "Basic {$key}",
+            ],
+            'form_params' => [
+                'grant_type' => 'password',
+                'password' => $this->authConfig->password,
+                'username' => $this->authConfig->username,
+            ],
+        ]);
+
+        $json = $this->getResponseJson($response);
+
+        return new AccessToken($json);
     }
 }

@@ -33,8 +33,6 @@ class Manager
             throw new ProviderNotFoundException($class);
         }
 
-        $configs = include __DIR__ . "/config/review-providers.php";
-
         return new $class();
     }
 }
