@@ -2,8 +2,6 @@
 
 namespace PodPoint\Reviews\Providers\Trustpilot;
 
-use Illuminate\Support\Facades\Config;
-
 class AuthenticationConfiguration
 {
     /**
