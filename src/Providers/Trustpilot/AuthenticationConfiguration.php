@@ -41,11 +41,9 @@ class AuthenticationConfiguration
      */
     public function __construct(Config $config)
     {
-        $authConfig = 'review-providers.providers.trustpilot.auth';
-
-        $this->apiKey = $config->get("$authConfig.apiKey");
-        $this->secretKey = $config->get("$authConfig.secretKey");
-        $this->username = $config->get("$authConfig.username");
-        $this->password = $config->get("$authConfig.password");
+        $this->apiKey = $config->get('review-providers.providers.trustpilot.api_key');
+        $this->secretKey = $config->get('review-providers.providers.trustpilot.secret_key');
+        $this->username = $config->get('review-providers.providers.trustpilot.username');
+        $this->password = $config->get('review-providers.providers.trustpilot.password');
     }
 }
