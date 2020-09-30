@@ -2,8 +2,6 @@
 
 namespace PodPoint\Reviews\Providers\Trustpilot\Request;
 
-use GuzzleHttp\Exception\GuzzleException;
-
 class ServiceInviteRequest extends BaseInviteRequest
 {
     protected $tags;
@@ -15,14 +13,14 @@ class ServiceInviteRequest extends BaseInviteRequest
 
     /**
      * @return mixed|void
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
-     * @throws GuzzleException
      */
     public function send()
     {
         $this->validateAndSendRequest(
             'POST',
-            $this->getEndpoint(),
+            "https://invitations-api.trustpilot.com/v1/private/business-units/{$this->businessUnitId}/email-invitations",
             [
                 'json' => [
                     'consumerEmail' => $this->consumerEmail,
@@ -39,7 +37,7 @@ class ServiceInviteRequest extends BaseInviteRequest
                         'tags' => $this->tags,
                         'templateId' => $this->templateId,
                     ],
-                ]
+                ],
             ],
             [],
             true

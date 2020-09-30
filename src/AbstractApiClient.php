@@ -28,6 +28,7 @@ abstract class AbstractApiClient
     /**
      * @return array
      */
+    abstract protected function requiredFields(): array;
 
     /**
      * @return bool
