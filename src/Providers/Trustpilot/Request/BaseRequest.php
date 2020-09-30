@@ -42,9 +42,9 @@ abstract class BaseRequest
     abstract protected function getRequest(): Request;
 
     /**
-     * @return Response
+     * @return array|mixed
      */
-    abstract protected function send(): Response;
+    abstract protected function send();
 
     /**
      * @return bool

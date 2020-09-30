@@ -42,7 +42,7 @@ abstract class AbstractApiClient
      * @param ResponseInterface $response
      * @return array
      */
-    protected function getResponseJson(ResponseInterface $response): array
+    public function getResponseJson(ResponseInterface $response): array
     {
         $body = $response->getBody()->getContents();
 

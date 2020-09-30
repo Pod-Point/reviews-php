@@ -3,7 +3,6 @@
 namespace PodPoint\Reviews\Providers\Trustpilot\Request;
 
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
 
 class ServiceInviteRequest extends BaseRequest
 {
@@ -21,12 +20,14 @@ class ServiceInviteRequest extends BaseRequest
         );
     }
 
-    public function send(): Response
+    public function send()
     {
-        return $this->httpClient->validateAndSend(
+        $response = $this->httpClient->validateAndSend(
             $this->getRequest(),
             true
         );
+
+        return $this->httpClient->getResponseJson($response);
     }
 
     /**
