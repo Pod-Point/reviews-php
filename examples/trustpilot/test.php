@@ -4,7 +4,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 
 try {
-    $manager = new \PodPoint\Reviews\Manager();
+    $manager = new \PodPoint\Reviews\Manager($httpClient);
     $reviewService = $manager->withProvider('trustpilot');
 
     $reviewService->product();

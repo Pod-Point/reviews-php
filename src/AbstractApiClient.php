@@ -6,6 +6,7 @@ namespace PodPoint\Reviews;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractApiClient
@@ -19,6 +20,13 @@ abstract class AbstractApiClient
     {
         $this->httpClient = new Client();
     }
+
+    /**
+     * @param Request $request
+     * @param bool $withAuthentication
+     * @return mixed
+     */
+     abstract public function validateAndSend(Request $request, bool $withAuthentication);
 
     /***
      * @return Client|ClientInterface

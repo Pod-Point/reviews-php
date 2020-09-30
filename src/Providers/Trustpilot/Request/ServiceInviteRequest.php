@@ -23,7 +23,10 @@ class ServiceInviteRequest extends BaseRequest
 
     public function send(): Response
     {
-        return $this->validateAndSendRequest($this->getRequest(), true);
+        return $this->httpClient->validateAndSend(
+            $this->getRequest(),
+            true
+        );
     }
 
     /**

@@ -8,6 +8,13 @@ use PodPoint\Reviews\ReviewsInterface;
 
 class ServiceReview implements ReviewsInterface
 {
+    protected $httpClient;
+
+    public function __construct()
+    {
+        $this->httpClient = new TrustpilotApiClient();
+    }
+
     /**
      * @param array $options
      * @return \GuzzleHttp\Psr7\Response
@@ -15,7 +22,7 @@ class ServiceReview implements ReviewsInterface
      */
     public function invite(array $options)
     {
-        $request = new ServiceInviteRequest($options);
+        $request = new ServiceInviteRequest($this->httpClient, $options);
 
         return $request->send();
     }

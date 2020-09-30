@@ -8,7 +8,7 @@ use PodPoint\Reviews\AccessToken;
 use Psr\Http\Message\ResponseInterface;
 use PodPoint\Reviews\AbstractApiClient;
 
-abstract class AbstractTrustpilotApiClient extends AbstractApiClient
+class TrustpilotApiClient extends AbstractApiClient
 {
     /**
      * Retrieves an OAuth2 access token.
