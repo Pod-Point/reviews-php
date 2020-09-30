@@ -4,7 +4,8 @@ namespace PodPoint\Reviews\Providers\Trustpilot;
 
 use PodPoint\Reviews\ReviewsInterface;
 
-class ProductReviewsService implements ReviewsInterface
+
+class ServiceReview implements ReviewsInterface
 {
 
     public function invite()

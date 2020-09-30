@@ -19,6 +19,11 @@ abstract class BaseInviteRequest extends AbstractTrustpilotApiClient
     protected $senderEmail;
     protected $senderName;
 
+    public function getEndpoint()
+    {
+        return "https://invitations-api.trustpilot.com/v1/private/business-units/{$this->businessUnitId}/email-invitations";
+    }
+
     public function setBusinessId(string $businessId): void
     {
         $this->businessUnitId = $businessId;

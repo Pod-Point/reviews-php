@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot;
+namespace PodPoint\Reviews;
 
 class AccessToken
 {

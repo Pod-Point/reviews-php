@@ -8,11 +8,6 @@ class ServiceInviteRequest extends BaseInviteRequest
 {
     protected $tags;
 
-    public function getEndpoint()
-    {
-        return "https://invitations-api.trustpilot.com/v1/private/business-units/{$this->businessUnitId}/email-invitations";
-    }
-
     public function setRequestTags(array $tags): void
     {
         $this->tags = $tags;

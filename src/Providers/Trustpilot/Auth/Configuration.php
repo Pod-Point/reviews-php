@@ -1,10 +1,10 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot;
+namespace PodPoint\Reviews\Providers\Trustpilot\Auth;
 
 use Illuminate\Support\Facades\Config;
 
-class AuthenticationConfiguration
+class Configuration
 {
     /**
      * The Trustpilot application API key.

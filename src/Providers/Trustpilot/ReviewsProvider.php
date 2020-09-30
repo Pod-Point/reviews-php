@@ -5,7 +5,7 @@ namespace PodPoint\Reviews\Providers\Trustpilot;
 use PodPoint\Reviews\ReviewsInterface;
 use PodPoint\Reviews\ReviewsServiceInterface;
 
-class Service implements ReviewsServiceInterface
+class ReviewsProvider implements ReviewsServiceInterface
 {
     public function product(): ReviewsInterface
     {

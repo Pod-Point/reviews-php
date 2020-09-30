@@ -4,6 +4,8 @@ namespace PodPoint\Reviews\Providers\Trustpilot;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
+use PodPoint\Reviews\AccessToken;
+use PodPoint\Reviews\Providers\Trustpilot\Auth\Configuration as AuthenticationConfiguration;
 
 abstract class AbstractTrustpilotApiClient extends \PodPoint\Reviews\AbstractApiClient
 {
