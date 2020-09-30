@@ -6,6 +6,7 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use PodPoint\Reviews\AccessToken;
 use PodPoint\Reviews\Providers\Trustpilot\Auth\Configuration as AuthenticationConfiguration;
+use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractTrustpilotApiClient extends \PodPoint\Reviews\AbstractApiClient
 {
@@ -46,4 +47,21 @@ abstract class AbstractTrustpilotApiClient extends \PodPoint\Reviews\AbstractApi
 
         return new AccessToken($json);
     }
+
+    protected function validateAndSendRequest(
+        string $httpMethod,
+        string $uri,
+        array $body,
+        array $headers,
+        bool $withAuthentication = false
+    ): ResponseInterface {
+        $accessToken = $this->getAccessToken();
+
+        if ($withAuthentication) {
+            $headers['authorization'] = "Bearer {$accessToken->accessToken}";
+        }
+
+        return $this->httpClient->request($httpMethod, $uri, $headers, $body);
+    }
+
 }

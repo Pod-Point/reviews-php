@@ -23,17 +23,11 @@ abstract class AbstractApiClient
     /**
      * @return mixed
      */
-   // abstract public function getEndpoint();
-
-    /**
-     * @return mixed
-     */
-  //  abstract public function send();
+    abstract public function send();
 
     /**
      * @return array
      */
-  //  abstract protected function requiredFields(): array;
 
     /**
      * @return bool

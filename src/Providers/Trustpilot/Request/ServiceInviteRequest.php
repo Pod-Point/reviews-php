@@ -20,9 +20,29 @@ class ServiceInviteRequest extends BaseInviteRequest
      */
     public function send()
     {
-        $this->httpClient->request('POST',
+        $this->validateAndSendRequest(
+            'POST',
             $this->getEndpoint(),
-            $this->getRequestPayload()
+            [
+                'json' => [
+                    'consumerEmail' => $this->consumerEmail,
+                    'consumerName' => $this->consumerName,
+                    'locale' => $this->locale,
+                    'locationId' => $this->locationId,
+                    'referenceNumber' => $this->referenceNumber,
+                    'replyTo' => $this->replyTo,
+                    'senderEmail' => $this->senderEmail,
+                    'senderName' => $this->senderName,
+                    'serviceReviewInvitation' => [
+                        'preferredSendTime' => $this->preferredSendTime,
+                        'redirectUri' => $this->redirectUri,
+                        'tags' => $this->tags,
+                        'templateId' => $this->templateId,
+                    ],
+                ]
+            ],
+            [],
+            true
         );
     }
 
@@ -36,40 +56,5 @@ class ServiceInviteRequest extends BaseInviteRequest
             'consumerEmail',
             'consumerName',
         ];
-    }
-
-    /**
-     * @return array
-     * @throws \PodPoint\Reviews\Exceptions\ValidationException
-     * @throws GuzzleException
-     */
-    protected function getRequestPayload(): array
-    {
-        $this->validate();
-        $accessToken = $this->getAccessToken();
-
-        $request = [
-            'headers' => [
-                'authorization' => "Bearer {$accessToken->accessToken}",
-            ],
-            'json' => [
-                'consumerEmail' => $this->consumerEmail,
-                'consumerName' => $this->consumerName,
-                'locale' => $this->locale,
-                'locationId' => $this->locationId,
-                'referenceNumber' => $this->referenceNumber,
-                'replyTo' => $this->replyTo,
-                'senderEmail' => $this->senderEmail,
-                'senderName' => $this->senderName,
-                'serviceReviewInvitation' => [
-                    'preferredSendTime' => $this->preferredSendTime,
-                    'redirectUri' => $this->redirectUri,
-                    'tags' => $this->tags,
-                    'templateId' => $this->templateId,
-                ],
-            ],
-        ];
-
-        return $request;
     }
 }
