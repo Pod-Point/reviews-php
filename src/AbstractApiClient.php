@@ -1,8 +1,6 @@
 <?php
 
-
 namespace PodPoint\Reviews;
-
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -16,6 +14,9 @@ abstract class AbstractApiClient
      */
     protected $httpClient;
 
+    /**
+     * AbstractApiClient constructor.
+     */
     public function __construct()
     {
         $this->httpClient = new Client();
