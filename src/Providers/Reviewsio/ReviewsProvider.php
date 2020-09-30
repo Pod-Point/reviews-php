@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot;
+namespace PodPoint\Reviews\Providers\Reviewsio;
 
 use PodPoint\Reviews\ReviewsInterface;
 use PodPoint\Reviews\ReviewsServiceInterface;
@@ -10,8 +10,6 @@ class ReviewsProvider implements ReviewsServiceInterface
 
     protected $config;
 
-    protected $apiClient;
-
     /**
      * ReviewsProvider constructor.
      * @param $config
@@ -19,17 +17,6 @@ class ReviewsProvider implements ReviewsServiceInterface
     public function __construct($config)
     {
         $this->config = $config;
-
-        $this->apiClient = new TrustpilotApiClient();
-    }
-
-    /**
-     * @return ReviewsInterface
-     */
-    public function service(): ReviewsInterface
-    {
-        return (new ServiceReview($this->apiClient))
-            ->setBusinessUnitId($this->config['businessId']);
     }
 
     /**
@@ -40,4 +27,11 @@ class ReviewsProvider implements ReviewsServiceInterface
         return new ProductReview($this->config);
     }
 
+    /**
+     * @return ReviewsInterface
+     */
+    public function service(): ReviewsInterface
+    {
+        return new ServiceReview($this->config);
+    }
 }

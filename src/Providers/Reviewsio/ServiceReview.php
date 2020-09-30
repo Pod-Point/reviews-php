@@ -1,21 +1,22 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot;
+namespace PodPoint\Reviews\Providers\Reviewsio;
 
 use PodPoint\Reviews\Exceptions\ValidationException;
 use PodPoint\Reviews\Providers\Trustpilot\Request\ServiceInviteRequest;
 use PodPoint\Reviews\Providers\Trustpilot\Request\ServiceReviewsRequest;
 use PodPoint\Reviews\ReviewsInterface;
 
+
 class ServiceReview implements ReviewsInterface
 {
-    protected $apiClient;
+    protected $httpClient;
 
-    protected $businessUnitId;
+    protected $config;
 
-    public function __construct($apiClient)
+    public function __construct($config)
     {
-        $this->apiClient = $apiClient;
+        $this->httpClient = new TrustpilotApiClient();
     }
 
     /**
@@ -25,7 +26,7 @@ class ServiceReview implements ReviewsInterface
      */
     public function invite(array $options)
     {
-        $request = new ServiceInviteRequest($this->apiClient, $options);
+        $request = new ServiceInviteRequest($this->httpClient, $options);
 
         return $request->send();
     }
@@ -37,7 +38,7 @@ class ServiceReview implements ReviewsInterface
      */
     public function fetchAll(array $options)
     {
-        $request = new ServiceReviewsRequest($this->apiClient, $options);
+        $request = new ServiceReviewsRequest($this->httpClient, $options);
 
         return $request->send();
     }
@@ -53,19 +54,8 @@ class ServiceReview implements ReviewsInterface
             'referenceId' => $reference
         ];
 
-        $request = new ServiceReviewsRequest($this->apiClient, $options);
+        $request = new ServiceReviewsRequest($this->httpClient, $options);
 
         return $request->send();
-    }
-
-    /**
-     * @param $businessUnitId
-     * @return $this
-     */
-    public function setBusinessUnitId($businessUnitId)
-    {
-        $this->businessUnitId = $businessUnitId;
-
-        return $this;
     }
 }

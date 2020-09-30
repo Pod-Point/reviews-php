@@ -15,7 +15,6 @@ class Manager
      */
     protected $config;
 
-
     /**
      * @param array $config
      */
