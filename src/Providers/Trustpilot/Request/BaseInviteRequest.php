@@ -6,6 +6,8 @@ use PodPoint\Reviews\Providers\Trustpilot\AbstractTrustpilotApiClient;
 
 abstract class BaseInviteRequest extends AbstractTrustpilotApiClient
 {
+    protected $baseInviteUrl = 'https://invitations-api.trustpilot.com';
+
     protected $businessUnitId;
     protected $consumerEmail;
     protected $consumerName;

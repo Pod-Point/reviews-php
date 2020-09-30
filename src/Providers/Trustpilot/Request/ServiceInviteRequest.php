@@ -2,25 +2,26 @@
 
 namespace PodPoint\Reviews\Providers\Trustpilot\Request;
 
+
 class ServiceInviteRequest extends BaseInviteRequest
 {
     protected $tags;
 
-    public function setRequestTags(array $tags): void
+    public function setTags(array $tags): void
     {
         $this->tags = $tags;
     }
 
     /**
-     * @return mixed|void
+     * @return mixed|array
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function send()
     {
-        $this->validateAndSendRequest(
+        return $this->getResponseJson($this->validateAndSendRequest(
             'POST',
-            "https://invitations-api.trustpilot.com/v1/private/business-units/{$this->businessUnitId}/email-invitations",
+            "{$this->baseInviteUrl}/v1/private/business-units/{$this->businessUnitId}/email-invitations",
             [
                 'json' => [
                     'consumerEmail' => $this->consumerEmail,
@@ -41,7 +42,7 @@ class ServiceInviteRequest extends BaseInviteRequest
             ],
             [],
             true
-        );
+        ));
     }
 
     /**
