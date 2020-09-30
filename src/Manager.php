@@ -15,10 +15,11 @@ class Manager
      */
     protected $config;
 
+
     /**
      * @param array $config
      */
-    public function __constructor(array $config)
+    public function __construct(array $config)
     {
         $this->config = $config;
     }
@@ -46,6 +47,6 @@ class Manager
             throw new ProviderNotFoundException($class);
         }
 
-//        return new $class($this->config['providers'][$provider]);
+        return new $class($this->config['providers'][$provider]);
     }
 }

@@ -12,7 +12,9 @@ class ServiceReview implements ReviewsInterface
 {
     protected $httpClient;
 
-    public function __construct()
+    protected $config;
+
+    public function __construct($config)
     {
         $this->httpClient = new TrustpilotApiClient();
     }

@@ -1,8 +1,6 @@
 <?php
 
-namespace PodPoint\ReviewsLaravel;
-
-use PodPoint\Reviews\Manager;
+namespace PodPoint\Reviews;
 
 /**
  * Class ServiceProvider
@@ -18,7 +16,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/review-providers.php' => config_path('reviews-providers.php'),
+            __DIR__ . '/config/review-providers.php' => config_path('review-providers.php'),
         ]);
     }
 
@@ -30,11 +28,11 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/reviews-providers.php', 'reviews-providers'
+            __DIR__ . '/config/review-providers.php', 'review-providers'
         );
 
         $this->app->singleton(Manager::class, function() {
-            return new Manager(config('reviews-providers'));
+            return new Manager(config('review-providers'));
         });
     }
 }

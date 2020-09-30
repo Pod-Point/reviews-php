@@ -7,12 +7,24 @@ use PodPoint\Reviews\ReviewsServiceInterface;
 
 class ReviewsProvider implements ReviewsServiceInterface
 {
+
+    protected $config;
+
+    /**
+     * ReviewsProvider constructor.
+     * @param $config
+     */
+    public function __construct($config)
+    {
+        $this->config = $config;
+    }
+
     /**
      * @return ReviewsInterface
      */
     public function product(): ReviewsInterface
     {
-        return new ProductReview();
+        return new ProductReview($this->config);
     }
 
     /**
@@ -20,6 +32,6 @@ class ReviewsProvider implements ReviewsServiceInterface
      */
     public function service(): ReviewsInterface
     {
-        return new ServiceReview();
+        return new ServiceReview($this->config);
     }
 }

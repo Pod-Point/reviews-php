@@ -6,6 +6,19 @@ use PodPoint\Reviews\ReviewsInterface;
 
 class ProductReview implements ReviewsInterface
 {
+
+    protected $config;
+
+    /**
+     * ProductReview constructor.
+     * @param $config
+     */
+    public function __construct($config)
+    {
+        $this->config = $config;
+    }
+
+
     public function invite(array $options)
     {
         //construct request with options
