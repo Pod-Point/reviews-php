@@ -7,7 +7,6 @@ use \PodPoint\Reviews\Request\BaseRequest;
 
 class ServiceReviewsRequest extends BaseRequest
 {
-
     /**
      * @return array
      */
@@ -21,9 +20,11 @@ class ServiceReviewsRequest extends BaseRequest
      */
     protected function getRequest(): Request
     {
+        $businessUnitId = $this->getOption('businessUnitId');
+
         return new Request(
             'GET',
-            'https://api.trustpilot.com/v1/private/business-units/' . config('review-providers.providers.trustpilot.business_id') . '/reviews',
+            "https://api.trustpilot.com/v1/private/business-units/{$businessUnitId}/reviews",
             [
                 'json' => $this->options,
             ]

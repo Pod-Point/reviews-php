@@ -6,7 +6,6 @@ use PodPoint\Reviews\ReviewsInterface;
 
 class ProductReview implements ReviewsInterface
 {
-
     protected $config;
 
     /**
@@ -18,13 +17,9 @@ class ProductReview implements ReviewsInterface
         $this->config = $config;
     }
 
-
     public function invite(array $options)
     {
-        //construct request with options
         // TODO: Implement invite() method.
-
-        //call httpclient and send it
     }
 
     public function fetchAll(array $options)

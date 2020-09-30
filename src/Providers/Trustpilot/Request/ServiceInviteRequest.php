@@ -12,9 +12,11 @@ class ServiceInviteRequest extends BaseRequest
      */
     public function getRequest(): Request
     {
+        $businessUnitId = $this->getOption('businessUnitId');
+
         return new Request(
             'POST',
-            'https://invitations-api.trustpilot.com/v1/private/business-units/'.$this->getOption('businessUnitId'). '/email-invitations',
+            "https://invitations-api.trustpilot.com/v1/private/business-units/{$businessUnitId}/email-invitations",
             [
                 'json' => $this->options,
             ]

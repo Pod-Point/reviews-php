@@ -10,6 +10,32 @@ use PodPoint\Reviews\AbstractApiClient;
 
 class TrustpilotApiClient extends AbstractApiClient
 {
+    protected $apiKey;
+
+    protected $secretKey;
+
+    protected $username;
+
+    protected $password;
+
+    /**
+     * TrustpilotApiClient constructor.
+     *
+     * @param string $apiKey
+     * @param string $secretKey
+     * @param string $username
+     * @param string $password
+     */
+    public function __construct(string $apiKey, string $secretKey, string $username, string $password)
+    {
+        parent::__construct();
+
+        $this->apiKey = $apiKey;
+        $this->secretKey = $secretKey;
+        $this->username = $username;
+        $this->password = $password;
+    }
+
     /**
      * Retrieves an OAuth2 access token.
      *
@@ -19,12 +45,7 @@ class TrustpilotApiClient extends AbstractApiClient
      */
     protected function getAccessToken(): AccessToken
     {
-        $apiKey = config('review-providers.providers.trustpilot.api_key');
-        $secretKey = config('review-providers.providers.trustpilot.secret_key');
-        $username = config('review-providers.providers.trustpilot.username');
-        $password = config('review-providers.providers.trustpilot.password');
-
-        $key = base64_encode($apiKey.':'.$secretKey);
+        $key = base64_encode($this->apiKey . ':' . $this->secretKey);
 
         $response = $this->httpClient->request(
             'POST',
@@ -34,8 +55,8 @@ class TrustpilotApiClient extends AbstractApiClient
             ],
             'form_params' => [
                 'grant_type' => 'password',
-                'password' => $password,
-                'username' => $username,
+                'username' => $this->username,
+                'password' => $this->password,
             ],
         ]);
 

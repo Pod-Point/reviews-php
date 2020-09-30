@@ -40,7 +40,7 @@ class Manager
      */
     protected function getProviderInstance(string $provider)
     {
-        $class = 'PodPoint\\Reviews\\Providers\\' . ucfirst($provider) .'\\ReviewsProvider';
+        $class = 'PodPoint\\Reviews\\Providers\\' . ucfirst($provider) .'\\Factory';
 
         if (!class_exists($class)) {
             throw new ProviderNotFoundException($class);

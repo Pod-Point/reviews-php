@@ -25,6 +25,7 @@ class ServiceReview implements ReviewsInterface
      */
     public function invite(array $options)
     {
+        $options['businessUnitId'] = $this->businessUnitId;
         $request = new ServiceInviteRequest($this->apiClient, $options);
 
         return $request->send();
@@ -37,6 +38,7 @@ class ServiceReview implements ReviewsInterface
      */
     public function fetchAll(array $options)
     {
+        $options['businessUnitId'] = $this->businessUnitId;
         $request = new ServiceReviewsRequest($this->apiClient, $options);
 
         return $request->send();
@@ -50,7 +52,8 @@ class ServiceReview implements ReviewsInterface
     public function find(string $reference)
     {
         $options = [
-            'referenceId' => $reference
+            'referenceId' => $reference,
+            'businessUnitId' => $this->businessUnitId,
         ];
 
         $request = new ServiceReviewsRequest($this->apiClient, $options);
@@ -62,7 +65,7 @@ class ServiceReview implements ReviewsInterface
      * @param $businessUnitId
      * @return $this
      */
-    public function setBusinessUnitId($businessUnitId)
+    public function setBusinessUnitId($businessUnitId): ServiceReview
     {
         $this->businessUnitId = $businessUnitId;
 
