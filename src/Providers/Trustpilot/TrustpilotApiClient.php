@@ -19,7 +19,12 @@ class TrustpilotApiClient extends AbstractApiClient
      */
     protected function getAccessToken(): AccessToken
     {
-        $key = base64_encode("{$this->authConfig->apiKey}:{$this->authConfig->secretKey}");
+        $apiKey = config('review-providers.providers.trustpilot.api_key');
+        $secretKey = config('review-providers.providers.trustpilot.secret_key');
+        $username = config('review-providers.providers.trustpilot.username');
+        $password = config('review-providers.providers.trustpilot.password');
+
+        $key = base64_encode($apiKey.':'.$secretKey);
 
         $response = $this->httpClient->request(
             'POST',
@@ -29,8 +34,8 @@ class TrustpilotApiClient extends AbstractApiClient
             ],
             'form_params' => [
                 'grant_type' => 'password',
-                'password' => $this->authConfig->password,
-                'username' => $this->authConfig->username,
+                'password' => $password,
+                'username' => $username,
             ],
         ]);
 

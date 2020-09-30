@@ -2,7 +2,9 @@
 
 namespace PodPoint\Reviews\Providers\Trustpilot;
 
+use PodPoint\Reviews\Exceptions\ValidationException;
 use PodPoint\Reviews\Providers\Trustpilot\Request\ServiceInviteRequest;
+use PodPoint\Reviews\Providers\Trustpilot\Request\ServiceReviewsRequest;
 use PodPoint\Reviews\ReviewsInterface;
 
 
@@ -17,8 +19,8 @@ class ServiceReview implements ReviewsInterface
 
     /**
      * @param array $options
-     * @return \GuzzleHttp\Psr7\Response
-     * @throws \PodPoint\Reviews\Exceptions\ValidationException
+     * @return array|mixed
+     * @throws ValidationException
      */
     public function invite(array $options)
     {
@@ -27,13 +29,31 @@ class ServiceReview implements ReviewsInterface
         return $request->send();
     }
 
+    /**
+     * @param array $options
+     * @return array|mixed
+     * @throws ValidationException
+     */
     public function fetchAll(array $options)
     {
-        // TODO: Implement fetchAll() method.
+        $request = new ServiceReviewsRequest($this->httpClient, $options);
+
+        return $request->send();
     }
 
+    /**
+     * @param string $reference
+     * @return array|mixed
+     * @throws ValidationException
+     */
     public function find(string $reference)
     {
-        // TODO: Implement find() method.
+        $options = [
+            'referenceId' => $reference
+        ];
+
+        $request = new ServiceReviewsRequest($this->httpClient, $options);
+
+        return $request->send();
     }
 }

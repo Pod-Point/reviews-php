@@ -7,13 +7,19 @@ use PodPoint\Reviews\ReviewsServiceInterface;
 
 class ReviewsProvider implements ReviewsServiceInterface
 {
+    /**
+     * @return ReviewsInterface
+     */
     public function product(): ReviewsInterface
     {
-        // TODO: Implement product() method.
+        return new ProductReview();
     }
 
+    /**
+     * @return ReviewsInterface
+     */
     public function service(): ReviewsInterface
     {
-        // TODO: Implement service() method.
+        return new ServiceReview();
     }
 }

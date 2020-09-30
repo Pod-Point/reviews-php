@@ -1,10 +1,9 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot\Request;
+namespace PodPoint\Reviews\Request;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
 use PodPoint\Reviews\AbstractApiClient;
 use PodPoint\Reviews\Exceptions\ValidationException;
 
@@ -44,7 +43,7 @@ abstract class BaseRequest
     /**
      * @return array|mixed
      */
-    abstract protected function send();
+    abstract public function send();
 
     /**
      * @return bool
