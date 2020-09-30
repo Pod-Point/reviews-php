@@ -50,10 +50,7 @@ abstract class AbstractTrustpilotApiClient extends \PodPoint\Reviews\AbstractApi
     }
 
     /***
-     * @param string $httpMethod
-     * @param string $uri
-     * @param array $body
-     * @param array $headers
+     * @param Request $request
      * @param bool $withAuthentication
      *
      * @return ResponseInterface
@@ -62,22 +59,17 @@ abstract class AbstractTrustpilotApiClient extends \PodPoint\Reviews\AbstractApi
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     protected function validateAndSendRequest(
-        string $httpMethod,
-        string $uri,
-        array $body,
-        array $headers,
+        Request $request,
         bool $withAuthentication = false
     ): ResponseInterface {
 
-        $this->validate();
-
-        $accessToken = $this->getAccessToken();
-
         if ($withAuthentication) {
-            $headers['authorization'] = "Bearer {$accessToken->accessToken}";
+            $accessToken = $this->getAccessToken();
+
+            $request->withHeader('authorization' , "Bearer {$accessToken->accessToken}");
         }
 
-        return $this->httpClient->send(new Request($httpMethod, $uri, $headers, $body));
+        return $this->httpClient->send($request);
     }
 
 }

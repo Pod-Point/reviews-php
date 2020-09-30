@@ -11,11 +11,7 @@ try {
 
     $reviewService->service();
 
-    $invite = $reviewService->service()->invite();
-
-    $invite
-        ->setConsumerEmail('blob@blob.com')
-        ->send();
+    $invite = $reviewService->service()->invite($options);
 
 
 } catch (Exception $exception) {

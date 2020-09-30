@@ -5,7 +5,6 @@ namespace PodPoint\Reviews;
 
 
 use GuzzleHttp\ClientInterface;
-use PodPoint\Reviews\Exceptions\ValidationException;
 use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractApiClient
@@ -18,34 +17,6 @@ abstract class AbstractApiClient
     public function __construct(ClientInterface $httpClient)
     {
         $this->httpClient = $httpClient;
-    }
-
-    /**
-     * @return mixed
-     */
-    abstract public function send();
-
-    /**
-     * @return array
-     */
-    abstract protected function requiredFields(): array;
-
-    /**
-     * @return bool
-     *
-     * @throws ValidationException
-     */
-    public function validate(): bool
-    {
-        $requiredFields = $this->requiredFields();
-
-        foreach ($requiredFields as $field) {
-            if (!isset($this->{$field})) {
-                throw new ValidationException("$field is required");
-            }
-        }
-
-        return true;
     }
 
     /**

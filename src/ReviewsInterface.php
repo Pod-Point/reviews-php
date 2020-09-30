@@ -8,7 +8,7 @@ namespace PodPoint\Reviews;
  */
 interface ReviewsInterface
 {
-    public function invite();
-    public function fetchAll();
+    public function invite(array $options);
+    public function fetchAll(array $options);
     public function find(string $reference);
 }

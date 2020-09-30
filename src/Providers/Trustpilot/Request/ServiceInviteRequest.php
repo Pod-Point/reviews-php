@@ -2,47 +2,28 @@
 
 namespace PodPoint\Reviews\Providers\Trustpilot\Request;
 
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 
-class ServiceInviteRequest extends BaseInviteRequest
+class ServiceInviteRequest extends BaseRequest
 {
-    protected $tags;
-
-    public function setTags(array $tags): void
+    /**
+     * @return Request
+     */
+    public function getRequest(): Request
     {
-        $this->tags = $tags;
+        return new Request(
+            'POST',
+            "https://invitations-api.trustpilot.com/v1/private/business-units/{$this->getOption('businessUnitId')}/email-invitations",
+            [
+                'json' => $this->options,
+            ]
+        );
     }
 
-    /**
-     * @return mixed|array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \PodPoint\Reviews\Exceptions\ValidationException
-     */
-    public function send()
+    public function send(): Response
     {
-        return $this->getResponseJson($this->validateAndSendRequest(
-            'POST',
-            "{$this->baseInviteUrl}/v1/private/business-units/{$this->businessUnitId}/email-invitations",
-            [
-                'json' => [
-                    'consumerEmail' => $this->consumerEmail,
-                    'consumerName' => $this->consumerName,
-                    'locale' => $this->locale,
-                    'locationId' => $this->locationId,
-                    'referenceNumber' => $this->referenceNumber,
-                    'replyTo' => $this->replyTo,
-                    'senderEmail' => $this->senderEmail,
-                    'senderName' => $this->senderName,
-                    'serviceReviewInvitation' => [
-                        'preferredSendTime' => $this->preferredSendTime,
-                        'redirectUri' => $this->redirectUri,
-                        'tags' => $this->tags,
-                        'templateId' => $this->templateId,
-                    ],
-                ],
-            ],
-            [],
-            true
-        ));
+        return $this->validateAndSendRequest($this->getRequest(), true);
     }
 
     /**
