@@ -4,6 +4,7 @@
 namespace PodPoint\Reviews;
 
 
+use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -14,9 +15,17 @@ abstract class AbstractApiClient
      */
     protected $httpClient;
 
-    public function __construct(ClientInterface $httpClient)
+    public function __construct()
     {
-        $this->httpClient = $httpClient;
+        $this->httpClient = new Client();
+    }
+
+    /***
+     * @return Client|ClientInterface
+     */
+    public function getHttpClient()
+    {
+        return $this->httpClient;
     }
 
     /**
@@ -31,4 +40,6 @@ abstract class AbstractApiClient
 
         return \GuzzleHttp\json_decode($body, true);
     }
+
+
 }

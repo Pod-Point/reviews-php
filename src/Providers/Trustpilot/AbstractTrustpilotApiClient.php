@@ -2,24 +2,14 @@
 
 namespace PodPoint\Reviews\Providers\Trustpilot;
 
-use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AccessToken;
-use PodPoint\Reviews\Providers\Trustpilot\Auth\Configuration as AuthenticationConfiguration;
 use Psr\Http\Message\ResponseInterface;
+use PodPoint\Reviews\AbstractApiClient;
 
-abstract class AbstractTrustpilotApiClient extends \PodPoint\Reviews\AbstractApiClient
+abstract class AbstractTrustpilotApiClient extends AbstractApiClient
 {
-    protected $authConfig;
-
-    public function __construct(ClientInterface $httpClient, AuthenticationConfiguration $authConfig)
-    {
-        parent::__construct($httpClient);
-
-        $this->authConfig = $authConfig;
-    }
-
     /**
      * Retrieves an OAuth2 access token.
      *
@@ -56,12 +46,8 @@ abstract class AbstractTrustpilotApiClient extends \PodPoint\Reviews\AbstractApi
      * @return ResponseInterface
      *
      * @throws GuzzleException
-     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
-    protected function validateAndSendRequest(
-        Request $request,
-        bool $withAuthentication = false
-    ): ResponseInterface {
+    protected function validateAndSendRequest(Request $request, bool $withAuthentication = false): ResponseInterface {
 
         if ($withAuthentication) {
             $accessToken = $this->getAccessToken();

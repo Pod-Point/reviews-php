@@ -32,7 +32,6 @@ abstract class BaseRequest
      */
     abstract protected function getRequest(): Request;
 
-
     /**
      * @return Response
      */
