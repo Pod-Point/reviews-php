@@ -3,4 +3,3 @@
 /build
 /vendor
 .env
-composer.lock
