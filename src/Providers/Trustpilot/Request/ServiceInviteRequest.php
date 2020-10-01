@@ -43,6 +43,8 @@ class ServiceInviteRequest extends BaseRequest
     {
         return [
             'referenceNumber',
+            'consumerEmail',
+            'consumerName',
         ];
     }
 }

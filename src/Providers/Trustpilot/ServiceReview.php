@@ -9,11 +9,22 @@ use PodPoint\Reviews\ReviewsInterface;
 
 class ServiceReview implements ReviewsInterface
 {
+    /**
+     * @var TrustpilotApiClient
+     */
     protected $apiClient;
 
+    /***
+     * @var string
+     */
     protected $businessUnitId;
 
-    public function __construct($apiClient)
+    /***
+     * ServiceReview constructor.
+     *
+     * @param $apiClient
+     */
+    public function __construct(TrustpilotApiClient $apiClient)
     {
         $this->apiClient = $apiClient;
     }
@@ -65,7 +76,7 @@ class ServiceReview implements ReviewsInterface
      * @param $businessUnitId
      * @return $this
      */
-    public function setBusinessUnitId($businessUnitId): ServiceReview
+    public function setBusinessUnitId(string $businessUnitId): ServiceReview
     {
         $this->businessUnitId = $businessUnitId;
 

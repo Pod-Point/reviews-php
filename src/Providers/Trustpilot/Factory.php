@@ -47,7 +47,6 @@ class Factory implements ReviewsServiceInterface
      */
     public function product(): ReviewsInterface
     {
-        return new ProductReview($this->config);
+        return new ProductReview($this->apiClient);
     }
-
 }

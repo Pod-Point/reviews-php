@@ -27,7 +27,7 @@ abstract class AbstractApiClient
      * @param bool $withAuthentication
      * @return mixed
      */
-     abstract public function validateAndSend(Request $request, bool $withAuthentication);
+    abstract public function validateAndSend(Request $request, bool $withAuthentication);
 
     /***
      * @return Client|ClientInterface
@@ -49,6 +49,4 @@ abstract class AbstractApiClient
 
         return \GuzzleHttp\json_decode($body, true);
     }
-
-
 }

@@ -8,7 +8,6 @@ namespace PodPoint\Reviews;
  */
 interface ReviewsServiceInterface
 {
-
     /**
      * @return ReviewsInterface
      */

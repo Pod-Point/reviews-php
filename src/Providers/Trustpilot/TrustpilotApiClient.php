@@ -10,12 +10,24 @@ use PodPoint\Reviews\AbstractApiClient;
 
 class TrustpilotApiClient extends AbstractApiClient
 {
+    /**
+     * @var string
+     */
     protected $apiKey;
 
+    /**
+     * @var string
+     */
     protected $secretKey;
 
+    /**
+     * @var string
+     */
     protected $username;
 
+    /**
+     * @var string
+     */
     protected $password;
 
     /**
@@ -83,5 +95,4 @@ class TrustpilotApiClient extends AbstractApiClient
 
         return $this->httpClient->send($request);
     }
-
 }

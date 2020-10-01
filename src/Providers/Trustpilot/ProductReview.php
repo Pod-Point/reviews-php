@@ -6,15 +6,19 @@ use PodPoint\Reviews\ReviewsInterface;
 
 class ProductReview implements ReviewsInterface
 {
-    protected $config;
+    /**
+     * @var array
+     */
+    protected $apiClient;
 
     /**
      * ProductReview constructor.
-     * @param $config
+     *
+     * @param TrustpilotApiClient $apiClient
      */
-    public function __construct($config)
+    public function __construct(TrustpilotApiClient $apiClient)
     {
-        $this->config = $config;
+        $this->apiClient = $apiClient;
     }
 
     public function invite(array $options)
