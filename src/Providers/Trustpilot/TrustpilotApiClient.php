@@ -85,7 +85,7 @@ class TrustpilotApiClient extends AbstractApiClient
      *
      * @throws GuzzleException
      */
-    public function validateAndSend(Request $request, bool $withAuthentication = false): ResponseInterface
+    public function sendRequest(Request $request, bool $withAuthentication = false): ResponseInterface
     {
         if ($withAuthentication) {
             $accessToken = $this->getAccessToken();
