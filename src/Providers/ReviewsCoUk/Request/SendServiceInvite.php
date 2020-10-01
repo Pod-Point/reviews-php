@@ -1,24 +1,22 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot\Request;
+namespace PodPoint\Reviews\Providers\ReviewsCoUk\Request;
 
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\Request\BaseRequest;
 
-class ServiceInviteRequest extends BaseRequest
+class SendServiceInvite extends BaseRequest
 {
     /**
      * @return Request
      */
     public function getRequest(): Request
     {
-        $businessUnitId = $this->getOption('businessUnitId');
-
         return new Request(
             'POST',
-            "https://invitations-api.trustpilot.com/v1/private/business-units/{$businessUnitId}/email-invitations",
+            'https://api.reviews.co.uk/merchant/invitation',
             [
-                'json' => $this->options,
+                'form_params' => $this->options,
             ]
         );
     }
@@ -42,9 +40,10 @@ class ServiceInviteRequest extends BaseRequest
     protected function requiredFields(): array
     {
         return [
-            'referenceNumber',
-            'consumerEmail',
-            'consumerName',
+            'name',
+            'email',
+            'order_id',
+            'store',
         ];
     }
 }

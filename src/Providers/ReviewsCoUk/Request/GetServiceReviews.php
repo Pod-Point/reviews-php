@@ -1,18 +1,18 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot\Request;
+namespace PodPoint\Reviews\Providers\ReviewsCoUk\Request;
 
 use GuzzleHttp\Psr7\Request;
 use \PodPoint\Reviews\Request\BaseRequest;
 
-class ServiceReviewsRequest extends BaseRequest
+class GetServiceReviews extends BaseRequest
 {
     /**
      * @return array
      */
     protected function requiredFields(): array
     {
-        return [];
+        return ['store'];
     }
 
     /**
@@ -20,13 +20,15 @@ class ServiceReviewsRequest extends BaseRequest
      */
     protected function getRequest(): Request
     {
-        $businessUnitId = $this->getOption('businessUnitId');
+        $store = $this->getOption('store');
 
         return new Request(
             'GET',
-            "https://api.trustpilot.com/v1/private/business-units/{$businessUnitId}/reviews",
+            'https://api.reviews.co.uk/merchant/reviews',
             [
-                'json' => $this->options,
+                'query' => [
+                    'store' => $store,
+                ] + $this->options,
             ]
         );
     }

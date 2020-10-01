@@ -27,7 +27,7 @@ abstract class AbstractApiClient
      * @param bool $withAuthentication
      * @return mixed
      */
-    abstract public function validateAndSend(Request $request, bool $withAuthentication);
+    abstract public function sendRequest(Request $request, bool $withAuthentication);
 
     /***
      * @return Client|ClientInterface
