@@ -24,6 +24,14 @@ class Manager
     }
 
     /**
+     * @return array
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
      * @param $provider
      * @return mixed
      * @throws ProviderNotFoundException
