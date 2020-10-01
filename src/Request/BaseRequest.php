@@ -55,7 +55,9 @@ abstract class BaseRequest
         $requiredFields = $this->requiredFields();
 
         foreach ($requiredFields as $field) {
-            if (!isset($this->options[$field])) {
+            $value = $this->options[$field];
+
+            if (!isset($value) || empty(null)) {
                 throw new ValidationException("$field is required");
             }
         }
@@ -63,6 +65,10 @@ abstract class BaseRequest
         return true;
     }
 
+    /**
+     * @param string $key
+     * @return mixed|null
+     */
     public function getOption(string $key)
     {
         return $this->options[$key] ?? null;
