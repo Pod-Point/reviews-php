@@ -1,13 +1,11 @@
 <?php
 
-
 namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request\Service;
-
 
 use PodPoint\Reviews\Providers\Trustpilot\Request\Service\GetReviewsRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
-class FetchAllReviewsRequestTest extends TestCase
+class GetReviewsReviewsRequestTest extends TestCase
 {
     /**
      * Test construct to make sure properties are set.
