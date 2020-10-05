@@ -54,5 +54,5 @@ See all supported query parameters and response:
 #### Find service review
 
 ```
-$trustpilot->service()->find('referenceNumber');
+$trustpilot->service()->find($reviewId);
 ```
