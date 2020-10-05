@@ -4,7 +4,7 @@ namespace PodPoint\Reviews\Tests\Providers\Trustpilot;
 
 use PodPoint\Reviews\Providers\Trustpilot\Provider;
 use PodPoint\Reviews\ActionsInterface;
-use PodPoint\Reviews\ReviewsServiceInterface;
+use PodPoint\Reviews\ProviderInterface;
 use PodPoint\Reviews\Tests\TestCase;
 
 class ProviderTest extends TestCase
@@ -37,11 +37,11 @@ class ProviderTest extends TestCase
     }
 
     /**
-     * Making sure the properties are set and implementing ReviewsServiceInterface.
+     * Making sure the properties are set and implementing ProviderInterface.
      */
     public function testConstruct()
     {
-        $this->assertInstanceOf(ReviewsServiceInterface::class, $this->provider);
+        $this->assertInstanceOf(ProviderInterface::class, $this->provider);
         $this->assertEquals($this->config, $this->provider->getConfig());
     }
 

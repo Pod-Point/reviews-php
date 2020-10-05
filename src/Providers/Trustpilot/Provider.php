@@ -3,9 +3,9 @@
 namespace PodPoint\Reviews\Providers\Trustpilot;
 
 use PodPoint\Reviews\ActionsInterface;
-use PodPoint\Reviews\ReviewsServiceInterface;
+use PodPoint\Reviews\ProviderInterface;
 
-class Provider implements ReviewsServiceInterface
+class Provider implements ProviderInterface
 {
     /**
      * @var array

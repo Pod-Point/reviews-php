@@ -37,7 +37,7 @@ class Manager
      * @return mixed
      * @throws ProviderNotFoundException
      */
-    public function withProvider(string $provider): ReviewsServiceInterface
+    public function withProvider(string $provider): ProviderInterface
     {
         return $this->getProviderInstance($provider);
     }

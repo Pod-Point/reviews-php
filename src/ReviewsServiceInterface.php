@@ -3,10 +3,10 @@
 namespace PodPoint\Reviews;
 
 /**
- * Interface ReviewsServiceInterface
+ * Interface ProviderInterface
  * @package PodPoint\Reviews
  */
-interface ReviewsServiceInterface
+interface ProviderInterface
 {
     /**
      * @return ActionsInterface

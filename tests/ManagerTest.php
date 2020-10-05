@@ -38,7 +38,7 @@ class ManagerTest extends TestCase
     }
 
     /**
-     * The with provider should should return an instance of ReviewsServiceInterface.
+     * The with provider should should return an instance of ProviderInterface.
      */
     public function testWithProvider()
     {
@@ -48,7 +48,7 @@ class ManagerTest extends TestCase
     }
 
     /**
-     * The with provider should should return an instance of ReviewsServiceInterface.
+     * The with provider should should return an instance of ProviderInterface.
      */
     public function testWithProviderInvalidProvider()
     {
