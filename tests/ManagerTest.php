@@ -19,11 +19,9 @@ class ManagerTest extends TestCase
         $this->mockReviewProviderProvider('Foo');
 
         $this->config = [
-            'providers' => [
-                'foo' => [
-                    'some_key' => 'API_KEY',
-                    'other_key' => 'SECRET_KEY',
-                ],
+            'foo' => [
+                'some_key' => 'API_KEY',
+                'other_key' => 'SECRET_KEY',
             ],
         ];
     }
@@ -40,6 +38,7 @@ class ManagerTest extends TestCase
 
     /**
      * The with provider should should return an instance of ProviderInterface.
+     * @throws ProviderNotFoundException
      */
     public function testWithProvider()
     {
@@ -61,6 +60,7 @@ class ManagerTest extends TestCase
 
     /**
      * Should return existing provider config.
+     * @throws ProviderConfigNotFoundException
      */
     public function testGetProviderConfig()
     {
