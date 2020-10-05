@@ -26,16 +26,21 @@ All the providers respect the same usage interface.
 Here is a example of the provided interface that is shared across the supported review providers.
 
 ```
-$manager = new \PodPoint\Reviews\Manager();
-$reviewsClient = $manager->withProvider($reviewsClientName, [])
+$manager = new \PodPoint\Reviews\Manager([
+    'trustpilot' => [ 
+            'username' => 'username',
+            'password' => 'password',
+            'api_secret' => 'api_secret',
+            'api_key' => 'api_key',
+            'business_unit_id' => 'business_unit_id',
+    ]
+]);
 
-$reviewsClient->product()->invite((array) $productInviteOptions);
-$reviewsClient->product()->find((string) $referenceId);
-$reviewsClient->product()->fetchAll((array) $productFilterOptions);
+$reviewsClient = $manager->withProvider($reviewsClientName)
 
 $reviewsClient->service()->invite((array) $serviceInviteOptions);
-$reviewsClient->service()->find((string) $referenceId);
-$reviewsClient->service()->fetchAll((array) $serviceFilterOptions);
+$reviewsClient->service()->findReview((string) $reviewId);
+$reviewsClient->service()->getReviews((array) $serviceReviewsFilterOptions);
 ```
 
 For more details about each provider options see:

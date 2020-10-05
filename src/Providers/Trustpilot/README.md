@@ -1,20 +1,23 @@
 # Trustpilot
 [API Specification](https://documentation-apidocumentation.trustpilot.com/)
 
-
 ## Usage
 
 #### Create a trustpilot client
 ```
 $manager = new \PodPoint\Reviews\Manager();
-$trustpilot = $manager->withProvider('trustpilot', [])
+$trustpilot = $manager->withProvider('trustpilot')
 ```
 
 #### Send a service invite
+Required Fields:
+* consumerEmail
+* consumerName
+* referenceNumber
 
 ```
 $trustpilot->service()->invite([
-    'consumerEmail' => 'john.doe@trustpilot.com',
+    'consumerEmail' => 'john.doe@trustpilot.com', 
     'consumerName'=> 'John Doe',
     'replyTo' => 'john.doe@trustpilot.com',
     'referenceNumber' => 'inv00001',
@@ -34,15 +37,10 @@ $trustpilot->service()->invite([
 ]);
 ```
 
-Required Fields:
-* consumerEmail
-* consumerName
-* referenceNumber
-
 #### Get service reviews
 
 ```
-$trustpilot->service()->fetchAll([
+$trustpilot->service()->getReviews([
  'startDateTime' => '2013-09-07T13:37:00',
  'endDateTime' => '2013-09-20T13:37:00',
 ]);
@@ -54,5 +52,5 @@ See all supported query parameters and response:
 #### Find service review
 
 ```
-$trustpilot->service()->find($reviewId);
+$trustpilot->service()->findReview($reviewId);
 ```
