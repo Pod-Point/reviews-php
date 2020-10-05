@@ -15,7 +15,7 @@ class ManagerTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->mockReviewProviderFactory('Foo');
+        $this->mockReviewProviderProvider('Foo');
 
         $this->config = [
             'providers' => [
@@ -44,7 +44,7 @@ class ManagerTest extends TestCase
     {
         $manager = new Manager($this->config);
 
-        $this->assertInstanceOf('PodPoint\\Reviews\\Providers\\Foo\\Factory', $manager->withProvider('foo'));
+        $this->assertInstanceOf('PodPoint\\Reviews\\Providers\\Foo\\Provider', $manager->withProvider('foo'));
     }
 
     /**
@@ -55,7 +55,7 @@ class ManagerTest extends TestCase
         $this->expectException(ProviderNotFoundException::class);
         $manager = new Manager($this->config);
 
-        $this->assertInstanceOf('PodPoint\\Reviews\\Providers\\Foo\\Factory', $manager->withProvider('invalid'));
+        $this->assertInstanceOf('PodPoint\\Reviews\\Providers\\Foo\\Provider', $manager->withProvider('invalid'));
     }
 }
 

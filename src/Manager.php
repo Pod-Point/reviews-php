@@ -6,6 +6,7 @@ use PodPoint\Reviews\Exceptions\ProviderNotFoundException;
 
 /**
  * Class Manager
+ *
  * @package PodPoint\Reviews
  */
 class Manager
@@ -26,7 +27,7 @@ class Manager
     /**
      * @return array
      */
-    public function getConfig()
+    public function getConfig(): array
     {
         return $this->config;
     }
@@ -36,7 +37,7 @@ class Manager
      * @return mixed
      * @throws ProviderNotFoundException
      */
-    public function withProvider($provider): ReviewsServiceInterface
+    public function withProvider(string $provider): ReviewsServiceInterface
     {
         return $this->getProviderInstance($provider);
     }
@@ -48,7 +49,7 @@ class Manager
      */
     protected function getProviderInstance(string $provider)
     {
-        $class = 'PodPoint\\Reviews\\Providers\\' . ucfirst($provider) .'\\Factory';
+        $class = 'PodPoint\\Reviews\\Providers\\' . ucfirst($provider) . '\\Provider';
 
         if (!class_exists($class)) {
             throw new ProviderNotFoundException($class);

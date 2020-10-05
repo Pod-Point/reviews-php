@@ -1,15 +1,13 @@
 <?php
 
-
 namespace PodPoint\Reviews\Tests\Providers\Trustpilot;
 
-
-use PodPoint\Reviews\Providers\Trustpilot\Factory;
+use PodPoint\Reviews\Providers\Trustpilot\Provider;
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ReviewsServiceInterface;
 use PodPoint\Reviews\Tests\TestCase;
 
-class FactoryTest extends TestCase
+class ProviderTest extends TestCase
 {
     /**
      * Trustpilot configurations.
@@ -19,11 +17,11 @@ class FactoryTest extends TestCase
     protected $config;
 
     /**
-     * Instance of an factory.
+     * Instance of an Provider.
      *
-     * @var Factory
+     * @var Provider
      */
-    protected $factory;
+    protected $provider;
 
     protected function setUp()
     {
@@ -35,7 +33,7 @@ class FactoryTest extends TestCase
             'business_id' => 'TEST_TRUSTPILOT_BUSINESS_ID',
         ];
 
-        $this->factory = new Factory($this->config);
+        $this->provider = new Provider($this->config);
     }
 
     /**
@@ -43,8 +41,8 @@ class FactoryTest extends TestCase
      */
     public function testConstruct()
     {
-        $this->assertInstanceOf(ReviewsServiceInterface::class, $this->factory);
-        $this->assertEquals($this->config, $this->factory->getConfig());
+        $this->assertInstanceOf(ReviewsServiceInterface::class, $this->provider);
+        $this->assertEquals($this->config, $this->provider->getConfig());
     }
 
     /**
@@ -52,7 +50,7 @@ class FactoryTest extends TestCase
      */
     public function testService()
     {
-        $this->assertInstanceOf(ActionsInterface::class, $this->factory->service());
+        $this->assertInstanceOf(ActionsInterface::class, $this->provider->service());
     }
 
     /**
@@ -60,6 +58,6 @@ class FactoryTest extends TestCase
      */
     public function testProduct()
     {
-        $this->assertInstanceOf(ActionsInterface::class, $this->factory->product());
+        $this->assertInstanceOf(ActionsInterface::class, $this->provider->product());
     }
 }

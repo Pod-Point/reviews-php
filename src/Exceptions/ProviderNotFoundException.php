@@ -1,8 +1,6 @@
 <?php
 
-
 namespace PodPoint\Reviews\Exceptions;
-
 
 use Throwable;
 
