@@ -7,7 +7,7 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 
-abstract class AbstractApiClient
+abstract class AbstractApiClient implements ApiClientInterface
 {
     /**
      * @var ClientInterface

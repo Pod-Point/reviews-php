@@ -2,9 +2,7 @@
 
 namespace PodPoint\Reviews\Tests;
 
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Psr7\Request;
-use PodPoint\Reviews\AbstractApiClient;
+use PodPoint\Reviews\ApiClientInterface;
 
 /**
  * Class AbstractApiClientTest
@@ -12,15 +10,14 @@ use PodPoint\Reviews\AbstractApiClient;
  */
 class AbstractApiClientTest extends TestCase
 {
-
     /**
      * Making suer client is set when instance is  constructed.
      */
     public function testConstruct()
     {
-        $apiClient = new MockedApiClient();
+        $apiClient = $this->getMockedApiClient();
 
-        $this->assertInstanceOf(ClientInterface::class, $apiClient->getHttpClient());
+        $this->assertInstanceOf(ApiClientInterface::class, $apiClient);
     }
 
     /**
@@ -28,10 +25,9 @@ class AbstractApiClientTest extends TestCase
      */
     public function testGetResponseJson()
     {
-        $apiClient = new MockedApiClient();
+        $apiClient = $this->getMockedApiClient();
 
         $mockedResponse = $this->getMockedResponse('{"foo": "bar"}');
-
         $response = $apiClient->getResponseJson($mockedResponse);
 
         $this->assertEquals([
@@ -40,14 +36,3 @@ class AbstractApiClientTest extends TestCase
     }
 }
 
-/**
- * Class MockedApiClient
- * @package PodPoint\Reviews\Tests
- */
-class MockedApiClient extends AbstractApiClient {
-
-    public function sendRequest(Request $request, bool $withAuthentication)
-    {
-        // TODO: Implement validateAndSend() method.
-    }
-}

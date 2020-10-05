@@ -9,12 +9,12 @@ namespace PodPoint\Reviews;
 interface ReviewsServiceInterface
 {
     /**
-     * @return ReviewsInterface
+     * @return ActionsInterface
      */
-    public function product(): ReviewsInterface;
+    public function product(): ActionsInterface;
 
     /**
-     * @return ReviewsInterface
+     * @return ActionsInterface
      */
-    public function service(): ReviewsInterface;
+    public function service(): ActionsInterface;
 }

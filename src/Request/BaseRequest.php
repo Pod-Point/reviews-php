@@ -5,6 +5,7 @@ namespace PodPoint\Reviews\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AbstractApiClient;
+use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
 
 abstract class BaseRequest
@@ -23,11 +24,22 @@ abstract class BaseRequest
      *
      * @throws ValidationException
      */
-    public function __construct(AbstractApiClient $client, array $options)
+    public function __construct(ApiClientInterface $client, array $options)
     {
         $this->httpClient = $client;
         $this->options = $options;
-        $this->validate();
+
+//        $this->validate();
+    }
+
+    /**
+     * Get http client.
+     *
+     * @return Client|AbstractApiClient
+     */
+    public function getHttpClient()
+    {
+        return $this->httpClient;
     }
 
     /**
@@ -52,6 +64,7 @@ abstract class BaseRequest
      */
     public function validate(): bool
     {
+
         $requiredFields = $this->requiredFields();
 
         foreach ($requiredFields as $field) {
@@ -72,5 +85,13 @@ abstract class BaseRequest
     public function getOption(string $key)
     {
         return $this->options[$key] ?? null;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
     }
 }
