@@ -35,11 +35,11 @@ class Manager
 
     public function getProviderConfig(string $provider)
     {
-        if (!isset($this->config['providers']) || !isset($this->config['providers'][$provider])) {
+        if (!isset($this->config[$provider])) {
             throw new ProviderConfigNotFoundException();
         }
 
-        return $this->config['providers'][$provider];
+        return $this->config[$provider];
     }
 
     /**
@@ -55,7 +55,7 @@ class Manager
     /**
      * @param string $provider
      * @return mixed
-     * @throws ProviderNotFoundException
+     * @throws ProviderNotFoundException|ProviderConfigNotFoundException
      */
     protected function getProviderInstance(string $provider)
     {
@@ -65,6 +65,8 @@ class Manager
             throw new ProviderNotFoundException($class);
         }
 
-        return new $class($this->config['providers'][$provider]);
+        $config = $this->getProviderConfig($provider);
+
+        return new $class($config);
     }
 }
