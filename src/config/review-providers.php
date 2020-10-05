@@ -17,6 +17,6 @@ return [
         'password' => env('TRUSTPILOT_PASSWORD'),
         'api_secret' => env('TRUSTPILOT_SECRET_KEY'),
         'api_key' => env('TRUSTPILOT_API_KEY'),
-        'business_id' => env('TRUSTPILOT_BUSINESS_ID'),
+        'business_unit_id' => env('TRUSTPILOT_BUSINESS_ID'),
     ],
 ];

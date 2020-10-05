@@ -39,7 +39,7 @@ class Provider implements ProviderInterface
      */
     public function service(): ActionsInterface
     {
-        return (new ServiceActions($this->apiClient))->setBusinessUnitId($this->config['business_id']);
+        return (new ServiceActions($this->apiClient))->setBusinessUnitId($this->config['business_unit_id']);
     }
 
     /**
