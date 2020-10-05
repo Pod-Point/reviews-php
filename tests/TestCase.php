@@ -60,14 +60,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $mock = Mockery::mock(BaseRequest::class, array($client, $options))
             ->makePartial();
 
-
-        $mock->shouldReceive('getRequiredFields')
+        $mock->shouldReceive('requiredFields')
             ->withNoArgs()
             ->andReturn($requiredFields);
-
-        $mock->shouldReceive('validate')
-            ->withNoArgs()
-            ->andReturn(true);
 
         return $mock;
     }

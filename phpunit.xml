@@ -16,6 +16,13 @@
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
       <directory suffix=".php">./src</directory>
+      <exclude>
+        <file>./src/config/review-providers.php</file>
+      </exclude>
     </whitelist>
   </filter>
+  <logging>
+    <log type="coverage-clover" target="build/logs/clover.xml"/>
+    <log type="junit" target="build/logs/report.xml"/>
+  </logging>
 </phpunit>

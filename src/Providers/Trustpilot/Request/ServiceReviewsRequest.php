@@ -3,6 +3,7 @@
 namespace PodPoint\Reviews\Providers\Trustpilot\Request;
 
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Uri;
 use \PodPoint\Reviews\Request\BaseRequest;
 
 class ServiceReviewsRequest extends BaseRequest
@@ -10,7 +11,7 @@ class ServiceReviewsRequest extends BaseRequest
     /**
      * @return array
      */
-    protected function requiredFields(): array
+    public function requiredFields(): array
     {
         return [];
     }
@@ -18,17 +19,15 @@ class ServiceReviewsRequest extends BaseRequest
     /**
      * @return Request
      */
-    protected function getRequest(): Request
+    public function getRequest(): Request
     {
         $businessUnitId = $this->getOption('businessUnitId');
 
-        return new Request(
-            'GET',
-            "https://api.trustpilot.com/v1/private/business-units/{$businessUnitId}/reviews",
-            [
-                'json' => $this->options,
-            ]
-        );
+        $method = 'GET';
+        $uri = new Uri("https://api.trustpilot.com/v1/private/business-units/{$businessUnitId}/reviews");
+        $uri = Uri::withQueryValues($uri,$this->options);
+
+        return new Request($method, $uri);
     }
 
     /**

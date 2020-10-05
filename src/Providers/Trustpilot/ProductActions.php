@@ -26,18 +26,27 @@ class ProductActions implements ActionsInterface
         $this->apiClient = $apiClient;
     }
 
+    /**
+     * @param array $options
+     */
     public function invite(array $options)
     {
-        // TODO: Implement invite() method.
+        //
     }
 
+    /**
+     * @param array $options
+     */
     public function fetchAll(array $options)
     {
-        // TODO: Implement fetchAll() method.
+        //
     }
 
+    /**
+     * @param string $reference
+     */
     public function find(string $reference)
     {
-        // TODO: Implement find() method.
+        //
     }
 }

@@ -2,6 +2,7 @@
 
 namespace PodPoint\Reviews\Tests\Request;
 
+use PodPoint\Reviews\Exceptions\ValidationException;
 use PodPoint\Reviews\Tests\TestCase;
 
 /**
@@ -19,10 +20,10 @@ class BaseRequestTest extends TestCase
     {
         $options = ['foo' => 'bar'];
         $mockedApiClient = $this->getMockedApiClient();
-        $mockedBaseRequest = $this->getMockedBaseRequest($mockedApiClient, $options);
+        $request = $this->getMockedBaseRequest($mockedApiClient, $options);
 
-        $this->assertEquals($mockedApiClient, $mockedBaseRequest->getHttpClient());
-        $this->assertEquals($options, $mockedBaseRequest->getOptions());
+        $this->assertEquals($mockedApiClient, $request->getHttpClient());
+        $this->assertEquals($options, $request->getOptions());
     }
 
     /**
@@ -41,8 +42,30 @@ class BaseRequestTest extends TestCase
         ];
 
         $mockedApiClient = $this->getMockedApiClient();
-        $mockedBaseRequest = $this->getMockedBaseRequest($mockedApiClient, $options, $requiredFields);
+        $request = $this->getMockedBaseRequest($mockedApiClient, $options, $requiredFields);
 
-        $this->assertTrue($mockedBaseRequest->validate());
+        $this->assertTrue($request->validate());
+    }
+
+    /**
+     * Making sure validate returns true when
+     */
+    public function testGivenInvalidOptionsValidateShouldReturnTrue()
+    {
+        $this->expectException(ValidationException::class);
+
+        $options = [
+            'invalid' => 'test-user-1',
+            'foo' => 'testPassword1',
+        ];
+
+        $requiredFields = [
+            'username', 'password', 'apiKey'
+        ];
+
+        $mockedApiClient = $this->getMockedApiClient();
+        $request = $this->getMockedBaseRequest($mockedApiClient, $options, $requiredFields);
+
+        $request->validate();
     }
 }

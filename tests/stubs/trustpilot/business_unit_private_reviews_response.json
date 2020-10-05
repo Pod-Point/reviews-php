@@ -1,0 +1,115 @@
+{
+  "reviews": [
+    {
+      "referenceId": "12345",
+      "referralEmail": "my@email.com",
+      "links": [
+        {
+          "href": "<Url for the resource>",
+          "method": "<Http method for the resource>",
+          "rel": "<Description of the relation>"
+        }
+      ],
+      "text": "This shop is great.",
+      "updatedAt": "2013-09-07T13:37:00",
+      "numberOfLikes": 10,
+      "id": "507f191e810c19729de860ea",
+      "createdAt": "2013-09-07T13:37:00",
+      "title": "My review",
+      "countsTowardsLocationTrustScore": false,
+      "findReviewer": {
+        "requests": [
+          {
+            "status": "Pending",
+            "consumerResponse": {
+              "referenceId": "GZ12345",
+              "name": "John Doe",
+              "submittedAt": "2013-09-07T13:37:00",
+              "phoneNumber": "555-1234",
+              "address": "123 Fake St.",
+              "message": "Hi, I've provided my reference number.",
+              "email": "john.doe@gmail.com"
+            },
+            "businessUserMessage": "Hi! We're having trouble finding you in our records, can you provide us with a reference number? Thanks!",
+            "id": "8e3a531e-f8e8-4d63-8d4c-187dc1408ed9",
+            "created": "2013-09-07T13:37:00"
+          }
+        ],
+        "isEligible": true
+      },
+      "source": "Organic",
+      "location": {
+        "externalId": "Location#123",
+        "urlFormattedName": "Pilestraede58",
+        "id": "43f51215-a1fc-4c60-b6dd-e4afb6d7b831",
+        "name": "Pilestraede 58"
+      },
+      "stars": 5,
+      "isVerified": true,
+      "status": "active",
+      "tags": [
+        {
+          "group": "generic",
+          "value": "Tag value"
+        }
+      ],
+      "businessUnit": {
+        "identifyingName": "trustpilot.com",
+        "displayName": "Trustpilot",
+        "id": "507f191e810c19729de860ea",
+        "links": [
+          {
+            "href": "<Url for the resource>",
+            "method": "<Http method for the resource>",
+            "rel": "<Description of the relation>"
+          }
+        ]
+      },
+      "businessUnitHistory": [
+        {
+          "identifyingName": "example.com",
+          "displayName": "Example Inc.",
+          "businessUnitId": "507f191e810c19729de860ea",
+          "changeDate": "2013-09-07T13:37:00"
+        }
+      ],
+      "companyReply": {
+        "text": "This is our reply.",
+        "createdAt": "2013-09-07T13:37:00"
+      },
+      "complianceLabels": [
+        null
+      ],
+      "reportData": {
+        "source": "Trustpilot",
+        "publicComment": "This review contains sensitive information.",
+        "createdAt": "2013-09-07T13:37:00"
+      },
+      "language": "da",
+      "countsTowardsTrustScore": false,
+      "invitation": {
+        "businessUnitId": "507f191e810c19729de860ea"
+      },
+      "consumer": {
+        "displayLocation": "Frederiksberg, DK",
+        "numberOfReviews": 1,
+        "displayName": "John Doe",
+        "id": "507f191e810c19729de860ea",
+        "links": [
+          {
+            "href": "<Url for the resource>",
+            "method": "<Http method for the resource>",
+            "rel": "<Description of the relation>"
+          }
+        ]
+      }
+    }
+  ],
+  "links": [
+    {
+      "href": "<Url for the resource>",
+      "method": "<Http method for the resource>",
+      "rel": "<Description of the relation>"
+    }
+  ]
+}

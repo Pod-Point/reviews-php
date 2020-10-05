@@ -55,7 +55,7 @@ class TrustpilotApiClient extends AbstractApiClient
      *
      * @throws GuzzleException
      */
-    protected function getAccessToken(): AccessToken
+    public function getAccessToken(): AccessToken
     {
         $key = base64_encode($this->apiKey . ':' . $this->secretKey);
 

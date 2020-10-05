@@ -38,7 +38,7 @@ class TrustpilotApiClientTest extends TestCase
         $username = 'api-username';
         $password = 'api-password';
 
-        $apiClient = new Mocked_TrustpilotApiClient($apiKey, $secretKey, $username, $password);
+        $client = new Mocked_TrustpilotApiClient($apiKey, $secretKey, $username, $password);
     }
 }
 
