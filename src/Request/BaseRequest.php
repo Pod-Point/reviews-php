@@ -49,7 +49,7 @@ abstract class BaseRequest
     /**
      * @return Request
      */
-    abstract protected function getRequest(): Request;
+    abstract public function getRequest(): Request;
 
     /**
      * @return array|mixed

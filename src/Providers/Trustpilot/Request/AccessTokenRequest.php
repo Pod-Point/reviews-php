@@ -23,9 +23,9 @@ class AccessTokenRequest extends BaseRequest
         ];
     }
 
-    protected function getRequest(): Request
+    public function getRequest(): Request
     {
-        $key = base64_encode($this->options['apiKey'] . ':' . $this->options['secretKey']);
+        $key = base64_encode($this->getOption('apiKey') . ':' . $this->getOption('apiSecret'));
 
         $method = 'POST';
         $uri = 'https://api.trustpilot.com/v1/oauth/oauth-business-users-for-applications/accesstoken';
@@ -33,13 +33,13 @@ class AccessTokenRequest extends BaseRequest
             'authorization' => "Basic {$key}",
         ];
 
-        $body = [
+        $body = \GuzzleHttp\json_encode([
             'form_params' => [
                 'grant_type' => 'password',
                 'username' => $this->getOption('username'),
                 'password' => $this->getOption('password'),
             ]
-        ];
+        ]);
 
         return new Request($method, $uri, $header, $body);
     }
@@ -52,7 +52,10 @@ class AccessTokenRequest extends BaseRequest
      */
     public function send()
     {
-        $response = $this->httpClient->send($this->getRequest());
+        $response = $this->httpClient->sendRequest(
+            $this->getRequest(),
+            true
+        );
 
         $json = $this->httpClient->getResponseJson($response);
 
