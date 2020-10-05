@@ -10,5 +10,5 @@ interface ActionsInterface
 {
     public function invite(array $options);
     public function getReviews(array $options);
-    public function findReview(string $reference);
+    public function findReview(string $reviewId);
 }

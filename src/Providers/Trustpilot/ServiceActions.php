@@ -4,6 +4,7 @@ namespace PodPoint\Reviews\Providers\Trustpilot;
 
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
+use PodPoint\Reviews\Providers\Trustpilot\Request\Service\FindReviewRequest;
 use PodPoint\Reviews\Providers\Trustpilot\Request\Service\InviteRequest;
 use PodPoint\Reviews\Providers\Trustpilot\Request\Service\GetReviewsRequest;
 use PodPoint\Reviews\ActionsInterface;
@@ -60,17 +61,16 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
-     * @param string $reference
+     * @param string $reviewId
      * @return array|mixed
      */
-    public function findReview(string $reference)
+    public function findReview(string $reviewId)
     {
         $options = [
-            'referenceId' => $reference,
-            'businessUnitId' => $this->businessUnitId,
+            'reviewId' => $reviewId,
         ];
 
-        $request = new GetReviewsRequest($this->apiClient, $options);
+        $request = new FindReviewRequest($this->apiClient, $options);
 
         return $request->send();
     }

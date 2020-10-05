@@ -39,7 +39,7 @@ class ProductActions implements ActionsInterface
         // TODO: Implement getReviews() method.
     }
 
-    public function findReview(string $reference)
+    public function findReview(string $reviewId)
     {
         // TODO: Implement findReview() method.
     }
