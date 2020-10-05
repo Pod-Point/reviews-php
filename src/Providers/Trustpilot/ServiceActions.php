@@ -2,15 +2,20 @@
 
 namespace PodPoint\Reviews\Providers\Trustpilot;
 
+use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
 use PodPoint\Reviews\Providers\Trustpilot\Request\ServiceInviteRequest;
 use PodPoint\Reviews\Providers\Trustpilot\Request\ServiceReviewsRequest;
-use PodPoint\Reviews\ReviewsInterface;
+use PodPoint\Reviews\ActionsInterface;
 
-class ServiceReview implements ReviewsInterface
+/**
+ * Class ServiceActions
+ * @package PodPoint\Reviews\Providers\Trustpilot
+ */
+class ServiceActions implements ActionsInterface
 {
     /**
-     * @var TrustpilotApiClient
+     * @var ApiClientInterface
      */
     protected $apiClient;
 
@@ -19,12 +24,11 @@ class ServiceReview implements ReviewsInterface
      */
     protected $businessUnitId;
 
-    /***
-     * ServiceReview constructor.
-     *
-     * @param $apiClient
+    /**
+     * ServiceActions constructor.
+     * @param ApiClientInterface $apiClient
      */
-    public function __construct(TrustpilotApiClient $apiClient)
+    public function __construct(ApiClientInterface $apiClient)
     {
         $this->apiClient = $apiClient;
     }
@@ -76,10 +80,18 @@ class ServiceReview implements ReviewsInterface
      * @param $businessUnitId
      * @return $this
      */
-    public function setBusinessUnitId(string $businessUnitId): ServiceReview
+    public function setBusinessUnitId(string $businessUnitId): ServiceActions
     {
         $this->businessUnitId = $businessUnitId;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBusinessUnitId()
+    {
+        return $this->businessUnitId;
     }
 }

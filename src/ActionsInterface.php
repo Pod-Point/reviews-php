@@ -3,10 +3,10 @@
 namespace PodPoint\Reviews;
 
 /**
- * Interface ProductReviewsInterface
+ * Interface ActionsInterface
  * @package PodPoint\Reviews
  */
-interface ReviewsInterface
+interface ActionsInterface
 {
     public function invite(array $options);
     public function fetchAll(array $options);

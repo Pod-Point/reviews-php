@@ -2,9 +2,14 @@
 
 namespace PodPoint\Reviews\Providers\Trustpilot;
 
-use PodPoint\Reviews\ReviewsInterface;
+use PodPoint\Reviews\ApiClientInterface;
+use PodPoint\Reviews\ActionsInterface;
 
-class ProductReview implements ReviewsInterface
+/**
+ * Class ProductActions
+ * @package PodPoint\Reviews\Providers\Trustpilot
+ */
+class ProductActions implements ActionsInterface
 {
     /**
      * @var array
@@ -14,9 +19,9 @@ class ProductReview implements ReviewsInterface
     /**
      * ProductReview constructor.
      *
-     * @param TrustpilotApiClient $apiClient
+     * @param ApiClientInterface $apiClient
      */
-    public function __construct(TrustpilotApiClient $apiClient)
+    public function __construct(ApiClientInterface $apiClient)
     {
         $this->apiClient = $apiClient;
     }
