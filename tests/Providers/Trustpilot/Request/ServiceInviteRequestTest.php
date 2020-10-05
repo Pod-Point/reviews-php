@@ -2,7 +2,7 @@
 
 namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request;
 
-use PodPoint\Reviews\Providers\Trustpilot\Request\ServiceInviteRequest;
+use PodPoint\Reviews\Providers\Trustpilot\Request\InviteRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
 /**
@@ -26,7 +26,7 @@ class ServiceInviteRequestTest extends TestCase
         ];
 
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new ServiceInviteRequest($mockedApiClient, $options);
+        $request = new InviteRequest($mockedApiClient, $options);
 
         $this->assertEquals($mockedApiClient, $request->getHttpClient());
         $this->assertEquals($options, $request->getOptions());
@@ -44,7 +44,7 @@ class ServiceInviteRequestTest extends TestCase
         ];
 
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new ServiceInviteRequest($mockedApiClient, $options);
+        $request = new InviteRequest($mockedApiClient, $options);
 
         $expectedRequiredFields = [
             'referenceNumber',
@@ -68,7 +68,7 @@ class ServiceInviteRequestTest extends TestCase
         ];
 
         $mockedApiClient = $this->getMockedApiClient();
-        $serviceReviewRequest = new ServiceInviteRequest($mockedApiClient, $options);
+        $serviceReviewRequest = new InviteRequest($mockedApiClient, $options);
 
         $request = $serviceReviewRequest->getRequest();
 
@@ -96,7 +96,7 @@ class ServiceInviteRequestTest extends TestCase
         $mockedApiClient = $this->getMockedApiClient();
         $mockedApiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $request = new ServiceInviteRequest($mockedApiClient, $options);
+        $request = new InviteRequest($mockedApiClient, $options);
 
         $this->assertEquals([], $request->send());
     }

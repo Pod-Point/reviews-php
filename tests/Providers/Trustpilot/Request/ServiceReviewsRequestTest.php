@@ -4,7 +4,7 @@
 namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request;
 
 
-use PodPoint\Reviews\Providers\Trustpilot\Request\ServiceReviewsRequest;
+use PodPoint\Reviews\Providers\Trustpilot\Request\FetchAllRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
 class ServiceReviewsRequestTest extends TestCase
@@ -18,7 +18,7 @@ class ServiceReviewsRequestTest extends TestCase
     {
         $options = ['foo' => 'bar'];
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new ServiceReviewsRequest($mockedApiClient, $options);
+        $request = new FetchAllRequest($mockedApiClient, $options);
 
         $this->assertEquals($mockedApiClient, $request->getHttpClient());
         $this->assertEquals($options, $request->getOptions());
@@ -31,7 +31,7 @@ class ServiceReviewsRequestTest extends TestCase
     {
         $options = ['foo' => 'bar'];
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new ServiceReviewsRequest($mockedApiClient, $options);
+        $request = new FetchAllRequest($mockedApiClient, $options);
 
         $this->assertEquals([], $request->requiredFields());
     }
@@ -44,7 +44,7 @@ class ServiceReviewsRequestTest extends TestCase
         $options = ['foo' => 'bar', 'businessUnitId' => 'business-123'];
 
         $mockedApiClient = $this->getMockedApiClient();
-        $serviceReviewRequest = new ServiceReviewsRequest($mockedApiClient, $options);
+        $serviceReviewRequest = new FetchAllRequest($mockedApiClient, $options);
 
         $request = $serviceReviewRequest->getRequest();
 
@@ -70,7 +70,7 @@ class ServiceReviewsRequestTest extends TestCase
         $mockedApiClient = $this->getMockedApiClient();
         $mockedApiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $request = new ServiceReviewsRequest($mockedApiClient, $options);
+        $request = new FetchAllRequest($mockedApiClient, $options);
 
         $this->assertEquals($expectedResponse, $request->send());
     }

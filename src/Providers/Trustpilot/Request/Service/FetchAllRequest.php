@@ -1,12 +1,12 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot\Request;
+namespace PodPoint\Reviews\Providers\Trustpilot\Request\Service;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use \PodPoint\Reviews\Request\BaseRequest;
 
-class ServiceReviewsRequest extends BaseRequest
+class FetchAllRequest extends BaseRequest
 {
     /**
      * @return array
