@@ -2,14 +2,14 @@
 
 namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request;
 
-use PodPoint\Reviews\Providers\Trustpilot\Request\InviteRequest;
+use PodPoint\Reviews\Providers\Trustpilot\Request\Service\InviteRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
 /**
  * Class ServiceInviteRequestTest
  * @package PodPoint\Reviews\Tests\Providers\Trustpilot\Request
  */
-class ServiceInviteRequestTest extends TestCase
+class InviteRequestTest extends TestCase
 {
     /**
      * Test construct to make sure properties are set.

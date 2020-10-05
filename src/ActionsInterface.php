@@ -9,6 +9,6 @@ namespace PodPoint\Reviews;
 interface ActionsInterface
 {
     public function invite(array $options);
-    public function fetchAll(array $options);
-    public function find(string $reference);
+    public function getReviews(array $options);
+    public function findReview(string $reference);
 }

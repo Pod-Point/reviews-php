@@ -1,13 +1,11 @@
 <?php
 
+namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request\Service;
 
-namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request;
-
-
-use PodPoint\Reviews\Providers\Trustpilot\Request\FetchAllRequest;
+use PodPoint\Reviews\Providers\Trustpilot\Request\Service\GetReviewsRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
-class ServiceReviewsRequestTest extends TestCase
+class FindReviewRequestTest extends TestCase
 {
     /**
      * Test construct to make sure properties are set.
@@ -18,7 +16,7 @@ class ServiceReviewsRequestTest extends TestCase
     {
         $options = ['foo' => 'bar'];
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new FetchAllRequest($mockedApiClient, $options);
+        $request = new GetReviewsRequest($mockedApiClient, $options);
 
         $this->assertEquals($mockedApiClient, $request->getHttpClient());
         $this->assertEquals($options, $request->getOptions());
@@ -31,7 +29,7 @@ class ServiceReviewsRequestTest extends TestCase
     {
         $options = ['foo' => 'bar'];
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new FetchAllRequest($mockedApiClient, $options);
+        $request = new GetReviewsRequest($mockedApiClient, $options);
 
         $this->assertEquals([], $request->requiredFields());
     }
@@ -44,7 +42,7 @@ class ServiceReviewsRequestTest extends TestCase
         $options = ['foo' => 'bar', 'businessUnitId' => 'business-123'];
 
         $mockedApiClient = $this->getMockedApiClient();
-        $serviceReviewRequest = new FetchAllRequest($mockedApiClient, $options);
+        $serviceReviewRequest = new GetReviewsRequest($mockedApiClient, $options);
 
         $request = $serviceReviewRequest->getRequest();
 
@@ -64,13 +62,13 @@ class ServiceReviewsRequestTest extends TestCase
         $options = ['foo' => 'bar', 'businessUnitId' => 'business-123'];
 
         $responseBody = file_get_contents('tests/stubs/trustpilot/business_unit_private_reviews_response.json');
-        $expectedResponse = json_decode($responseBody, true);
+        $expectedResponse = \GuzzleHttp\json_decode($responseBody, true);
 
         $response = $this->getMockedResponse($responseBody);
         $mockedApiClient = $this->getMockedApiClient();
         $mockedApiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $request = new FetchAllRequest($mockedApiClient, $options);
+        $request = new GetReviewsRequest($mockedApiClient, $options);
 
         $this->assertEquals($expectedResponse, $request->send());
     }

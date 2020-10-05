@@ -5,7 +5,7 @@ namespace PodPoint\Reviews\Providers\Trustpilot;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
 use PodPoint\Reviews\Providers\Trustpilot\Request\Service\InviteRequest;
-use PodPoint\Reviews\Providers\Trustpilot\Request\Service\FetchAllRequest;
+use PodPoint\Reviews\Providers\Trustpilot\Request\Service\GetReviewsRequest;
 use PodPoint\Reviews\ActionsInterface;
 
 /**
@@ -51,10 +51,10 @@ class ServiceActions implements ActionsInterface
      * @return array|mixed
      * @throws ValidationException
      */
-    public function fetchAll(array $options)
+    public function getReviews(array $options)
     {
         $options['businessUnitId'] = $this->businessUnitId;
-        $request = new FetchAllRequest($this->apiClient, $options);
+        $request = new GetReviewsRequest($this->apiClient, $options);
 
         return $request->send();
     }
@@ -63,14 +63,14 @@ class ServiceActions implements ActionsInterface
      * @param string $reference
      * @return array|mixed
      */
-    public function find(string $reference)
+    public function findReview(string $reference)
     {
         $options = [
             'referenceId' => $reference,
             'businessUnitId' => $this->businessUnitId,
         ];
 
-        $request = new FetchAllRequest($this->apiClient, $options);
+        $request = new GetReviewsRequest($this->apiClient, $options);
 
         return $request->send();
     }

@@ -2,6 +2,7 @@
 
 namespace PodPoint\Reviews;
 
+use PodPoint\Reviews\Exceptions\ProviderConfigNotFoundException;
 use PodPoint\Reviews\Exceptions\ProviderNotFoundException;
 
 /**
@@ -30,6 +31,15 @@ class Manager
     public function getConfig(): array
     {
         return $this->config;
+    }
+
+    public function getProviderConfig(string $provider)
+    {
+        if (!isset($this->config['providers']) || !isset($this->config['providers'][$provider])) {
+            throw new ProviderConfigNotFoundException();
+        }
+
+        return $this->config['providers'][$provider];
     }
 
     /**

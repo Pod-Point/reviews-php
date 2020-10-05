@@ -6,14 +6,16 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use \PodPoint\Reviews\Request\BaseRequest;
 
-class FetchAllRequest extends BaseRequest
+class FindReviewRequest extends BaseRequest
 {
     /**
      * @return array
      */
     public function requiredFields(): array
     {
-        return [];
+        return [
+            'reviewId'
+        ];
     }
 
     /**
@@ -21,11 +23,8 @@ class FetchAllRequest extends BaseRequest
      */
     public function getRequest(): Request
     {
-        $businessUnitId = $this->getOption('businessUnitId');
-
         $method = 'GET';
-        $uri = new Uri("https://api.trustpilot.com/v1/private/business-units/{$businessUnitId}/reviews");
-        $uri = Uri::withQueryValues($uri,$this->options);
+        $uri = new Uri("https://api.trustpilot.com/v1/private/reviews/{$this->getOption('reviewId')}");
 
         return new Request($method, $uri);
     }

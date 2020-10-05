@@ -9,6 +9,9 @@ use PodPoint\Reviews\Tests\TestCase;
 
 class TrustpilotApiClientTest extends TestCase
 {
+    /**
+     * Making sure the Trustpilot constructor is setting properties and constructs instance of a valid http client.
+     */
     public function testConstruct()
     {
         $apiKey = 'api-key-123';
@@ -28,17 +31,48 @@ class TrustpilotApiClientTest extends TestCase
         $this->assertInstanceOf(ClientInterface::class, $apiClient->getHttpClient());
     }
 
-    /**
-     * Making sure access token can be grabbed and returned as AccessToken model.
-     */
-    public function testGetAccessToken()
+//    /**
+//     * Making sure access token can be grabbed and returned as AccessToken model.
+//     */
+//    public function testGetAccessToken()
+//    {
+//        $apiKey = 'api-key-123';
+//        $secretKey = 'api-secret-key-123';
+//        $username = 'api-username';
+//        $password = 'api-password';
+//
+//        $token = [
+//            'access_token' => 'ey12easdwrsyeud6if7gohoji8hp97o68fi',
+//            'expires_in' => '3600',
+//            'refresh_token' => '0/koiouliykgutjyhethrfjyguktrdyfS3'
+//        ];
+//
+//        $this->getMockedResponse(\GuzzleHttp\json_encode($token));
+//
+//        $client = new Mocked_TrustpilotApiClient($apiKey, $secretKey, $username, $password);
+//
+//        $this->assertInstanceOf(AccessToken::class, $client->getAccessToken());
+//    }
+
+
+    public function testSendRequest()
     {
         $apiKey = 'api-key-123';
         $secretKey = 'api-secret-key-123';
         $username = 'api-username';
         $password = 'api-password';
 
+        $token = [
+            'access_token' => 'ey12easdwrsyeud6if7gohoji8hp97o68fi',
+            'expires_in' => '3600',
+            'refresh_token' => '0/koiouliykgutjyhethrfjyguktrdyfS3'
+        ];
+
+        $this->getMockedResponse(\GuzzleHttp\json_encode($token));
+
         $client = new Mocked_TrustpilotApiClient($apiKey, $secretKey, $username, $password);
+
+//        $client->sendRequest()
     }
 }
 

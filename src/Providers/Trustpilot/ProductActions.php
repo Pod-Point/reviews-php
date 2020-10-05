@@ -34,19 +34,13 @@ class ProductActions implements ActionsInterface
         //
     }
 
-    /**
-     * @param array $options
-     */
-    public function fetchAll(array $options)
+    public function getReviews(array $options)
     {
-        //
+        // TODO: Implement getReviews() method.
     }
 
-    /**
-     * @param string $reference
-     */
-    public function find(string $reference)
+    public function findReview(string $reference)
     {
-        //
+        // TODO: Implement findReview() method.
     }
 }
