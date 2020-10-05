@@ -5,8 +5,8 @@
 
 A reviews service manager for PHP applications. This package provides a shared interface to use different reviews providers.
 List of supported reviews providers: 
- * [Trustpilot](trustpilot.com) 
- * [ReviewsIO](reviews.co.uk/)
+ * [Trustpilot](https://trustpilot.com) 
+ * [ReviewsIO](https://reviews.co.uk/)
 
 ## Glossary
 
@@ -21,7 +21,7 @@ To install this package, run the following command:
 composer require pod-point/reviews-php
 ```
 
-##Usage
+## Usage
 All the providers respect the same usage interface. 
 Here is a example of the provided interface that is shared across the supported review providers.
 
@@ -39,7 +39,7 @@ $reviewsClient->service()->fetchAll((array) $serviceFilterOptions);
 ```
 
 For more details about each provider options see:
- * [Trustpilot](https://github.com/Pod-Point/reviews-php/Providers/TrustpiloyREADME.md) 
+ * [Trustpilot](https://github.com/Pod-Point/reviews-php/Providers/Trustpilot/README.md) 
 
 ## Development
 
