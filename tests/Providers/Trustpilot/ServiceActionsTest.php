@@ -29,8 +29,9 @@ class ServiceActionsTest extends TestCase
      * @return array|mixed
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
-    public function testInvite()
+    public function invite()
     {
+        /*TODO*/
         $options = [
             'business_id' => 'foo-bar-321'
         ];
