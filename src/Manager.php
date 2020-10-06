@@ -54,12 +54,13 @@ class Manager
     }
 
     /**
-     * Returns the provider of specific vendor .
+     * Returns the provider of specific vendor.
      *
-     * @param $provider
-     * @return mixed
-     * @throws ProviderNotFoundException
+     * @param string $provider
+     *
+     * @return ProviderInterface
      * @throws ProviderConfigNotFoundException
+     * @throws ProviderNotFoundException
      */
     public function withProvider(string $provider): ProviderInterface
     {

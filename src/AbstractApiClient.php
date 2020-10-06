@@ -34,7 +34,7 @@ abstract class AbstractApiClient implements ApiClientInterface
     /***
      * @return Client|ClientInterface
      */
-    public function getHttpClient()
+    public function getHttpClient(): ClientInterface
     {
         return $this->httpClient;
     }

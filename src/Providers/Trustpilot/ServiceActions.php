@@ -20,7 +20,7 @@ class ServiceActions implements ActionsInterface
      */
     protected $apiClient;
 
-    /***
+    /**
      * @var string
      */
     protected $businessUnitId;

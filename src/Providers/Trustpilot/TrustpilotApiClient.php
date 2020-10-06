@@ -5,7 +5,6 @@ namespace PodPoint\Reviews\Providers\Trustpilot;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AccessToken;
-use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Providers\Trustpilot\Request\AccessTokenRequest;
 use Psr\Http\Message\ResponseInterface;
 use PodPoint\Reviews\AbstractApiClient;
