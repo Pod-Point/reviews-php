@@ -17,7 +17,14 @@ A review is an evaluation of a publication, product, or company for example. In 
 
 ## Installation
 
-To install this package, run the following command:
+ 1. Add the following in the repository section of the composer.json
+```json
+{  
+    "type": "git",  
+    "url": "git@github.com:pod-point/reviews-php.git"  
+}
+```
+2. Run the following command inside of the the desired project workspace.
 ```bash
 composer require pod-point/reviews-php
 ```
