@@ -5,6 +5,7 @@ namespace PodPoint\Reviews\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AbstractApiClient;
+use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
 
 abstract class BaseRequest
@@ -18,27 +19,37 @@ abstract class BaseRequest
     /**
      * BaseRequest constructor.
      *
-     * @param AbstractApiClient $client
+     * @param ApiClientInterface $client
      * @param array $options
      *
-     * @throws ValidationException
      */
-    public function __construct(AbstractApiClient $client, array $options)
+    public function __construct(ApiClientInterface $client, array $options)
     {
         $this->httpClient = $client;
         $this->options = $options;
-        $this->validate();
+
+//        $this->validate();
+    }
+
+    /**
+     * Get http client.
+     *
+     * @return Client|AbstractApiClient
+     */
+    public function getHttpClient()
+    {
+        return $this->httpClient;
     }
 
     /**
      * @return array
      */
-    abstract protected function requiredFields(): array;
+    abstract public function requiredFields(): array;
 
     /**
      * @return Request
      */
-    abstract protected function getRequest(): Request;
+    abstract public function getRequest(): Request;
 
     /**
      * @return array|mixed
@@ -46,6 +57,8 @@ abstract class BaseRequest
     abstract public function send();
 
     /**
+     * Checks if the required fields are present.
+     *
      * @return bool
      *
      * @throws ValidationException
@@ -55,9 +68,7 @@ abstract class BaseRequest
         $requiredFields = $this->requiredFields();
 
         foreach ($requiredFields as $field) {
-            $value = $this->options[$field];
-
-            if (!isset($value) || empty(null)) {
+            if (!isset($this->options[$field]) && empty($this->options[$field])) {
                 throw new ValidationException("$field is required");
             }
         }
@@ -66,11 +77,23 @@ abstract class BaseRequest
     }
 
     /**
+     * Get option by key name.
+     *
      * @param string $key
      * @return mixed|null
      */
     public function getOption(string $key)
     {
         return $this->options[$key] ?? null;
+    }
+
+    /**
+     * Returns all the options.
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
     }
 }

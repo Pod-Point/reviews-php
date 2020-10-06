@@ -5,9 +5,14 @@ namespace PodPoint\Reviews\Providers\Trustpilot;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AccessToken;
+use PodPoint\Reviews\Providers\Trustpilot\Request\AccessTokenRequest;
 use Psr\Http\Message\ResponseInterface;
 use PodPoint\Reviews\AbstractApiClient;
 
+/**
+ * Class TrustpilotApiClient
+ * @package PodPoint\Reviews\Providers\Trustpilot
+ */
 class TrustpilotApiClient extends AbstractApiClient
 {
     /**
@@ -57,24 +62,16 @@ class TrustpilotApiClient extends AbstractApiClient
      */
     protected function getAccessToken(): AccessToken
     {
-        $key = base64_encode($this->apiKey . ':' . $this->secretKey);
+        $options = [
+            'apiKey' => $this->apiKey,
+            'apiSecret' => $this->secretKey,
+            'username' => $this->username,
+            'password' => $this->password,
+        ];
 
-        $response = $this->httpClient->request(
-            'POST',
-            'https://api.trustpilot.com/v1/oauth/oauth-business-users-for-applications/accesstoken', [
-            'headers' => [
-                'authorization' => "Basic {$key}",
-            ],
-            'form_params' => [
-                'grant_type' => 'password',
-                'username' => $this->username,
-                'password' => $this->password,
-            ],
-        ]);
+        $request = new AccessTokenRequest($this, $options);
 
-        $json = $this->getResponseJson($response);
-
-        return new AccessToken($json);
+        return $request->send();
     }
 
     /***
@@ -85,7 +82,7 @@ class TrustpilotApiClient extends AbstractApiClient
      *
      * @throws GuzzleException
      */
-    public function validateAndSend(Request $request, bool $withAuthentication = false): ResponseInterface
+    public function sendRequest(Request $request, bool $withAuthentication = false): ResponseInterface
     {
         if ($withAuthentication) {
             $accessToken = $this->getAccessToken();

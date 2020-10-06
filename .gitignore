@@ -1,3 +1,6 @@
+.scannerwork/
+.phpunit.result.cache
+.idea
 /build
 /vendor
 .env

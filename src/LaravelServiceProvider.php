@@ -6,7 +6,7 @@ namespace PodPoint\Reviews;
  * Class ServiceProvider
  * @package PodPoint\ReviewsLaravel
  */
-class ServiceProvider extends \Illuminate\Support\ServiceProvider
+class LaravelServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
      * Bootstrap any application services.

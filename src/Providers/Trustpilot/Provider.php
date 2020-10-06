@@ -2,10 +2,10 @@
 
 namespace PodPoint\Reviews\Providers\Trustpilot;
 
-use PodPoint\Reviews\ReviewsInterface;
-use PodPoint\Reviews\ReviewsServiceInterface;
+use PodPoint\Reviews\ActionsInterface;
+use PodPoint\Reviews\ProviderInterface;
 
-class Factory implements ReviewsServiceInterface
+class Provider implements ProviderInterface
 {
     /**
      * @var array
@@ -35,18 +35,26 @@ class Factory implements ReviewsServiceInterface
     }
 
     /**
-     * @return ReviewsInterface
+     * @return ActionsInterface
      */
-    public function service(): ReviewsInterface
+    public function service(): ActionsInterface
     {
-        return (new ServiceReview($this->apiClient))->setBusinessUnitId($this->config['businessUnitId']);
+        return (new ServiceActions($this->apiClient))->setBusinessUnitId($this->config['business_unit_id']);
     }
 
     /**
-     * @return ReviewsInterface
+     * @return ActionsInterface
      */
-    public function product(): ReviewsInterface
+    public function product(): ActionsInterface
     {
-        return new ProductReview($this->apiClient);
+        return new ProductActions($this->apiClient);
+    }
+
+    /**
+     * @return array
+     */
+    public function getConfig()
+    {
+        return $this->config;
     }
 }
