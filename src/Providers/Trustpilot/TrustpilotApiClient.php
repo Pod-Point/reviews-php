@@ -5,6 +5,7 @@ namespace PodPoint\Reviews\Providers\Trustpilot;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AccessToken;
+use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Providers\Trustpilot\Request\AccessTokenRequest;
 use Psr\Http\Message\ResponseInterface;
 use PodPoint\Reviews\AbstractApiClient;
@@ -60,7 +61,7 @@ class TrustpilotApiClient extends AbstractApiClient
      *
      * @throws GuzzleException
      */
-    protected function getAccessToken(): AccessToken
+    public function getAccessToken(): AccessToken
     {
         $options = [
             AccessTokenRequest::API_KEY => $this->apiKey,
@@ -88,8 +89,41 @@ class TrustpilotApiClient extends AbstractApiClient
             $accessToken = $this->getAccessToken();
 
             $request->withHeader('authorization', "Bearer {$accessToken->accessToken}");
+
         }
 
         return $this->httpClient->send($request);
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiKey(): string
+    {
+        return $this->apiKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSecretKey(): string
+    {
+        return $this->secretKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
     }
 }

@@ -38,6 +38,19 @@ abstract class AbstractApiClient implements ApiClientInterface
     }
 
     /**
+     * Sets http client.
+     *
+     * @param ClientInterface $httpClient
+     * @return $this
+     */
+    public function setHttpClient(ClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+
+        return $this;
+    }
+
+    /**
      * Retrieves the JSON from a HTTP response.
      *
      * @param ResponseInterface $response

@@ -57,9 +57,14 @@ class AccessTokenRequest extends BaseRequest
      */
     public function send()
     {
+        /*
+         * The sendRequest withAuthentication parameter must be set to false,
+         * this class is used AccessToken provider if not set to false it will
+         * go into infinite loop.
+         */
         $response = $this->httpClient->sendRequest(
             $this->getRequest(),
-            true
+            false
         );
 
         $json = $this->httpClient->getResponseJson($response);

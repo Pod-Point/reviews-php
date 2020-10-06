@@ -31,7 +31,7 @@ class ProductActions implements ActionsInterface
      */
     public function invite(array $options)
     {
-        //
+        // TODO: Implement invite() method.
     }
 
     public function getReviews(array $options)

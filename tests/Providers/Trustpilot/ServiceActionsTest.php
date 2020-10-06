@@ -4,9 +4,7 @@ namespace PodPoint\Reviews\Tests\Providers\Trustpilot;
 
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ApiClientInterface;
-use PodPoint\Reviews\Providers\Trustpilot\Request\Service\InviteRequest;
 use PodPoint\Reviews\Providers\Trustpilot\ServiceActions;
-use PodPoint\Reviews\Providers\Trustpilot\TrustpilotApiClient;
 use PodPoint\Reviews\Tests\TestCase;
 
 /**
