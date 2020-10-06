@@ -12,7 +12,6 @@ use PodPoint\Reviews\Request\BaseRequest;
  */
 class AccessTokenRequest extends BaseRequest
 {
-
     const API_KEY = 'apiKey';
     const API_SECRET = 'apiSecret';
     const USERNAME = 'username';

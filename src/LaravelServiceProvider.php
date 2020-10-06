@@ -28,10 +28,11 @@ class LaravelServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/config/review-providers.php', 'review-providers'
+            __DIR__ . '/config/review-providers.php',
+            'review-providers'
         );
 
-        $this->app->singleton(Manager::class, function() {
+        $this->app->singleton(Manager::class, function () {
             return new Manager(config('review-providers'));
         });
     }
