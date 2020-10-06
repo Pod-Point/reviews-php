@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsIo;
+namespace PodPoint\Reviews\Providers\ReviewsIO;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;

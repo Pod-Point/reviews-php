@@ -1,19 +1,21 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsIo\Request;
+namespace PodPoint\Reviews\Providers\ReviewsIO\Request\Service;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use \PodPoint\Reviews\Request\BaseRequest;
 
-class GetServiceReviews extends BaseRequest
+class FindReviewRequest extends BaseRequest
 {
     /**
      * @return array
      */
     public function requiredFields(): array
     {
-        return ['store'];
+        return [
+            'reviewId'
+        ];
     }
 
     /**
@@ -21,10 +23,11 @@ class GetServiceReviews extends BaseRequest
      */
     public function getRequest(): Request
     {
-        $store = $this->getOption('store');
-
-        $uri = new Uri('https://api.reviews.co.uk/merchant/reviews');
-        $uri = Uri::withQueryValues($uri, $this->options + ['store' => $store]);
+        $uri = new Uri('https://api.reviews.io/merchant/reviews');
+        $uri = Uri::withQueryValues(
+            $uri,
+            ['store' => $this->getOption('store'), 'review_id' => $this->getOption('reviewId')]
+        );
 
         return new Request('GET', $uri);
     }

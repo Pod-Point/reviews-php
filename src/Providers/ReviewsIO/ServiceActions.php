@@ -1,12 +1,12 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsIo;
+namespace PodPoint\Reviews\Providers\ReviewsIO;
 
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
-use PodPoint\Reviews\Providers\ReviewsIo\Request\GetServiceReviews;
-use PodPoint\Reviews\Providers\ReviewsIo\Request\SendServiceInvite;
-use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\FindReviewRequest;
+use PodPoint\Reviews\Providers\ReviewsIO\Request\GetServiceReviews;
+use PodPoint\Reviews\Providers\ReviewsIO\Request\SendServiceInvite;
+use PodPoint\Reviews\Providers\ReviewsIO\Request\Service\FindReviewRequest;
 
 class ServiceActions implements ActionsInterface
 {
