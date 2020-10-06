@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsIo\Request;
+namespace PodPoint\Reviews\Providers\Reviewsio\Request\Service;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;

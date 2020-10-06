@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsIO;
+namespace PodPoint\Reviews\Providers\Reviewsio;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
@@ -41,5 +41,13 @@ class ReviewsCoUkApiClient extends AbstractApiClient
         }
 
         return $this->httpClient->send($request);
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiKey(): string
+    {
+        return $this->apiKey;
     }
 }

@@ -1,12 +1,13 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsIO;
+namespace PodPoint\Reviews\Providers\Reviewsio;
 
 use PodPoint\Reviews\ActionsInterface;
+use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
-use PodPoint\Reviews\Providers\ReviewsIO\Request\GetServiceReviews;
-use PodPoint\Reviews\Providers\ReviewsIO\Request\EmailInviteRequest;
-use PodPoint\Reviews\Providers\ReviewsIO\Request\Service\FindReviewRequest;
+use PodPoint\Reviews\Providers\Reviewsio\Request\Service\GetServiceReviews;
+use PodPoint\Reviews\Providers\Reviewsio\Request\Service\EmailInviteRequest;
+use PodPoint\Reviews\Providers\Reviewsio\Request\Service\FindReviewRequest;
 
 class ServiceActions implements ActionsInterface
 {
@@ -25,14 +26,16 @@ class ServiceActions implements ActionsInterface
      *
      * @param $apiClient
      */
-    public function __construct(ReviewsCoUkApiClient $apiClient)
+    public function __construct(ApiClientInterface $apiClient)
     {
         $this->apiClient = $apiClient;
     }
 
     /**
      * @param array $options
+     *
      * @return array|mixed
+     * @throws ValidationException
      */
     public function invite(array $options)
     {
@@ -45,6 +48,7 @@ class ServiceActions implements ActionsInterface
 
     /**
      * @param array $options
+     *
      * @return array|mixed
      * @throws ValidationException
      */
@@ -59,7 +63,9 @@ class ServiceActions implements ActionsInterface
 
     /**
      * @param string $reviewId
+     *
      * @return array|mixed
+     * @throws ValidationException
      */
     public function findReview(string $reviewId)
     {
@@ -71,5 +77,24 @@ class ServiceActions implements ActionsInterface
         $request = new FindReviewRequest($this->apiClient, $options);
 
         return $request->send();
+    }
+
+    /**
+     * @param string $store
+     * @return $this
+     */
+    public function setStore(string $store): self
+    {
+        $this->store = $store;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStore(): string
+    {
+        return $this->store;
     }
 }
