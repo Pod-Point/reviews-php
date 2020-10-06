@@ -4,9 +4,14 @@
 ## Usage
 
 #### Create a trustpilot client
+Any PHP Application
 ```
 $manager = new \PodPoint\Reviews\Manager();
 $trustpilot = $manager->withProvider('trustpilot')
+```
+Laravel:
+```php
+$trustpilot = Reviews::trustpilot()
 ```
 
 #### Send a service invite
@@ -15,7 +20,7 @@ Required Fields:
 * consumerName
 * referenceNumber
 
-```
+```php
 $trustpilot->service()->invite([
     'consumerEmail' => 'john.doe@trustpilot.com', 
     'consumerName'=> 'John Doe',
@@ -36,21 +41,20 @@ $trustpilot->service()->invite([
      'senderName' =>  'John Doe'
 ]);
 ```
-
 #### Get service reviews
 
-```
+```php
 $trustpilot->service()->getReviews([
  'startDateTime' => '2013-09-07T13:37:00',
  'endDateTime' => '2013-09-20T13:37:00',
 ]);
 ```
-
-See all supported query parameters and response:
+See all supported query parameters and responses:
 [Api docs](https://documentation-apidocumentation.trustpilot.com/business-units-api#business-unit-private-reviews)
 
 #### Find service review
-
-```
+```php
 $trustpilot->service()->findReview($reviewId);
 ```
+See response example:
+[Api docs](https://documentation-apidocumentation.trustpilot.com/service-reviews-api#get-private-review)
