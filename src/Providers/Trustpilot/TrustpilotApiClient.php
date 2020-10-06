@@ -63,10 +63,10 @@ class TrustpilotApiClient extends AbstractApiClient
     protected function getAccessToken(): AccessToken
     {
         $options = [
-            'apiKey' => $this->apiKey,
-            'apiSecret' => $this->secretKey,
-            'username' => $this->username,
-            'password' => $this->password,
+            AccessTokenRequest::API_KEY => $this->apiKey,
+            AccessTokenRequest::API_SECRET => $this->secretKey,
+            AccessTokenRequest::USERNAME => $this->username,
+            AccessTokenRequest::PASSWORD => $this->password,
         ];
 
         $request = new AccessTokenRequest($this, $options);

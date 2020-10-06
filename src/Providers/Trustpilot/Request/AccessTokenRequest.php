@@ -13,19 +13,24 @@ use PodPoint\Reviews\Request\BaseRequest;
 class AccessTokenRequest extends BaseRequest
 {
 
+    const API_KEY = 'apiKey';
+    const API_SECRET = 'apiSecret';
+    const USERNAME = 'username';
+    const PASSWORD = 'password';
+
     public function requiredFields(): array
     {
         return [
-            'apiKey',
-            'apiSecret',
-            'username',
-            'password'
+            self::API_KEY,
+            self::API_SECRET,
+            self::USERNAME,
+            self::PASSWORD,
         ];
     }
 
     public function getRequest(): Request
     {
-        $key = base64_encode($this->getOption('apiKey') . ':' . $this->getOption('apiSecret'));
+        $key = base64_encode($this->getOption(self::API_KEY) . ':' . $this->getOption(self::API_SECRET));
 
         $method = 'POST';
         $uri = 'https://api.trustpilot.com/v1/oauth/oauth-business-users-for-applications/accesstoken';
@@ -36,8 +41,8 @@ class AccessTokenRequest extends BaseRequest
         $body = \GuzzleHttp\json_encode([
             'form_params' => [
                 'grant_type' => 'password',
-                'username' => $this->getOption('username'),
-                'password' => $this->getOption('password'),
+                self::USERNAME => $this->getOption(self::USERNAME),
+                self::PASSWORD => $this->getOption(self::PASSWORD),
             ]
         ]);
 
