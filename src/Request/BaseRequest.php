@@ -22,13 +22,14 @@ abstract class BaseRequest
      * @param ApiClientInterface $client
      * @param array $options
      *
+     * @throws ValidationException
      */
     public function __construct(ApiClientInterface $client, array $options)
     {
         $this->httpClient = $client;
         $this->options = $options;
 
-//        $this->validate();
+        $this->validate();
     }
 
     /**

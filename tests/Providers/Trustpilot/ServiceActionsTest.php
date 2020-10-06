@@ -45,9 +45,9 @@ class ServiceActionsTest extends TestCase
     public function testInvite()
     {
         $options = [
-            'referenceNumber',
-            'consumerEmail',
-            'consumerName'
+            'referenceNumber' => 'reference-number-321',
+            'consumerEmail' => 'customer@email.com',
+            'consumerName' => 'Customer Name',
         ];
 
         $response = $this->getMockedResponse('{"status": "200", "message": "accepted"}');

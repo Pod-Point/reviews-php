@@ -62,8 +62,7 @@ class FindReviewRequestTest extends TestCase
      */
     public function testSend()
     {
-        $options = ['foo' => 'bar', 'businessUnitId' => 'business-123'];
-
+        $options = ['reviewId' => 'review-id-123', 'businessUnitId' => 'business-123'];
 
         $response = $this->getMockedResponse('{"status": "OK", "message": "successful"}');
         $mockedApiClient = $this->getMockedApiClient();

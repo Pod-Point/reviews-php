@@ -2,7 +2,9 @@
 
 namespace PodPoint\Reviews\Tests\Request;
 
+use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\Exceptions\ValidationException;
+use PodPoint\Reviews\Request\BaseRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
 /**
@@ -11,6 +13,33 @@ use PodPoint\Reviews\Tests\TestCase;
  */
 class BaseRequestTest extends TestCase
 {
+
+    protected $request;
+    protected $mockedApiClient;
+
+    protected function setUp()
+    {
+        $this->mockedApiClient = $this->getMockedApiClient();
+
+        $this->request = new class($this->mockedApiClient, ['foo-required' => 'bar']) extends BaseRequest {
+
+            public function requiredFields(): array
+            {
+                return ['foo-required'];
+            }
+
+            public function getRequest(): Request
+            {
+                //
+            }
+
+            public function send()
+            {
+                //
+            }
+        };
+    }
+
     /**
      * Test construct to make sure properties are set.
      *
@@ -18,12 +47,8 @@ class BaseRequestTest extends TestCase
      */
     public function testConstruct()
     {
-        $options = ['foo' => 'bar'];
-        $mockedApiClient = $this->getMockedApiClient();
-        $request = $this->getMockedBaseRequest($mockedApiClient, $options);
-
-        $this->assertEquals($mockedApiClient, $request->getHttpClient());
-        $this->assertEquals($options, $request->getOptions());
+        $this->assertEquals($this->mockedApiClient, $this->request->getHttpClient());
+        $this->assertEquals(['foo-required' => 'bar'], $this->request->getOptions());
     }
 
     /**
@@ -31,26 +56,13 @@ class BaseRequestTest extends TestCase
      */
     public function testGivenValidOptionsValidateShouldReturnTrue()
     {
-        $options = [
-            'username' => 'test-user-1',
-            'password' => 'testPassword1',
-            'apiKey' => 'test-api-key'
-        ];
-
-        $requiredFields = [
-            'username', 'password', 'apiKey'
-        ];
-
-        $mockedApiClient = $this->getMockedApiClient();
-        $request = $this->getMockedBaseRequest($mockedApiClient, $options, $requiredFields);
-
-        $this->assertTrue($request->validate());
+        $this->assertTrue($this->request->validate());
     }
 
     /**
-     * Making sure validate returns true when
+     * Making sure validate throws ValidationException when invalid options given.
      */
-    public function testGivenInvalidOptionsValidateShouldReturnTrue()
+    public function testGivenInvalidOptionsValidateShouldThrowException()
     {
         $this->expectException(ValidationException::class);
 
@@ -59,12 +71,27 @@ class BaseRequestTest extends TestCase
             'foo' => 'testPassword1',
         ];
 
-        $requiredFields = [
-            'username', 'password', 'apiKey'
-        ];
+        $request = new class($this->mockedApiClient, $options) extends BaseRequest {
 
-        $mockedApiClient = $this->getMockedApiClient();
-        $request = $this->getMockedBaseRequest($mockedApiClient, $options, $requiredFields);
+            public function requiredFields(): array
+            {
+                return [
+                    'username',
+                    'password',
+                    'apiKey',
+                ];
+            }
+
+            public function getRequest(): Request
+            {
+                //
+            }
+
+            public function send()
+            {
+                //
+            }
+        };
 
         $request->validate();
     }

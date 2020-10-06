@@ -2,13 +2,8 @@
 
 namespace PodPoint\Reviews\Tests;
 
-use GuzzleHttp\Psr7\Request;
 use Mockery;
 use PodPoint\Reviews\AbstractApiClient;
-use PodPoint\Reviews\ApiClientInterface;
-use PodPoint\Reviews\Request\BaseRequest;
-use PodPoint\Reviews\Tests\Mocks\MockedApiClient;
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -50,23 +45,5 @@ class TestCase extends \PHPUnit\Framework\TestCase
     public function getMockedApiClient()
     {
         return Mockery::mock(AbstractApiClient::class)->makePartial();
-    }
-
-    /**
-     * @param AbstractApiClient $client
-     * @param array $options
-     * @param array $requiredFields
-     * @return Mockery\Mock
-     */
-    public function getMockedBaseRequest(ApiClientInterface $client, array $options = [], $requiredFields = [])
-    {
-        $mock = Mockery::mock(BaseRequest::class, array($client, $options))
-            ->makePartial();
-
-        $mock->shouldReceive('requiredFields')
-            ->withNoArgs()
-            ->andReturn($requiredFields);
-
-        return $mock;
     }
 }
