@@ -6,7 +6,7 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use PodPoint\Reviews\Request\BaseRequest;
 
-class InviteRequest extends BaseRequest
+class EmailInviteRequest extends BaseRequest
 {
     /**
      * @return Request

@@ -5,7 +5,7 @@ namespace PodPoint\Reviews\Providers\ReviewsIO;
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
 use PodPoint\Reviews\Providers\ReviewsIO\Request\GetServiceReviews;
-use PodPoint\Reviews\Providers\ReviewsIO\Request\SendServiceInvite;
+use PodPoint\Reviews\Providers\ReviewsIO\Request\EmailInviteRequest;
 use PodPoint\Reviews\Providers\ReviewsIO\Request\Service\FindReviewRequest;
 
 class ServiceActions implements ActionsInterface
@@ -38,7 +38,7 @@ class ServiceActions implements ActionsInterface
     {
         $options['store'] = $this->store;
 
-        $request = new SendServiceInvite($this->apiClient, $options);
+        $request = new EmailInviteRequest($this->apiClient, $options);
 
         return $request->send();
     }
