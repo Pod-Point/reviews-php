@@ -1,13 +1,14 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsCoUk;
+namespace PodPoint\Reviews\Providers\ReviewsIo;
 
+use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
-use PodPoint\Reviews\Providers\ReviewsCoUk\Request\GetServiceReviews;
-use PodPoint\Reviews\Providers\ReviewsCoUk\Request\SendServiceInvite;
-use PodPoint\Reviews\ReviewsInterface;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\GetServiceReviews;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\SendServiceInvite;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\FindReviewRequest;
 
-class ServiceReview implements ReviewsInterface
+class ServiceActions implements ActionsInterface
 {
     /**
      * @var ReviewsCoUkApiClient
@@ -32,7 +33,6 @@ class ServiceReview implements ReviewsInterface
     /**
      * @param array $options
      * @return array|mixed
-     * @throws ValidationException
      */
     public function invite(array $options)
     {
@@ -48,7 +48,7 @@ class ServiceReview implements ReviewsInterface
      * @return array|mixed
      * @throws ValidationException
      */
-    public function fetchAll(array $options)
+    public function getReviews(array $options)
     {
         $options['store'] = $this->store;
 
@@ -58,18 +58,17 @@ class ServiceReview implements ReviewsInterface
     }
 
     /**
-     * @param string $orderId
+     * @param string $reviewId
      * @return array|mixed
-     * @throws ValidationException
      */
-    public function find(string $orderId)
+    public function findReview(string $reviewId)
     {
         $options = [
-            'order_id' => $orderId,
+            'reviewId' => $reviewId,
             'store' => $this->store,
         ];
 
-        $request = new GetServiceReviews($this->apiClient, $options);
+        $request = new FindReviewRequest($this->apiClient, $options);
 
         return $request->send();
     }

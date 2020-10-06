@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use \GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Config\Repository as Config;
 use Mockery;
-use PodPoint\Reviews\Providers\ReviewsCoUk\MerchantService;
+use PodPoint\Reviews\Providers\ReviewsIo\MerchantService;
 
 class MerchantServiceTest extends TestCase
 {

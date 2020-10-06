@@ -1,10 +1,10 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsCoUk;
+namespace PodPoint\Reviews\Providers\ReviewsIo;
 
-use PodPoint\Reviews\ReviewsInterface;
+use PodPoint\Reviews\ActionsInterface;
 
-class ProductReview implements ReviewsInterface
+class ProductActions implements ActionsInterface
 {
     /**
      * @var array
@@ -26,12 +26,12 @@ class ProductReview implements ReviewsInterface
         // TODO: Implement invite() method.
     }
 
-    public function fetchAll(array $options)
+    public function getReviews(array $options)
     {
         // TODO: Implement fetchAll() method.
     }
 
-    public function find(string $reference)
+    public function findReview(string $reviewId)
     {
         // TODO: Implement find() method.
     }

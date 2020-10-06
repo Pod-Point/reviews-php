@@ -1,24 +1,25 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsCoUk\Request;
+namespace PodPoint\Reviews\Providers\ReviewsIo\Request;
 
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Uri;
 use PodPoint\Reviews\Request\BaseRequest;
 
-class SendServiceInvite extends BaseRequest
+class InviteRequest extends BaseRequest
 {
     /**
      * @return Request
      */
     public function getRequest(): Request
     {
-        return new Request(
-            'POST',
-            'https://api.reviews.co.uk/merchant/invitation',
-            [
-                'form_params' => $this->options,
-            ]
-        );
+        $store = $this->getOption('store');
+
+        $uri = new Uri('https://api.reviews.co.uk/merchant/invitation');
+        $header = [];
+        $body = \GuzzleHttp\json_encode($this->options + ['store' => $store]);
+
+        return new Request('POST', $uri, $header, $body);
     }
 
     /**
@@ -37,7 +38,7 @@ class SendServiceInvite extends BaseRequest
     /**
      * @return array
      */
-    protected function requiredFields(): array
+    public function requiredFields(): array
     {
         return [
             'name',

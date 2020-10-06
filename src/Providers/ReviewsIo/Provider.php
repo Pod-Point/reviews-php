@@ -1,11 +1,11 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsCoUk;
+namespace PodPoint\Reviews\Providers\ReviewsIo;
 
-use PodPoint\Reviews\ReviewsInterface;
-use PodPoint\Reviews\ReviewsServiceInterface;
+use PodPoint\Reviews\ActionsInterface;
+use PodPoint\Reviews\ProviderInterface;
 
-class Factory implements ReviewsServiceInterface
+class Provider implements ProviderInterface
 {
     /**
      * @var array
@@ -32,18 +32,18 @@ class Factory implements ReviewsServiceInterface
     }
 
     /**
-     * @return ReviewsInterface
+     * @return ActionsInterface
      */
-    public function service(): ReviewsInterface
+    public function service(): ActionsInterface
     {
-        return new ServiceReview($this->apiClient);
+        return new ServiceActions($this->apiClient);
     }
 
     /**
-     * @return ReviewsInterface
+     * @return ActionsInterface
      */
-    public function product(): ReviewsInterface
+    public function product(): ActionsInterface
     {
-        return new ProductReview($this->apiClient);
+        return new ProductActions($this->apiClient);
     }
 }
