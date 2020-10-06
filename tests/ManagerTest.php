@@ -8,7 +8,6 @@ use PodPoint\Reviews\Manager;
 
 class ManagerTest extends TestCase
 {
-
     protected $config;
 
     /**
@@ -85,4 +84,3 @@ class ManagerTest extends TestCase
         $manager->getProviderConfig('bar');
     }
 }
-

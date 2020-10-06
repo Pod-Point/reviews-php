@@ -17,7 +17,8 @@ class ServiceActionsTest extends TestCase
     /**
      * Constructor should be instance of APiClientInterface and it should assign to apiClient property.
      */
-    public function testConstruct(){
+    public function testConstruct()
+    {
         $action = new Mocked_ServiceActions($this->getMockedApiClient());
 
         $this->assertInstanceOf(ActionsInterface::class, $action);
@@ -117,8 +118,8 @@ class ServiceActionsTest extends TestCase
     }
 }
 
-class Mocked_ServiceActions extends ServiceActions {
-
+class Mocked_ServiceActions extends ServiceActions
+{
     public function getApiClient()
     {
         return $this->apiClient;

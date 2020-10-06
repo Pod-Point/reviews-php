@@ -35,4 +35,3 @@ class AbstractApiClientTest extends TestCase
         ], $response);
     }
 }
-

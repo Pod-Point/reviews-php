@@ -12,7 +12,6 @@ use PodPoint\Reviews\Tests\TestCase;
  */
 class AccessTokenRequestTest extends TestCase
 {
-
     protected $requiredFields;
     protected $options;
 

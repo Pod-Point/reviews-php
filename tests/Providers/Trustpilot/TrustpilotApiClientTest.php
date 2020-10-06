@@ -13,7 +13,6 @@ use Psr\Http\Message\ResponseInterface;
 
 class TrustpilotApiClientTest extends TestCase
 {
-
     protected $apiClient;
 
     /**
@@ -27,7 +26,10 @@ class TrustpilotApiClientTest extends TestCase
         $password = 'api-password';
 
         $this->apiClient = new TrustpilotApiClient(
-            $apiKey, $secretKey, $username, $password
+            $apiKey,
+            $secretKey,
+            $username,
+            $password
         );
     }
 
