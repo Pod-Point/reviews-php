@@ -18,6 +18,8 @@ class Manager
     protected $config;
 
     /**
+     * Expects configurations.
+     *
      * @param array $config
      */
     public function __construct(array $config)
@@ -26,6 +28,8 @@ class Manager
     }
 
     /**
+     * Returns all the configs.
+     *
      * @return array
      */
     public function getConfig(): array
@@ -33,6 +37,13 @@ class Manager
         return $this->config;
     }
 
+    /**
+     * Returns provider specific config.
+     *
+     * @param string $provider
+     * @return mixed
+     * @throws ProviderConfigNotFoundException
+     */
     public function getProviderConfig(string $provider)
     {
         if (!isset($this->config[$provider])) {
@@ -43,21 +54,14 @@ class Manager
     }
 
     /**
+     * Returns the provider of specific vendor .
+     *
      * @param $provider
      * @return mixed
      * @throws ProviderNotFoundException
+     * @throws ProviderConfigNotFoundException
      */
     public function withProvider(string $provider): ProviderInterface
-    {
-        return $this->getProviderInstance($provider);
-    }
-
-    /**
-     * @param string $provider
-     * @return mixed
-     * @throws ProviderNotFoundException|ProviderConfigNotFoundException
-     */
-    protected function getProviderInstance(string $provider)
     {
         $class = 'PodPoint\\Reviews\\Providers\\' . ucfirst($provider) . '\\Provider';
 

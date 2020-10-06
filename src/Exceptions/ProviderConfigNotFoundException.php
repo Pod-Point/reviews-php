@@ -8,5 +8,5 @@ namespace PodPoint\Reviews\Exceptions;
  */
 class ProviderConfigNotFoundException extends \Exception
 {
-
+    //
 }

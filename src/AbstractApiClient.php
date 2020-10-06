@@ -10,12 +10,14 @@ use Psr\Http\Message\ResponseInterface;
 abstract class AbstractApiClient implements ApiClientInterface
 {
     /**
+     * Instance of GuzzleHttp/Client.
+     *
      * @var ClientInterface
      */
     protected $httpClient;
 
     /**
-     * AbstractApiClient constructor.
+     * AbstractApiClient constructor, creates an instance of http client.
      */
     public function __construct()
     {
@@ -38,7 +40,7 @@ abstract class AbstractApiClient implements ApiClientInterface
     }
 
     /**
-     * Sets http client.
+     * Sets httpClient.
      *
      * @param ClientInterface $httpClient
      * @return $this
