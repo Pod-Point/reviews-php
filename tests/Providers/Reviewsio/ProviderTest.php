@@ -1,8 +1,8 @@
 <?php
 
-namespace PodPoint\Reviews\Tests\Providers\Reviewsio;
+namespace PodPoint\Reviews\Tests\Providers\ReviewsIo;
 
-use PodPoint\Reviews\Providers\Reviewsio\Provider;
+use PodPoint\Reviews\Providers\ReviewsIo\Provider;
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ProviderInterface;
 use PodPoint\Reviews\Tests\TestCase;

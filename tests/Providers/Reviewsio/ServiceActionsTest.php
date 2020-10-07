@@ -1,15 +1,15 @@
 <?php
 
-namespace PodPoint\Reviews\Tests\Providers\Reviewsio;
+namespace PodPoint\Reviews\Tests\Providers\ReviewsIo;
 
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ApiClientInterface;
-use PodPoint\Reviews\Providers\Reviewsio\ServiceActions;
+use PodPoint\Reviews\Providers\ReviewsIo\ServiceActions;
 use PodPoint\Reviews\Tests\TestCase;
 
 /**
  * Class ServiceActionsTest
- * @package PodPoint\Reviews\Tests\Providers\Reviewsio
+ * @package PodPoint\Reviews\Tests\Providers\ReviewsIo
  */
 class ServiceActionsTest extends TestCase
 {
@@ -119,7 +119,7 @@ class ServiceActionsTest extends TestCase
 class Mocked_ServiceActions extends ServiceActions
 {
     /**
-     * @return \PodPoint\Reviews\Providers\Reviewsio\ReviewsCoUkApiClient
+     * @return \PodPoint\Reviews\Providers\ReviewsIo\ReviewsCoUkApiClient
      */
     public function getApiClient()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Reviewsio\Request\Service;
+namespace PodPoint\Reviews\Providers\ReviewsIo\Request\Service;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
@@ -9,16 +9,8 @@ use \PodPoint\Reviews\Request\BaseRequest;
 class FindReviewRequest extends BaseRequest
 {
     /**
-     * @return array
-     */
-    public function requiredFields(): array
-    {
-        return [
-            'reviewId'
-        ];
-    }
-
-    /**
+     * Builds the request.
+     *
      * @return Request
      */
     public function getRequest(): Request
@@ -33,6 +25,20 @@ class FindReviewRequest extends BaseRequest
     }
 
     /**
+     * List of required fields.
+     *
+     * @return array
+     */
+    public function requiredFields(): array
+    {
+        return [
+            'reviewId'
+        ];
+    }
+
+    /**
+     * Sends the request and parses response into array.
+     *
      * @return array|mixed
      */
     public function send()

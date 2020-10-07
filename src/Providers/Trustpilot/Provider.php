@@ -35,6 +35,8 @@ class Provider implements ProviderInterface
     }
 
     /**
+     * Returns service actions by setting config.
+     *
      * @return ActionsInterface
      */
     public function service(): ActionsInterface
@@ -43,6 +45,8 @@ class Provider implements ProviderInterface
     }
 
     /**
+     * Returns production actions by setting config.
+     *
      * @return ActionsInterface
      */
     public function product(): ActionsInterface
@@ -51,6 +55,8 @@ class Provider implements ProviderInterface
     }
 
     /**
+     * Returns provider config.
+     *
      * @return array
      */
     public function getConfig()

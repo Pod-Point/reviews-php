@@ -7,7 +7,7 @@ return [
     | Review provider configurations
     |--------------------------------------------------------------------------
     */
-    'reviewsio' => [
+    'reviews_io' => [
         'store' => env('REVIEWS_CO_UK_STORE'),
         'api_key' => env('REVIEWS_CO_UK_API_KEY'),
     ],

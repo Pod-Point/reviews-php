@@ -83,4 +83,15 @@ class ManagerTest extends TestCase
         $manager = new Manager($this->config);
         $manager->getProviderConfig('bar');
     }
+
+
+    public function testGetProviderClassName()
+    {
+        $manager = new Manager($this->config);
+        $actualClassName = $manager->getProviderClassName('reviews_io');
+        $expectedClassName = 'PodPoint\\Reviews\\Providers\\ReviewsIo\\Provider';
+
+        $this->assertEquals($expectedClassName, $actualClassName);
+
+    }
 }

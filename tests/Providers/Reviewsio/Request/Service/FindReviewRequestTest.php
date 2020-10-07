@@ -1,8 +1,8 @@
 <?php
 
-namespace PodPoint\Reviews\Tests\Providers\Reviewsio\Request\Service;
+namespace PodPoint\Reviews\Tests\Providers\ReviewsIo\Request\Service;
 
-use PodPoint\Reviews\Providers\Reviewsio\Request\Service\FindReviewRequest;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\FindReviewRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
 class FindReviewRequestTest extends TestCase

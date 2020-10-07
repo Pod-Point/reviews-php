@@ -1,18 +1,18 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Reviewsio;
+namespace PodPoint\Reviews\Providers\ReviewsIo;
 
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
-use PodPoint\Reviews\Providers\Reviewsio\Request\Service\GetServiceReviews;
-use PodPoint\Reviews\Providers\Reviewsio\Request\Service\EmailInviteRequest;
-use PodPoint\Reviews\Providers\Reviewsio\Request\Service\FindReviewRequest;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\GetServiceReviews;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\EmailInviteRequest;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\FindReviewRequest;
 
 class ServiceActions implements ActionsInterface
 {
     /**
-     * @var ReviewsCoUkApiClient
+     * @var ApiClientInterface
      */
     protected $apiClient;
 
@@ -62,6 +62,8 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
+     * Find reviews by id.
+     *
      * @param string $reviewId
      *
      * @return array|mixed
@@ -80,6 +82,8 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
+     * Sets store id and returns itself.
+     *
      * @param string $store
      * @return $this
      */
@@ -91,6 +95,8 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
+     * Returns store id.
+     *
      * @return string
      */
     public function getStore(): string

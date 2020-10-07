@@ -35,8 +35,10 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
+     * Invite consumers.
+     *
      * @param array $options
-     * @return array|mixed
+     * @return mixed
      * @throws ValidationException
      */
     public function invite(array $options)
@@ -48,8 +50,11 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
+     * Get reviews.
+     *
      * @param array $options
-     * @return array|mixed
+     *
+     * @return mixed
      * @throws ValidationException
      */
     public function getReviews(array $options)
@@ -61,8 +66,12 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
+     * Find reviews by id.
+     *
      * @param string $reviewId
-     * @return array|mixed
+     *
+     * @return mixed
+     * @throws ValidationException
      */
     public function findReview(string $reviewId)
     {
@@ -76,6 +85,8 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
+     * Sets business unit id and returns itself.
+     *
      * @param $businessUnitId
      * @return $this
      */
@@ -87,6 +98,8 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
+     * Returns business unit id.
+     *
      * @return string
      */
     public function getBusinessUnitId()
