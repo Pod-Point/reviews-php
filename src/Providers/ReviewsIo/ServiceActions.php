@@ -12,7 +12,7 @@ use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\FindReviewRequest;
 class ServiceActions implements ActionsInterface
 {
     /**
-     * @var ReviewsCoUkApiClient
+     * @var ApiClientInterface
      */
     protected $apiClient;
 
@@ -62,6 +62,8 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
+     * Find reviews by id.
+     *
      * @param string $reviewId
      *
      * @return array|mixed
@@ -80,6 +82,8 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
+     * Sets store id and returns itself.
+     *
      * @param string $store
      * @return $this
      */
@@ -91,6 +95,8 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
+     * Returns store id.
+     *
      * @return string
      */
     public function getStore(): string

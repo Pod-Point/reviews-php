@@ -27,6 +27,8 @@ class ReviewsCoUkApiClient extends AbstractApiClient
     }
 
     /***
+     * Sends request to API with or without pre authentication and returns response.
+     *
      * @param Request $request
      * @param bool $withAuthentication
      *
@@ -44,6 +46,8 @@ class ReviewsCoUkApiClient extends AbstractApiClient
     }
 
     /**
+     * Returns client API key.
+     *
      * @return string
      */
     public function getApiKey(): string

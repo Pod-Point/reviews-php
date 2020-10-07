@@ -27,8 +27,9 @@ class ProductActions implements ActionsInterface
     }
 
     /**
-     * @param array $options
+     * Invite consumers.
      *
+     * @param array $options
      * @return mixed
      */
     public function invite(array $options)
@@ -37,8 +38,9 @@ class ProductActions implements ActionsInterface
     }
 
     /**
-     * @param array $options
+     * Get reviews.
      *
+     * @param array $options
      * @return mixed
      */
     public function getReviews(array $options)
@@ -47,6 +49,8 @@ class ProductActions implements ActionsInterface
     }
 
     /**
+     * Find reviews by id.
+     *
      * @param string $reviewId
      *
      * @return mixed

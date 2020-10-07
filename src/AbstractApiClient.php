@@ -24,10 +24,13 @@ abstract class AbstractApiClient implements ApiClientInterface
         $this->httpClient = new Client();
     }
 
-    /**
+    /***
+     * Sends request to API with or without pre authentication and returns response.
+     *
      * @param Request $request
      * @param bool $withAuthentication
-     * @return mixed
+     *
+     * @return ResponseInterface
      */
     abstract public function sendRequest(Request $request, bool $withAuthentication);
 

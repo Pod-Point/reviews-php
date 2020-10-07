@@ -41,6 +41,7 @@ class Manager
      * Returns provider specific config.
      *
      * @param string $provider
+     *
      * @return mixed
      * @throws ProviderConfigNotFoundException
      */
@@ -80,6 +81,7 @@ class Manager
      * after _ to upper case.
      *
      * @param $provider
+     *
      * @return string
      */
     public function getProviderClassName($provider): string
@@ -87,11 +89,11 @@ class Manager
         $provider = ucfirst($provider);
         $providerNamePartials = explode('_', $provider);
 
-        foreach ($providerNamePartials as $partialKey => $partial){
+        foreach ($providerNamePartials as $partialKey => $partial) {
             $providerNamePartials[$partialKey] = ucfirst($partial);
         }
 
-        $providerName = implode('',$providerNamePartials);
+        $providerName = implode('', $providerNamePartials);
 
         return 'PodPoint\\Reviews\\Providers\\' . $providerName . '\\Provider';
     }

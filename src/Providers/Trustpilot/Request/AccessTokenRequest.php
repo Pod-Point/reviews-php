@@ -27,6 +27,11 @@ class AccessTokenRequest extends BaseRequest
         ];
     }
 
+    /**
+     * Builds the request.
+     *
+     * @return Request
+     */
     public function getRequest(): Request
     {
         $key = base64_encode($this->getOption(self::API_KEY) . ':' . $this->getOption(self::API_SECRET));
@@ -52,7 +57,6 @@ class AccessTokenRequest extends BaseRequest
      * Sends request and returns AccessToken model.
      *
      * @return array|mixed|AccessToken
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function send()
     {

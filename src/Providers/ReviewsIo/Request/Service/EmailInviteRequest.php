@@ -9,6 +9,8 @@ use PodPoint\Reviews\Request\BaseRequest;
 class EmailInviteRequest extends BaseRequest
 {
     /**
+     * Builds the request.
+     *
      * @return Request
      */
     public function getRequest(): Request
@@ -23,19 +25,8 @@ class EmailInviteRequest extends BaseRequest
     }
 
     /**
-     * @return array|mixed
-     */
-    public function send()
-    {
-        $response = $this->httpClient->sendRequest(
-            $this->getRequest(),
-            true
-        );
-
-        return $this->httpClient->getResponseJson($response);
-    }
-
-    /**
+     * List of required fields.
+     *
      * @return array
      */
     public function requiredFields(): array
@@ -46,5 +37,20 @@ class EmailInviteRequest extends BaseRequest
             'order_id',
             'store',
         ];
+    }
+
+    /**
+     * Sends the request and parses response into array.
+     *
+     * @return array|mixed
+     */
+    public function send()
+    {
+        $response = $this->httpClient->sendRequest(
+            $this->getRequest(),
+            true
+        );
+
+        return $this->httpClient->getResponseJson($response);
     }
 }
