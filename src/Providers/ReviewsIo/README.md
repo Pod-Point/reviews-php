@@ -11,7 +11,7 @@ $reviewsIo = $manager->withProvider('reviews_io')
 ```
 Laravel:
 ```php
-$reviewsIo = Reviews::reviewsIo()
+$reviewsIo = Reviews::reviews_io();
 ```
 
 #### Send a service invite

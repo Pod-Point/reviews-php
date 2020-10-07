@@ -17,7 +17,7 @@ class LaravelServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/config/review-providers.php' => config_path('review-providers.php'),
-        ]);
+        ], 'reviews-config');
     }
 
     /**
@@ -29,10 +29,10 @@ class LaravelServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->mergeConfigFrom(
             __DIR__ . '/config/review-providers.php',
-            'review-providers'
+            'reviews-providers'
         );
 
-        $this->app->singleton(Manager::class, function () {
+        $this->app->singleton('reviews', function () {
             return new Manager(config('review-providers'));
         });
     }
