@@ -1,15 +1,15 @@
 <?php
 
-namespace PodPoint\Reviews\Tests\Providers\Trustpilot;
+namespace PodPoint\Reviews\Tests\Providers\ReviewsIo;
 
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ApiClientInterface;
-use PodPoint\Reviews\Providers\Trustpilot\ServiceActions;
+use PodPoint\Reviews\Providers\ReviewsIo\ServiceActions;
 use PodPoint\Reviews\Tests\TestCase;
 
 /**
  * Class ServiceActionsTest
- * @package PodPoint\Reviews\Tests\Providers\Trustpilot
+ * @package PodPoint\Reviews\Tests\Providers\ReviewsIo
  */
 class ServiceActionsTest extends TestCase
 {
@@ -28,14 +28,14 @@ class ServiceActionsTest extends TestCase
     /**
      *  Making sure business id is setters and getters setting property as expected.
      */
-    public function testBusinessUnitId()
+    public function testStore()
     {
         $action = new ServiceActions($this->getMockedApiClient());
 
-        $businessId = 'foo-bar-123';
-        $action->setBusinessUnitId($businessId);
+        $store = 'foo-bar-123';
+        $action->setStore($store);
 
-        $this->assertEquals('foo-bar-123', $action->getBusinessUnitId());
+        $this->assertEquals('foo-bar-123', $action->getStore());
     }
 
     /**
@@ -45,9 +45,9 @@ class ServiceActionsTest extends TestCase
     public function testInvite()
     {
         $options = [
-            'referenceNumber' => 'reference-number-321',
-            'consumerEmail' => 'customer@email.com',
-            'consumerName' => 'Customer Name',
+            'name' => 'Customer Name',
+            'email' => 'customer@email.com',
+            'order_id' => 'order-number-321',
         ];
 
         $response = $this->getMockedResponse('{"status": "200", "message": "accepted"}');
@@ -55,7 +55,7 @@ class ServiceActionsTest extends TestCase
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
         $action = new ServiceActions($apiClient);
-        $action->setBusinessUnitId('foo-bar-321');
+        $action->setStore('store-number-123');
 
         $inviteResponse = $action->invite($options);
 
@@ -73,16 +73,14 @@ class ServiceActionsTest extends TestCase
      */
     public function testGetReviews()
     {
-        $options = [];
-
         $response = $this->getMockedResponse('{"status": "200", "message": "successful"}');
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
         $action = new ServiceActions($apiClient);
-        $action->setBusinessUnitId('foo-bar-321');
+        $action->setStore('store-number-123');
 
-        $getReviewsResponse = $action->getReviews($options);
+        $getReviewsResponse = $action->getReviews([]);
 
         $expectedResult = [
             "status" => "200",
@@ -105,7 +103,7 @@ class ServiceActionsTest extends TestCase
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
         $action = new ServiceActions($apiClient);
-        $action->setBusinessUnitId('foo-bar-321');
+        $action->setStore('store-number-123');
 
         $findReviewResponse = $action->findReview($reviewId);
 
@@ -120,8 +118,19 @@ class ServiceActionsTest extends TestCase
 
 class Mocked_ServiceActions extends ServiceActions
 {
+    /**
+     * @return \PodPoint\Reviews\Providers\ReviewsIo\ReviewsCoUkApiClient
+     */
     public function getApiClient()
     {
         return $this->apiClient;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStore(): string
+    {
+        return $this->store;
     }
 }

@@ -1,12 +1,11 @@
 <?php
 
-namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request\Service;
+namespace PodPoint\Reviews\Tests\Providers\ReviewsIo\Request\Service;
 
-use PodPoint\Reviews\Providers\Trustpilot\Request\Service\FindReviewRequest;
-use PodPoint\Reviews\Providers\Trustpilot\Request\Service\GetReviewsRequest;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\GetServiceReviews;
 use PodPoint\Reviews\Tests\TestCase;
 
-class FindReviewRequestTest extends TestCase
+class GetServiceReviewsTest extends TestCase
 {
     /**
      * Test construct to make sure properties are set.
@@ -15,60 +14,65 @@ class FindReviewRequestTest extends TestCase
      */
     public function testConstruct()
     {
-        $options = ['reviewId' => 'review-id-123'];
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new FindReviewRequest($mockedApiClient, $options);
+        $request = new GetServiceReviews($mockedApiClient, [
+            'store' => 'store-id-321',
+        ]);
 
         $this->assertEquals($mockedApiClient, $request->getHttpClient());
-        $this->assertEquals($options, $request->getOptions());
+        $this->assertEquals([
+            'store' => 'store-id-321',
+        ], $request->getOptions());
     }
 
     /**
      *
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testRequiredFields()
     {
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new FindReviewRequest($mockedApiClient, ['reviewId' => 'review-id-123']);
+        $request = new GetServiceReviews($mockedApiClient, [
+            'store' => 'store-id-321',
+        ]);
 
-        $this->assertEquals(['reviewId'], $request->requiredFields());
+        $this->assertEquals(['store'], $request->requiredFields());
     }
 
     /**
      * Making sure the Request instance is build as expected.
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testGetRequest()
     {
-        $options = [
-            'reviewId' => 'review-id-123',
-            'businessUnitId' => 'business-123',
-        ];
-
         $mockedApiClient = $this->getMockedApiClient();
-        $serviceReviewRequest = new FindReviewRequest($mockedApiClient, $options);
+        $serviceReviewRequest = new GetServiceReviews($mockedApiClient, [
+            'store' => 'store-id-321',
+        ]);
 
         $request = $serviceReviewRequest->getRequest();
 
         $this->assertInstanceOf(\Psr\Http\Message\RequestInterface::class, $request);
 
         $this->assertEquals('https', $request->getUri()->getScheme());
-        $this->assertEquals('api.trustpilot.com', $request->getUri()->getHost());
-        $this->assertEquals('/v1/private/reviews/review-id-123', $request->getUri()->getPath());
-        $this->assertEquals('', $request->getUri()->getQuery());
+        $this->assertEquals('api.reviews.co.uk', $request->getUri()->getHost());
+        $this->assertEquals('/merchant/reviews', $request->getUri()->getPath());
+        $this->assertEquals('store=store-id-321', $request->getUri()->getQuery());
     }
 
     /**
      * Send should return an array by converting the json response.
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testSend()
     {
-        $options = ['reviewId' => 'review-id-123', 'businessUnitId' => 'business-123'];
-
         $response = $this->getMockedResponse('{"status": "OK", "message": "successful"}');
         $mockedApiClient = $this->getMockedApiClient();
         $mockedApiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $request = new FindReviewRequest($mockedApiClient, $options);
+        $request = new GetServiceReviews($mockedApiClient, [
+            'store' => 'store-id-321',
+        ]);
 
         $this->assertEquals([
             'status' => 'OK',

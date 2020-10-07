@@ -10,31 +10,49 @@ use Psr\Http\Message\ResponseInterface;
 abstract class AbstractApiClient implements ApiClientInterface
 {
     /**
+     * Instance of GuzzleHttp/Client.
+     *
      * @var ClientInterface
      */
     protected $httpClient;
 
     /**
-     * AbstractApiClient constructor.
+     * AbstractApiClient constructor, creates an instance of http client.
      */
     public function __construct()
     {
         $this->httpClient = new Client();
     }
 
-    /**
+    /***
+     * Sends request to API with or without pre authentication and returns response.
+     *
      * @param Request $request
      * @param bool $withAuthentication
-     * @return mixed
+     *
+     * @return ResponseInterface
      */
     abstract public function sendRequest(Request $request, bool $withAuthentication);
 
     /***
      * @return Client|ClientInterface
      */
-    public function getHttpClient()
+    public function getHttpClient(): ClientInterface
     {
         return $this->httpClient;
+    }
+
+    /**
+     * Sets httpClient.
+     *
+     * @param ClientInterface $httpClient
+     * @return $this
+     */
+    public function setHttpClient(ClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+
+        return $this;
     }
 
     /**

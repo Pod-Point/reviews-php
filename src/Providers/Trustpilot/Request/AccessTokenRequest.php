@@ -12,20 +12,29 @@ use PodPoint\Reviews\Request\BaseRequest;
  */
 class AccessTokenRequest extends BaseRequest
 {
+    const API_KEY = 'apiKey';
+    const API_SECRET = 'apiSecret';
+    const USERNAME = 'username';
+    const PASSWORD = 'password';
 
     public function requiredFields(): array
     {
         return [
-            'apiKey',
-            'apiSecret',
-            'username',
-            'password'
+            self::API_KEY,
+            self::API_SECRET,
+            self::USERNAME,
+            self::PASSWORD,
         ];
     }
 
+    /**
+     * Builds the request.
+     *
+     * @return Request
+     */
     public function getRequest(): Request
     {
-        $key = base64_encode($this->getOption('apiKey') . ':' . $this->getOption('apiSecret'));
+        $key = base64_encode($this->getOption(self::API_KEY) . ':' . $this->getOption(self::API_SECRET));
 
         $method = 'POST';
         $uri = 'https://api.trustpilot.com/v1/oauth/oauth-business-users-for-applications/accesstoken';
@@ -36,8 +45,8 @@ class AccessTokenRequest extends BaseRequest
         $body = \GuzzleHttp\json_encode([
             'form_params' => [
                 'grant_type' => 'password',
-                'username' => $this->getOption('username'),
-                'password' => $this->getOption('password'),
+                self::USERNAME => $this->getOption(self::USERNAME),
+                self::PASSWORD => $this->getOption(self::PASSWORD),
             ]
         ]);
 
@@ -48,13 +57,17 @@ class AccessTokenRequest extends BaseRequest
      * Sends request and returns AccessToken model.
      *
      * @return array|mixed|AccessToken
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function send()
     {
+        /*
+         * The sendRequest withAuthentication parameter must be set to false,
+         * this class is used AccessToken provider if not set to false it will
+         * go into infinite loop.
+         */
         $response = $this->httpClient->sendRequest(
             $this->getRequest(),
-            true
+            false
         );
 
         $json = $this->httpClient->getResponseJson($response);

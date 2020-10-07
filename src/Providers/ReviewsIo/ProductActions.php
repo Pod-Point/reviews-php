@@ -3,20 +3,21 @@
 namespace PodPoint\Reviews\Providers\ReviewsIo;
 
 use PodPoint\Reviews\ActionsInterface;
+use PodPoint\Reviews\ApiClientInterface;
 
 class ProductActions implements ActionsInterface
 {
     /**
-     * @var array
+     * @var ApiClientInterface
      */
     protected $apiClient;
 
     /**
      * ProductReview constructor.
      *
-     * @param ReviewsCoUkApiClient $apiClient
+     * @param ApiClientInterface $apiClient
      */
-    public function __construct(ReviewsCoUkApiClient $apiClient)
+    public function __construct(ApiClientInterface $apiClient)
     {
         $this->apiClient = $apiClient;
     }

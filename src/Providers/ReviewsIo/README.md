@@ -7,11 +7,11 @@
 Any PHP Application
 ```
 $manager = new \PodPoint\Reviews\Manager();
-$reviewsIo = $manager->withProvider('reviewsIO')
+$reviewsIo = $manager->withProvider('reviews_io')
 ```
 Laravel:
 ```php
-$reviewsIo = Reviews::reviewsIO()
+$reviewsIo = Reviews::reviewsIo()
 ```
 
 #### Send a service invite

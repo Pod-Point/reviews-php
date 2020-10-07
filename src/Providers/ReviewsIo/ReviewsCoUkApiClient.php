@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsIO;
+namespace PodPoint\Reviews\Providers\ReviewsIo;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
@@ -27,6 +27,8 @@ class ReviewsCoUkApiClient extends AbstractApiClient
     }
 
     /***
+     * Sends request to API with or without pre authentication and returns response.
+     *
      * @param Request $request
      * @param bool $withAuthentication
      *
@@ -41,5 +43,15 @@ class ReviewsCoUkApiClient extends AbstractApiClient
         }
 
         return $this->httpClient->send($request);
+    }
+
+    /**
+     * Returns client API key.
+     *
+     * @return string
+     */
+    public function getApiKey(): string
+    {
+        return $this->apiKey;
     }
 }

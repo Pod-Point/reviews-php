@@ -12,7 +12,7 @@ use PodPoint\Reviews\ActionsInterface;
 class ProductActions implements ActionsInterface
 {
     /**
-     * @var array
+     * @var ApiClientInterface
      */
     protected $apiClient;
 
@@ -27,18 +27,34 @@ class ProductActions implements ActionsInterface
     }
 
     /**
+     * Invite consumers.
+     *
      * @param array $options
+     * @return mixed
      */
     public function invite(array $options)
     {
-        //
+        // TODO: Implement invite() method.
     }
 
+    /**
+     * Get reviews.
+     *
+     * @param array $options
+     * @return mixed
+     */
     public function getReviews(array $options)
     {
         // TODO: Implement getReviews() method.
     }
 
+    /**
+     * Find reviews by id.
+     *
+     * @param string $reviewId
+     *
+     * @return mixed
+     */
     public function findReview(string $reviewId)
     {
         // TODO: Implement findReview() method.

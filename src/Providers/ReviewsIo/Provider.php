@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsIO;
+namespace PodPoint\Reviews\Providers\ReviewsIo;
 
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ProviderInterface;
@@ -32,18 +32,32 @@ class Provider implements ProviderInterface
     }
 
     /**
+     * Returns service actions by setting config.
+     *
      * @return ActionsInterface
      */
     public function service(): ActionsInterface
     {
-        return new ServiceActions($this->apiClient);
+        return (new ServiceActions($this->apiClient))->setStore($this->config['store']);
     }
 
     /**
+     * Returns production actions by setting config.
+     *
      * @return ActionsInterface
      */
     public function product(): ActionsInterface
     {
         return new ProductActions($this->apiClient);
+    }
+
+    /**
+     * Returns provider config.
+     *
+     * @return array
+     */
+    public function getConfig()
+    {
+        return $this->config;
     }
 }

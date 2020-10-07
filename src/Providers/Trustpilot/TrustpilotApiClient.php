@@ -58,15 +58,15 @@ class TrustpilotApiClient extends AbstractApiClient
      *
      * @return AccessToken
      *
-     * @throws GuzzleException
+     * @throws GuzzleException|\PodPoint\Reviews\Exceptions\ValidationException
      */
-    protected function getAccessToken(): AccessToken
+    public function getAccessToken(): AccessToken
     {
         $options = [
-            'apiKey' => $this->apiKey,
-            'apiSecret' => $this->secretKey,
-            'username' => $this->username,
-            'password' => $this->password,
+            AccessTokenRequest::API_KEY => $this->apiKey,
+            AccessTokenRequest::API_SECRET => $this->secretKey,
+            AccessTokenRequest::USERNAME => $this->username,
+            AccessTokenRequest::PASSWORD => $this->password,
         ];
 
         $request = new AccessTokenRequest($this, $options);
@@ -75,12 +75,14 @@ class TrustpilotApiClient extends AbstractApiClient
     }
 
     /***
+     * Sends request to API with or without pre authentication and returns response.
+     *
      * @param Request $request
      * @param bool $withAuthentication
      *
      * @return ResponseInterface
      *
-     * @throws GuzzleException
+     * @throws GuzzleException|\PodPoint\Reviews\Exceptions\ValidationException
      */
     public function sendRequest(Request $request, bool $withAuthentication = false): ResponseInterface
     {
@@ -91,5 +93,45 @@ class TrustpilotApiClient extends AbstractApiClient
         }
 
         return $this->httpClient->send($request);
+    }
+
+    /**
+     * Returns client API key.
+     *
+     * @return string
+     */
+    public function getApiKey(): string
+    {
+        return $this->apiKey;
+    }
+
+    /**
+     * Returns client API secret key.
+     *
+     * @return string
+     */
+    public function getSecretKey(): string
+    {
+        return $this->secretKey;
+    }
+
+    /**
+     * Returns client API username.
+     *
+     * @return string
+     */
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    /**
+     * Returns client API password.
+     *
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
     }
 }
