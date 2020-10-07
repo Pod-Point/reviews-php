@@ -99,7 +99,11 @@ class Manager
     }
 
     /**
+     * Magic method used to create provider, when the method doesn't exist it will return new instance of the provider,
+     * compatible with Laravel Facade.
      *
+     * Example usage:
+     * Manager::trustpilot() which is equivalent to $manager->withProvider('trustpilot');
      *
      * @param $name
      * @param $arguments
