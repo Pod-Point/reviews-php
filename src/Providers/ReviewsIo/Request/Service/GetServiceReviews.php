@@ -1,12 +1,12 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot\Request\Service;
+namespace PodPoint\Reviews\Providers\ReviewsIo\Request\Service;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use \PodPoint\Reviews\Request\BaseRequest;
 
-class FindReviewRequest extends BaseRequest
+class GetServiceReviews extends BaseRequest
 {
     /**
      * List of required fields.
@@ -15,9 +15,7 @@ class FindReviewRequest extends BaseRequest
      */
     public function requiredFields(): array
     {
-        return [
-            'reviewId'
-        ];
+        return ['store'];
     }
 
     /**
@@ -27,10 +25,12 @@ class FindReviewRequest extends BaseRequest
      */
     public function getRequest(): Request
     {
-        $method = 'GET';
-        $uri = new Uri("https://api.trustpilot.com/v1/private/reviews/{$this->getOption('reviewId')}");
+        $store = $this->getOption('store');
 
-        return new Request($method, $uri);
+        $uri = new Uri('https://api.reviews.co.uk/merchant/reviews');
+        $uri = Uri::withQueryValues($uri, $this->options + ['store' => $store]);
+
+        return new Request('GET', $uri);
     }
 
     /**

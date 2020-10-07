@@ -58,7 +58,7 @@ class TrustpilotApiClient extends AbstractApiClient
      *
      * @return AccessToken
      *
-     * @throws GuzzleException
+     * @throws GuzzleException|\PodPoint\Reviews\Exceptions\ValidationException
      */
     public function getAccessToken(): AccessToken
     {
@@ -75,12 +75,14 @@ class TrustpilotApiClient extends AbstractApiClient
     }
 
     /***
+     * Sends request to API with or without pre authentication and returns response.
+     *
      * @param Request $request
      * @param bool $withAuthentication
      *
      * @return ResponseInterface
      *
-     * @throws GuzzleException
+     * @throws GuzzleException|\PodPoint\Reviews\Exceptions\ValidationException
      */
     public function sendRequest(Request $request, bool $withAuthentication = false): ResponseInterface
     {
@@ -94,6 +96,8 @@ class TrustpilotApiClient extends AbstractApiClient
     }
 
     /**
+     * Returns client API key.
+     *
      * @return string
      */
     public function getApiKey(): string
@@ -102,6 +106,8 @@ class TrustpilotApiClient extends AbstractApiClient
     }
 
     /**
+     * Returns client API secret key.
+     *
      * @return string
      */
     public function getSecretKey(): string
@@ -110,6 +116,8 @@ class TrustpilotApiClient extends AbstractApiClient
     }
 
     /**
+     * Returns client API username.
+     *
      * @return string
      */
     public function getUsername(): string
@@ -118,6 +126,8 @@ class TrustpilotApiClient extends AbstractApiClient
     }
 
     /**
+     * Returns client API password.
+     *
      * @return string
      */
     public function getPassword(): string

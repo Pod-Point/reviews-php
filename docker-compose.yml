@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  php:
+    build:
+      context: ./
+      dockerfile: ./docker/dockerfile
+      args:
+        - IMAGE_NAME=${ECS_IMAGE_URL}
+    volumes:
+      - ./:/app/.
+    tty: true
+    env_file:
+      ./.env

@@ -1,14 +1,10 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot;
+namespace PodPoint\Reviews\Providers\ReviewsIo;
 
-use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\ActionsInterface;
+use PodPoint\Reviews\ApiClientInterface;
 
-/**
- * Class ProductActions
- * @package PodPoint\Reviews\Providers\Trustpilot
- */
 class ProductActions implements ActionsInterface
 {
     /**
@@ -26,37 +22,18 @@ class ProductActions implements ActionsInterface
         $this->apiClient = $apiClient;
     }
 
-    /**
-     * Invite consumers.
-     *
-     * @param array $options
-     * @return mixed
-     */
     public function invite(array $options)
     {
         // TODO: Implement invite() method.
     }
 
-    /**
-     * Get reviews.
-     *
-     * @param array $options
-     * @return mixed
-     */
     public function getReviews(array $options)
     {
-        // TODO: Implement getReviews() method.
+        // TODO: Implement fetchAll() method.
     }
 
-    /**
-     * Find reviews by id.
-     *
-     * @param string $reviewId
-     *
-     * @return mixed
-     */
     public function findReview(string $reviewId)
     {
-        // TODO: Implement findReview() method.
+        // TODO: Implement find() method.
     }
 }
