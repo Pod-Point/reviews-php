@@ -4,10 +4,6 @@ namespace PodPoint\Reviews\Tests;
 
 use PodPoint\Reviews\AccessToken;
 
-/**
- * Class AccessTokenTest
- * @package PodPoint\Reviews\Tests
- */
 class AccessTokenTest extends TestCase
 {
     /**

@@ -95,6 +95,6 @@ class Manager
 
         $providerName = implode('', $providerNamePartials);
 
-        return 'PodPoint\\Reviews\\Providers\\' . $providerName . '\\Provider';
+        return "PodPoint\\Reviews\\Providers\\{$providerName}\\Provider";
     }
 }

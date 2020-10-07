@@ -9,6 +9,10 @@ use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\GetServiceReviews;
 use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\EmailInviteRequest;
 use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\FindReviewRequest;
 
+/**
+ * Class ServiceActions
+ * @package PodPoint\Reviews\Providers\ReviewsIo
+ */
 class ServiceActions implements ActionsInterface
 {
     /**
@@ -16,12 +20,12 @@ class ServiceActions implements ActionsInterface
      */
     protected $apiClient;
 
-    /***
+    /**
      * @var string
      */
     protected $store;
 
-    /***
+    /**
      * ServiceReview constructor.
      *
      * @param $apiClient

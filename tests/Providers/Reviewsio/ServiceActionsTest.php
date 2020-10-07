@@ -7,13 +7,8 @@ use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Providers\ReviewsIo\ServiceActions;
 use PodPoint\Reviews\Tests\TestCase;
 
-/**
- * Class ServiceActionsTest
- * @package PodPoint\Reviews\Tests\Providers\ReviewsIo
- */
 class ServiceActionsTest extends TestCase
 {
-
     /**
      * Constructor should be instance of APiClientInterface and it should assign to apiClient property.
      */
@@ -39,6 +34,8 @@ class ServiceActionsTest extends TestCase
     }
 
     /**
+     * Making sure the invite method to make sure it returns the response as expected.
+     *
      * @return array|mixed
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
@@ -68,6 +65,8 @@ class ServiceActionsTest extends TestCase
     }
 
     /**
+     * Making sure the getReviews method to make sure it returns the response as expected.
+     *
      * @return array|mixed
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
@@ -91,6 +90,8 @@ class ServiceActionsTest extends TestCase
     }
 
     /**
+     * Making sure the findReview method to make sure it returns the response as expected.
+     *
      * @return array|mixed
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */

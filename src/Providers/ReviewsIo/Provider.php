@@ -5,6 +5,10 @@ namespace PodPoint\Reviews\Providers\ReviewsIo;
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ProviderInterface;
 
+/**
+ * Class Provider
+ * @package PodPoint\Reviews\Providers\ReviewsIo
+ */
 class Provider implements ProviderInterface
 {
     /**
@@ -56,7 +60,7 @@ class Provider implements ProviderInterface
      *
      * @return array
      */
-    public function getConfig()
+    public function getConfig(): array
     {
         return $this->config;
     }

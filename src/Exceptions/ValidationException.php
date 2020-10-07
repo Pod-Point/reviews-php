@@ -4,6 +4,10 @@ namespace PodPoint\Reviews\Exceptions;
 
 use Throwable;
 
+/**
+ * Class ValidationException
+ * @package PodPoint\Reviews\Exceptions
+ */
 class ValidationException extends \Exception
 {
     public function __construct($message = "", $code = 0, Throwable $previous = null)

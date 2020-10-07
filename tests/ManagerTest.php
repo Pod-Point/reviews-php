@@ -8,6 +8,11 @@ use PodPoint\Reviews\Manager;
 
 class ManagerTest extends TestCase
 {
+    /**
+     * review-providers.php config sample, needed to construct manager.
+     *
+     * @var \string[][]
+     */
     protected $config;
 
     /**
@@ -37,7 +42,7 @@ class ManagerTest extends TestCase
 
     /**
      * The with provider should should return an instance of ProviderInterface.
-     * @throws ProviderNotFoundException
+     * @throws ProviderNotFoundException|ProviderConfigNotFoundException
      */
     public function testWithProvider()
     {

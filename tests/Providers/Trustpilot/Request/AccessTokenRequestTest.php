@@ -6,15 +6,25 @@ use PodPoint\Reviews\AccessToken;
 use PodPoint\Reviews\Providers\Trustpilot\Request\AccessTokenRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
-/**
- * Class AccessTokenRequestTest
- * @package PodPoint\Reviews\Tests\Providers\Trustpilot\Request
- */
 class AccessTokenRequestTest extends TestCase
 {
+    /**
+     * Request required fields.
+     *
+     * @var string[]
+     */
     protected $requiredFields;
+
+    /**
+     * Request options.
+     *
+     * @var string[]
+     */
     protected $options;
 
+    /**
+     * Preparing test properties.
+     */
     protected function setUp()
     {
         $this->requiredFields = [
@@ -47,7 +57,9 @@ class AccessTokenRequestTest extends TestCase
     }
 
     /**
+     * Making sure the required fields returns the right required fields.
      *
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testRequiredFields()
     {
@@ -59,6 +71,8 @@ class AccessTokenRequestTest extends TestCase
 
     /**
      * Making sure the Request instance is build as expected.
+     *
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testGetRequest()
     {
@@ -77,6 +91,7 @@ class AccessTokenRequestTest extends TestCase
 
     /**
      * Send should return an array by converting the json response.
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testSend()
     {

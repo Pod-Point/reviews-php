@@ -9,7 +9,6 @@ use PodPoint\Reviews\Tests\TestCase;
 
 class ProviderTest extends TestCase
 {
-
     /**
      * Instance of an Provider.
      *

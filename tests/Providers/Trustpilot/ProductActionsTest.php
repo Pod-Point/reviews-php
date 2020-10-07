@@ -6,10 +6,6 @@ use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\Providers\Trustpilot\ProductActions;
 use PodPoint\Reviews\Tests\TestCase;
 
-/**
- * Class ProductActionsTest
- * @package PodPoint\Reviews\Tests\Providers\Trustpilot
- */
 class ProductActionsTest extends TestCase
 {
     /**

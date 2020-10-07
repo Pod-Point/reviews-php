@@ -74,7 +74,7 @@ class TrustpilotApiClient extends AbstractApiClient
         return $request->send();
     }
 
-    /***
+    /**
      * Sends request to API with or without pre authentication and returns response.
      *
      * @param Request $request

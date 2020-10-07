@@ -7,6 +7,10 @@ use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 use PodPoint\Reviews\AbstractApiClient;
 
+/**
+ * Class ReviewsCoUkApiClient
+ * @package PodPoint\Reviews\Providers\ReviewsIo
+ */
 class ReviewsCoUkApiClient extends AbstractApiClient
 {
     /**
@@ -26,7 +30,7 @@ class ReviewsCoUkApiClient extends AbstractApiClient
         $this->apiKey = $apiKey;
     }
 
-    /***
+    /**
      * Sends request to API with or without pre authentication and returns response.
      *
      * @param Request $request

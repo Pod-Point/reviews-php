@@ -6,6 +6,10 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use PodPoint\Reviews\Request\BaseRequest;
 
+/**
+ * Class InviteRequest
+ * @package PodPoint\Reviews\Providers\Trustpilot\Request\Service
+ */
 class InviteRequest extends BaseRequest
 {
     /**

@@ -7,14 +7,20 @@ use PodPoint\Reviews\Exceptions\ValidationException;
 use PodPoint\Reviews\Request\BaseRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
-/**
- * Class BaseRequestTest
- * @package PodPoint\Reviews\Tests\Request
- */
 class BaseRequestTest extends TestCase
 {
-
+    /**
+     * Instance of a mocked abstract BaseRequest.
+     *
+     * @var BaseRequest|__anonymous@455
+     */
     protected $request;
+
+    /**
+     * Instance of mocked AbstractApiClient.
+     *
+     * @var \Mockery\LegacyMockInterface|\Mockery\MockInterface|\PodPoint\Reviews\AbstractApiClient
+     */
     protected $mockedApiClient;
 
     protected function setUp()

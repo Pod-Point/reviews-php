@@ -4,10 +4,6 @@ namespace PodPoint\Reviews\Tests;
 
 use PodPoint\Reviews\ApiClientInterface;
 
-/**
- * Class AbstractApiClientTest
- * @package PodPoint\Reviews\Tests
- */
 class AbstractApiClientTest extends TestCase
 {
     /**

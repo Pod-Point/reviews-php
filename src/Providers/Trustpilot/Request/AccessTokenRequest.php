@@ -34,7 +34,7 @@ class AccessTokenRequest extends BaseRequest
      */
     public function getRequest(): Request
     {
-        $key = base64_encode($this->getOption(self::API_KEY) . ':' . $this->getOption(self::API_SECRET));
+        $key = base64_encode("{$this->getOption(self::API_KEY)}:{$this->getOption(self::API_SECRET)}");
 
         $method = 'POST';
         $uri = 'https://api.trustpilot.com/v1/oauth/oauth-business-users-for-applications/accesstoken';

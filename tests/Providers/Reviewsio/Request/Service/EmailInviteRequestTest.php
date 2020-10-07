@@ -32,6 +32,7 @@ class EmailInviteRequestTest extends TestCase
     }
 
     /**
+     * Making sure the required fields returns the right required fields.
      *
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
@@ -55,6 +56,7 @@ class EmailInviteRequestTest extends TestCase
 
     /**
      * Making sure the Request instance is build as expected.
+     *
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testGetRequest()
@@ -79,6 +81,7 @@ class EmailInviteRequestTest extends TestCase
 
     /**
      * Send should return an array by converting the json response.
+     *
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testSend()

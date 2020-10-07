@@ -8,6 +8,10 @@ use PodPoint\Reviews\AbstractApiClient;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
 
+/**
+ * Class BaseRequest
+ * @package PodPoint\Reviews\Request
+ */
 abstract class BaseRequest
 {
     /** @var array $option */
@@ -99,7 +103,7 @@ abstract class BaseRequest
      *
      * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->options;
     }

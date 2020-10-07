@@ -23,7 +23,9 @@ class GetReviewsReviewsRequestTest extends TestCase
     }
 
     /**
+     * Making sure the required fields returns the right required fields.
      *
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testRequiredFields()
     {
@@ -36,6 +38,8 @@ class GetReviewsReviewsRequestTest extends TestCase
 
     /**
      * Making sure the Request instance is build as expected.
+     *
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testGetRequest()
     {

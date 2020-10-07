@@ -5,6 +5,10 @@ namespace PodPoint\Reviews\Providers\ReviewsIo;
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ApiClientInterface;
 
+/**
+ * Class ProductActions
+ * @package PodPoint\Reviews\Providers\ReviewsIo
+ */
 class ProductActions implements ActionsInterface
 {
     /**

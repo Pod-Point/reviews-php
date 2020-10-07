@@ -13,6 +13,11 @@ use Psr\Http\Message\ResponseInterface;
 
 class ReviewsCoUkApiClientTest extends TestCase
 {
+    /**
+     * Instance of a ReviewsCoUkApiClient.
+     *
+     * @var ReviewsCoUkApiClient
+     */
     protected $apiClient;
 
     /**

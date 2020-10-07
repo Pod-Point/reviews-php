@@ -7,6 +7,10 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Class AbstractApiClient
+ * @package PodPoint\Reviews
+ */
 abstract class AbstractApiClient implements ApiClientInterface
 {
     /**
@@ -24,7 +28,7 @@ abstract class AbstractApiClient implements ApiClientInterface
         $this->httpClient = new Client();
     }
 
-    /***
+    /**
      * Sends request to API with or without pre authentication and returns response.
      *
      * @param Request $request
@@ -34,7 +38,7 @@ abstract class AbstractApiClient implements ApiClientInterface
      */
     abstract public function sendRequest(Request $request, bool $withAuthentication);
 
-    /***
+    /**
      * @return Client|ClientInterface
      */
     public function getHttpClient(): ClientInterface

@@ -2,6 +2,10 @@
 
 namespace PodPoint\Reviews;
 
+/**
+ * Class AccessToken
+ * @package PodPoint\Reviews
+ */
 class AccessToken
 {
     /**
