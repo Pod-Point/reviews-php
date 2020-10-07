@@ -70,7 +70,7 @@ class Manager
             throw new ProviderNotFoundException($class);
         }
 
-        $providerConfig = self::getProviderConfig($provider);
+        $providerConfig = $this->getProviderConfig($provider);
 
         return new $class($providerConfig);
     }
