@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Reviewsio;
+namespace PodPoint\Reviews\Providers\ReviewsIo;
 
 use PodPoint\Reviews\ActionsInterface;
 

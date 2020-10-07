@@ -1,12 +1,12 @@
 <?php
 
-namespace PodPoint\Reviews\Tests\Providers\Reviewsio;
+namespace PodPoint\Reviews\Tests\Providers\ReviewsIo;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AccessToken;
 use PodPoint\Reviews\ApiClientInterface;
-use PodPoint\Reviews\Providers\Reviewsio\ReviewsCoUkApiClient;
+use PodPoint\Reviews\Providers\ReviewsIo\ReviewsCoUkApiClient;
 use PodPoint\Reviews\Tests\TestCase;
 use Mockery;
 use Psr\Http\Message\ResponseInterface;

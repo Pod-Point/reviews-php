@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Tests\Providers\Reviewsio;
+namespace PodPoint\Reviews\Tests\Providers\ReviewsIo;
 
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\Providers\Trustpilot\ProductActions;
@@ -8,7 +8,7 @@ use PodPoint\Reviews\Tests\TestCase;
 
 /**
  * Class ProductActionsTest
- * @package PodPoint\Reviews\Tests\Providers\Reviewsio
+ * @package PodPoint\Reviews\Tests\Providers\ReviewsIo
  */
 class ProductActionsTest extends TestCase
 {
