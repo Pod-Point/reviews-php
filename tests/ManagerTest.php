@@ -5,6 +5,7 @@ namespace PodPoint\Reviews\Tests;
 use PodPoint\Reviews\Exceptions\ProviderConfigNotFoundException;
 use PodPoint\Reviews\Exceptions\ProviderNotFoundException;
 use PodPoint\Reviews\Manager;
+use PodPoint\Reviews\ProviderInterface;
 
 class ManagerTest extends TestCase
 {
@@ -92,6 +93,16 @@ class ManagerTest extends TestCase
         $expectedClassName = 'PodPoint\\Reviews\\Providers\\ReviewsIo\\Provider';
 
         $this->assertEquals($expectedClassName, $actualClassName);
+    }
 
+    /**
+     * The magic method __call should return provider.
+     */
+    public function test__callMagicMethod()
+    {
+        $manager = new Manager($this->config);
+        $foo = $manager->foo();
+
+        $this->assertInstanceOf(ProviderInterface::class, $foo);
     }
 }
