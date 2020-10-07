@@ -70,8 +70,18 @@ class Manager
             throw new ProviderNotFoundException($class);
         }
 
-        $providerConfig = $this->getProviderConfig($provider);
+        $providerConfig = self::getProviderConfig($provider);
 
         return new $class($providerConfig);
+    }
+
+    /**
+     * @return ProviderInterface
+     * @throws ProviderConfigNotFoundException
+     * @throws ProviderNotFoundException
+     */
+    public function trustpilot()
+    {
+        return $this->withProvider('trustpilot');
     }
 }
