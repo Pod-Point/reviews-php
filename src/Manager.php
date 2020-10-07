@@ -97,14 +97,18 @@ class Manager
 
         return 'PodPoint\\Reviews\\Providers\\' . $providerName . '\\Provider';
     }
-  
+
     /**
+     *
+     *
+     * @param $name
+     * @param $arguments
      * @return ProviderInterface
      * @throws ProviderConfigNotFoundException
      * @throws ProviderNotFoundException
      */
-    public function trustpilot()
+    public function __call($name, $arguments)
     {
-        return $this->withProvider('trustpilot');
+        return $this->withProvider($name);
     }
 }
