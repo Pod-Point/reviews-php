@@ -9,6 +9,8 @@ use PodPoint\Reviews\Request\BaseRequest;
 class InviteRequest extends BaseRequest
 {
     /**
+     * Builds the request.
+     *
      * @return Request
      */
     public function getRequest(): Request
@@ -24,6 +26,8 @@ class InviteRequest extends BaseRequest
     }
 
     /**
+     * Sends the request and parses response into array.
+     *
      * @return array|mixed
      */
     public function send()
@@ -37,6 +41,8 @@ class InviteRequest extends BaseRequest
     }
 
     /**
+     * List of required fields.
+     *
      * @return array
      */
     public function requiredFields(): array

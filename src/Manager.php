@@ -41,6 +41,7 @@ class Manager
      * Returns provider specific config.
      *
      * @param string $provider
+     *
      * @return mixed
      * @throws ProviderConfigNotFoundException
      */
@@ -64,7 +65,7 @@ class Manager
      */
     public function withProvider(string $provider): ProviderInterface
     {
-        $class = 'PodPoint\\Reviews\\Providers\\' . ucfirst($provider) . '\\Provider';
+        $class = $this->getProviderClassName($provider);
 
         if (!class_exists($class)) {
             throw new ProviderNotFoundException($class);
@@ -75,6 +76,28 @@ class Manager
         return new $class($providerConfig);
     }
 
+    /**
+     * Builds the provider class name, removes _ and changes first character
+     * after _ to upper case.
+     *
+     * @param $provider
+     *
+     * @return string
+     */
+    public function getProviderClassName($provider): string
+    {
+        $provider = ucfirst($provider);
+        $providerNamePartials = explode('_', $provider);
+
+        foreach ($providerNamePartials as $partialKey => $partial) {
+            $providerNamePartials[$partialKey] = ucfirst($partial);
+        }
+
+        $providerName = implode('', $providerNamePartials);
+
+        return 'PodPoint\\Reviews\\Providers\\' . $providerName . '\\Provider';
+    }
+  
     /**
      * @return ProviderInterface
      * @throws ProviderConfigNotFoundException

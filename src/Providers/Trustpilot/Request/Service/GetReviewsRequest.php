@@ -9,6 +9,8 @@ use \PodPoint\Reviews\Request\BaseRequest;
 class GetReviewsRequest extends BaseRequest
 {
     /**
+     * List of required fields.
+     *
      * @return array
      */
     public function requiredFields(): array
@@ -17,6 +19,8 @@ class GetReviewsRequest extends BaseRequest
     }
 
     /**
+     * Builds the request.
+     *
      * @return Request
      */
     public function getRequest(): Request
@@ -31,6 +35,8 @@ class GetReviewsRequest extends BaseRequest
     }
 
     /**
+     * Sends the request and parses response into array.
+     *
      * @return array|mixed
      */
     public function send()

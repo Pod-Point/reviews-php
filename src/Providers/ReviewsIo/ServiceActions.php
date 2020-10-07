@@ -1,18 +1,14 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot;
+namespace PodPoint\Reviews\Providers\ReviewsIo;
 
+use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
-use PodPoint\Reviews\Providers\Trustpilot\Request\Service\FindReviewRequest;
-use PodPoint\Reviews\Providers\Trustpilot\Request\Service\InviteRequest;
-use PodPoint\Reviews\Providers\Trustpilot\Request\Service\GetReviewsRequest;
-use PodPoint\Reviews\ActionsInterface;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\GetServiceReviews;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\EmailInviteRequest;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\FindReviewRequest;
 
-/**
- * Class ServiceActions
- * @package PodPoint\Reviews\Providers\Trustpilot
- */
 class ServiceActions implements ActionsInterface
 {
     /**
@@ -20,14 +16,15 @@ class ServiceActions implements ActionsInterface
      */
     protected $apiClient;
 
-    /**
+    /***
      * @var string
      */
-    protected $businessUnitId;
+    protected $store;
 
-    /**
-     * ServiceActions constructor.
-     * @param ApiClientInterface $apiClient
+    /***
+     * ServiceReview constructor.
+     *
+     * @param $apiClient
      */
     public function __construct(ApiClientInterface $apiClient)
     {
@@ -35,32 +32,31 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
-     * Invite consumers.
-     *
      * @param array $options
-     * @return mixed
+     *
+     * @return array|mixed
      * @throws ValidationException
      */
     public function invite(array $options)
     {
-        $options['businessUnitId'] = $this->businessUnitId;
-        $request = new InviteRequest($this->apiClient, $options);
+        $options['store'] = $this->store;
+
+        $request = new EmailInviteRequest($this->apiClient, $options);
 
         return $request->send();
     }
 
     /**
-     * Get reviews.
-     *
      * @param array $options
      *
-     * @return mixed
+     * @return array|mixed
      * @throws ValidationException
      */
     public function getReviews(array $options)
     {
-        $options['businessUnitId'] = $this->businessUnitId;
-        $request = new GetReviewsRequest($this->apiClient, $options);
+        $options['store'] = $this->store;
+
+        $request = new GetServiceReviews($this->apiClient, $options);
 
         return $request->send();
     }
@@ -70,13 +66,14 @@ class ServiceActions implements ActionsInterface
      *
      * @param string $reviewId
      *
-     * @return mixed
+     * @return array|mixed
      * @throws ValidationException
      */
     public function findReview(string $reviewId)
     {
         $options = [
             'reviewId' => $reviewId,
+            'store' => $this->store,
         ];
 
         $request = new FindReviewRequest($this->apiClient, $options);
@@ -85,25 +82,25 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
-     * Sets business unit id and returns itself.
+     * Sets store id and returns itself.
      *
-     * @param $businessUnitId
+     * @param string $store
      * @return $this
      */
-    public function setBusinessUnitId(string $businessUnitId): ServiceActions
+    public function setStore(string $store): self
     {
-        $this->businessUnitId = $businessUnitId;
+        $this->store = $store;
 
         return $this;
     }
 
     /**
-     * Returns business unit id.
+     * Returns store id.
      *
      * @return string
      */
-    public function getBusinessUnitId()
+    public function getStore(): string
     {
-        return $this->businessUnitId;
+        return $this->store;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot;
+namespace PodPoint\Reviews\Providers\ReviewsIo;
 
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ProviderInterface;
@@ -13,7 +13,7 @@ class Provider implements ProviderInterface
     protected $config;
 
     /**
-     * @var TrustpilotApiClient
+     * @var ReviewsCoUkApiClient
      */
     protected $apiClient;
 
@@ -26,11 +26,8 @@ class Provider implements ProviderInterface
     {
         $this->config = $config;
 
-        $this->apiClient = new TrustpilotApiClient(
-            $config['api_key'],
-            $config['api_secret'],
-            $config['username'],
-            $config['password']
+        $this->apiClient = new ReviewsCoUkApiClient(
+            $config['api_key']
         );
     }
 
@@ -41,7 +38,7 @@ class Provider implements ProviderInterface
      */
     public function service(): ActionsInterface
     {
-        return (new ServiceActions($this->apiClient))->setBusinessUnitId($this->config['business_unit_id']);
+        return (new ServiceActions($this->apiClient))->setStore($this->config['store']);
     }
 
     /**

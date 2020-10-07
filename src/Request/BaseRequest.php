@@ -43,16 +43,22 @@ abstract class BaseRequest
     }
 
     /**
-     * @return array
-     */
-    abstract public function requiredFields(): array;
-
-    /**
+     * Builds the request.
+     *
      * @return Request
      */
     abstract public function getRequest(): Request;
 
     /**
+     * List of required fields.
+     *
+     * @return array
+     */
+    abstract public function requiredFields(): array;
+
+    /**
+     * Sends the request and parses response into array.
+     *
      * @return array|mixed
      */
     abstract public function send();
