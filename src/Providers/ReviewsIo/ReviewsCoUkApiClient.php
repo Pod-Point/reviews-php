@@ -43,7 +43,7 @@ class ReviewsCoUkApiClient extends AbstractApiClient
     public function sendRequest(Request $request, bool $withAuthentication = false): ResponseInterface
     {
         if ($withAuthentication) {
-            $request->withHeader('apikey', $this->apiKey);
+            $request = $request->withHeader('apikey', $this->apiKey);
         }
 
         return $this->httpClient->send($request);

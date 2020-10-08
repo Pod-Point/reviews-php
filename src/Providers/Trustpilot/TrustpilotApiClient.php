@@ -89,7 +89,7 @@ class TrustpilotApiClient extends AbstractApiClient
         if ($withAuthentication) {
             $accessToken = $this->getAccessToken();
 
-            $request->withHeader('Authorization', "Bearer {$accessToken->accessToken}");
+            $request = $request->withHeader('Authorization', "Bearer {$accessToken->accessToken}");
         }
 
         return $this->httpClient->send($request);
