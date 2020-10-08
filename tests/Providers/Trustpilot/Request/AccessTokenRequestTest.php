@@ -25,7 +25,7 @@ class AccessTokenRequestTest extends TestCase
     /**
      * Preparing test properties.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->requiredFields = [
             'apiKey',
@@ -91,6 +91,7 @@ class AccessTokenRequestTest extends TestCase
 
     /**
      * Send should return an array by converting the json response.
+     *
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testSend()

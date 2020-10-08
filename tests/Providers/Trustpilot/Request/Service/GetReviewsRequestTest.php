@@ -5,7 +5,7 @@ namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request\Service;
 use PodPoint\Reviews\Providers\Trustpilot\Request\Service\GetReviewsRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
-class GetReviewsReviewsRequestTest extends TestCase
+class GetReviewsRequestTest extends TestCase
 {
     /**
      * Test construct to make sure properties are set.
@@ -60,6 +60,8 @@ class GetReviewsReviewsRequestTest extends TestCase
 
     /**
      * Send should return an array by converting the json response.
+     *
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testSend()
     {

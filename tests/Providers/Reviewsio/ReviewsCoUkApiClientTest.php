@@ -21,9 +21,9 @@ class ReviewsCoUkApiClientTest extends TestCase
     protected $apiClient;
 
     /**
-     * Setting up test instance.
+     * Setting up a test instance of API client.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->apiClient = new ReviewsCoUkApiClient('api-key-123');
     }

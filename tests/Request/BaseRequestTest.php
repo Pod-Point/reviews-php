@@ -23,7 +23,10 @@ class BaseRequestTest extends TestCase
      */
     protected $mockedApiClient;
 
-    protected function setUp()
+    /**
+     * Setting up test instances.
+     */
+    protected function setUp(): void
     {
         $this->mockedApiClient = $this->getMockedApiClient();
 
@@ -48,8 +51,6 @@ class BaseRequestTest extends TestCase
 
     /**
      * Test construct to make sure properties are set.
-     *
-     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testConstruct()
     {
@@ -59,6 +60,7 @@ class BaseRequestTest extends TestCase
 
     /**
      * Making sure validate returns true when
+     * @throws ValidationException
      */
     public function testGivenValidOptionsValidateShouldReturnTrue()
     {

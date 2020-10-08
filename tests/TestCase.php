@@ -10,6 +10,8 @@ use Psr\Http\Message\StreamInterface;
 class TestCase extends \PHPUnit\Framework\TestCase
 {
     /**
+     * Mocks a review provider class.
+     *
      * @param string $provider
      */
     public function mockReviewProviderProvider(string $provider): void
@@ -18,6 +20,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * Mocks a response instance of ResponseInterface.
+     *
      * @param $responseBody
      * @return Mockery\LegacyMockInterface|Mockery\MockInterface|ResponseInterface
      */
@@ -40,6 +44,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * Mocks a abstract Api client.
+     *
      * @return Mockery\LegacyMockInterface|Mockery\MockInterface|AbstractApiClient
      */
     public function getMockedApiClient()

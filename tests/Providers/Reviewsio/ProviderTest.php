@@ -16,7 +16,10 @@ class ProviderTest extends TestCase
      */
     protected $provider;
 
-    protected function setUp()
+    /**
+     * Setting up test instance of provider.
+     */
+    protected function setUp(): void
     {
         $this->provider = new Provider([
             'api_key' => 'TEST_REVIEWSIO_API_KEY',

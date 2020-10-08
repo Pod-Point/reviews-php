@@ -21,7 +21,7 @@ class ServiceActionsTest extends TestCase
     }
 
     /**
-     *  Making sure business id is setters and getters setting property as expected.
+     * Making sure business id is setters and getters setting property as expected.
      */
     public function testBusinessUnitId()
     {

@@ -63,6 +63,8 @@ class FindReviewRequestTest extends TestCase
 
     /**
      * Send should return an array by converting the json response.
+     *
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testSend()
     {

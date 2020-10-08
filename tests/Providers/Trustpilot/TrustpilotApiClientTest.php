@@ -3,9 +3,11 @@
 namespace PodPoint\Reviews\Tests\Providers\Trustpilot;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AccessToken;
 use PodPoint\Reviews\ApiClientInterface;
+use PodPoint\Reviews\Exceptions\ValidationException;
 use PodPoint\Reviews\Providers\Trustpilot\TrustpilotApiClient;
 use PodPoint\Reviews\Tests\TestCase;
 use Mockery;
@@ -13,12 +15,17 @@ use Psr\Http\Message\ResponseInterface;
 
 class TrustpilotApiClientTest extends TestCase
 {
+    /**
+     * Instance of TrustpilotApiClient.
+
+     * @var TrustpilotApiClient
+     */
     protected $apiClient;
 
     /**
      * Setting up test instance.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $apiKey = 'api-key-123';
         $secretKey = 'api-secret-key-123';
@@ -48,6 +55,9 @@ class TrustpilotApiClientTest extends TestCase
 
     /**
      * Making sure access token can be grabbed and returned as AccessToken model.
+     *
+     * @throws GuzzleException
+     * @throws ValidationException
      */
     public function testGetAccessToken()
     {

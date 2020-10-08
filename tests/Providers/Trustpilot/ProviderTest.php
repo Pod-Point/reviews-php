@@ -23,7 +23,10 @@ class ProviderTest extends TestCase
      */
     protected $provider;
 
-    protected function setUp()
+    /**
+     * Setting up a test instance of provider.
+     */
+    protected function setUp(): void
     {
         $this->config = [
             'username' => 'TEST_TRUSTPILOT_USERNAME',
