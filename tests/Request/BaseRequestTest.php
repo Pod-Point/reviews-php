@@ -31,7 +31,6 @@ class BaseRequestTest extends TestCase
         $this->mockedApiClient = $this->getMockedApiClient();
 
         $this->request = new class($this->mockedApiClient, ['foo-required' => 'bar']) extends BaseRequest {
-
             public function requiredFields(): array
             {
                 return ['foo-required'];
@@ -80,7 +79,6 @@ class BaseRequestTest extends TestCase
         ];
 
         $request = new class($this->mockedApiClient, $options) extends BaseRequest {
-
             public function requiredFields(): array
             {
                 return [

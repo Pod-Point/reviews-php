@@ -80,11 +80,11 @@ class Manager
      * Builds the provider class name, removes _ and changes first character
      * after _ to upper case.
      *
-     * @param $provider
+     * @param string $provider
      *
      * @return string
      */
-    public function getProviderClassName($provider): string
+    public function getProviderClassName(string $provider): string
     {
         $provider = ucfirst($provider);
         $providerNamePartials = explode('_', $provider);
