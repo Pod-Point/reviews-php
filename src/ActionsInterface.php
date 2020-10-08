@@ -24,7 +24,7 @@ interface ActionsInterface
      *
      * @return mixed
      */
-    public function getReviews(array $options);
+    public function getReviews(array $options = []);
 
     /**
      * Find reviews by id.

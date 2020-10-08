@@ -31,8 +31,8 @@ class ProviderTest extends TestCase
         $this->config = [
             'username' => 'TEST_TRUSTPILOT_USERNAME',
             'password' => 'TEST_TRUSTPILOT_PASSWORD',
-            'api_secret' => 'TEST_TRUSTPILOT_SECRET_KEY',
-            'api_key' => 'TEST_TRUSTPILOT_API_KEY',
+            'client_secret' => 'TEST_TRUSTPILOT_CLIENT_SECRET',
+            'client_id' => 'TEST_TRUSTPILOT_CLIENT_ID',
             'business_unit_id' => 'TEST_TRUSTPILOT_BUSINESS_ID',
         ];
 

@@ -6,11 +6,11 @@ use PodPoint\Reviews\Exceptions\ProviderConfigNotFoundException;
 use PodPoint\Reviews\Exceptions\ProviderNotFoundException;
 
 /**
- * Class Manager
+ * Class Reviews
  *
  * @package PodPoint\Reviews
  */
-class Manager
+class Reviews
 {
     /**
      * @var array
@@ -103,7 +103,7 @@ class Manager
      * compatible with Laravel Facade.
      *
      * Example usage:
-     * Manager::trustpilot() which is equivalent to $manager->withProvider('trustpilot');
+     * Reviews::trustpilot() which is equivalent to (new Reviews($config))->withProvider('trustpilot');
      *
      * @param $name
      * @param $arguments

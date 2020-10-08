@@ -43,7 +43,7 @@ class ProductActions implements ActionsInterface
      * @param array $options
      * @return mixed
      */
-    public function getReviews(array $options)
+    public function getReviews(array $options = [])
     {
         // TODO: Implement getReviews() method.
     }

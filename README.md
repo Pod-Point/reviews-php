@@ -30,7 +30,7 @@ composer require pod-point/reviews-php
 ```
 
 ## Usage
-The Manager class takes an array as the first parameter, see example of config file below:
+The Reviews class takes an array as the first parameter, see example of config file below:
 ```php
 return [
       /*
@@ -51,8 +51,8 @@ return [
 All the providers should respect the same interface. 
 
 ```php
-$manager = new \PodPoint\Reviews\Manager($config);
-$trustpilot = $manager->trustpilot();
+$reviews = new \PodPoint\Reviews\Reviews($config);
+$trustpilot = $reviews->trustpilot();
 ```
 Laravel Example:
 ```php

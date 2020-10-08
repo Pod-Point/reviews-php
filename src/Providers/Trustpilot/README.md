@@ -6,8 +6,8 @@
 #### Create a trustpilot client
 Any PHP Application
 ```
-$manager = new \PodPoint\Reviews\Manager();
-$trustpilot = $manager->withProvider('trustpilot')
+$reviews = new \PodPoint\Reviews\Reviews();
+$trustpilot = $reviews->withProvider('trustpilot')
 ```
 Laravel:
 ```php

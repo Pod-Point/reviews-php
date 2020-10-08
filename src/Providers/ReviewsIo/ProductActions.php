@@ -31,7 +31,7 @@ class ProductActions implements ActionsInterface
         // TODO: Implement invite() method.
     }
 
-    public function getReviews(array $options)
+    public function getReviews(array $options = [])
     {
         // TODO: Implement fetchAll() method.
     }

@@ -27,14 +27,14 @@ class TrustpilotApiClientTest extends TestCase
      */
     protected function setUp(): void
     {
-        $apiKey = 'api-key-123';
-        $secretKey = 'api-secret-key-123';
+        $clientId = 'api-key-123';
+        $clientSecret = 'api-secret-key-123';
         $username = 'api-username';
         $password = 'api-password';
 
         $this->apiClient = new TrustpilotApiClient(
-            $apiKey,
-            $secretKey,
+            $clientId,
+            $clientSecret,
             $username,
             $password
         );
@@ -47,8 +47,8 @@ class TrustpilotApiClientTest extends TestCase
     {
         $this->assertInstanceOf(ApiClientInterface::class, $this->apiClient);
 
-        $this->assertEquals('api-key-123', $this->apiClient->getApiKey());
-        $this->assertEquals('api-secret-key-123', $this->apiClient->getSecretKey());
+        $this->assertEquals('api-key-123', $this->apiClient->getClientId());
+        $this->assertEquals('api-secret-key-123', $this->apiClient->getClientSecret());
         $this->assertEquals('api-username', $this->apiClient->getUsername());
         $this->assertEquals('api-password', $this->apiClient->getPassword());
     }

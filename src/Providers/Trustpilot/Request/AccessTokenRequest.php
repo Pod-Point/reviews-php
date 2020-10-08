@@ -12,16 +12,16 @@ use PodPoint\Reviews\Request\BaseRequest;
  */
 class AccessTokenRequest extends BaseRequest
 {
-    const API_KEY = 'apiKey';
-    const API_SECRET = 'apiSecret';
+    const CLIENT_ID = 'client_id';
+    const CLIENT_SECRET = 'client_secret';
     const USERNAME = 'username';
     const PASSWORD = 'password';
 
     public function requiredFields(): array
     {
         return [
-            self::API_KEY,
-            self::API_SECRET,
+            self::CLIENT_ID,
+            self::CLIENT_SECRET,
             self::USERNAME,
             self::PASSWORD,
         ];
@@ -34,20 +34,19 @@ class AccessTokenRequest extends BaseRequest
      */
     public function getRequest(): Request
     {
-        $key = base64_encode("{$this->getOption(self::API_KEY)}:{$this->getOption(self::API_SECRET)}");
+        $key = base64_encode("{$this->getOption(self::CLIENT_ID)}:{$this->getOption(self::CLIENT_SECRET)}");
 
         $method = 'POST';
         $uri = 'https://api.trustpilot.com/v1/oauth/oauth-business-users-for-applications/accesstoken';
         $header = [
-            'authorization' => "Basic {$key}",
+            'Authorization' => "Basic {$key}",
+            'Content-Type' => 'application/x-www-form-urlencoded'
         ];
 
-        $body = \GuzzleHttp\json_encode([
-            'form_params' => [
-                'grant_type' => 'password',
-                self::USERNAME => $this->getOption(self::USERNAME),
-                self::PASSWORD => $this->getOption(self::PASSWORD),
-            ]
+        $body = http_build_query([
+            'grant_type' => 'password',
+            self::USERNAME => $this->getOption(self::USERNAME),
+            self::PASSWORD => $this->getOption(self::PASSWORD),
         ]);
 
         return new Request($method, $uri, $header, $body);

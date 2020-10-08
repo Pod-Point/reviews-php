@@ -4,10 +4,10 @@ namespace PodPoint\Reviews\Tests;
 
 use PodPoint\Reviews\Exceptions\ProviderConfigNotFoundException;
 use PodPoint\Reviews\Exceptions\ProviderNotFoundException;
-use PodPoint\Reviews\Manager;
+use PodPoint\Reviews\Reviews;
 use PodPoint\Reviews\ProviderInterface;
 
-class ManagerTest extends TestCase
+class ReviewsTest extends TestCase
 {
     /**
      * review-providers.php config sample, needed to construct manager.
@@ -36,9 +36,9 @@ class ManagerTest extends TestCase
      */
     public function testConstruct()
     {
-        $manager = new Manager($this->config);
+        $reviews = new Reviews($this->config);
 
-        $this->assertEquals($this->config, $manager->getConfig());
+        $this->assertEquals($this->config, $reviews->getConfig());
     }
 
     /**
@@ -47,9 +47,9 @@ class ManagerTest extends TestCase
      */
     public function testWithProvider()
     {
-        $manager = new Manager($this->config);
+        $reviews = new Reviews($this->config);
 
-        $this->assertInstanceOf('PodPoint\\Reviews\\Providers\\Foo\\Provider', $manager->withProvider('foo'));
+        $this->assertInstanceOf('PodPoint\\Reviews\\Providers\\Foo\\Provider', $reviews->withProvider('foo'));
     }
 
     /**
@@ -58,9 +58,9 @@ class ManagerTest extends TestCase
     public function testWithProviderInvalidProvider()
     {
         $this->expectException(ProviderNotFoundException::class);
-        $manager = new Manager($this->config);
+        $reviews = new Reviews($this->config);
 
-        $this->assertInstanceOf('PodPoint\\Reviews\\Providers\\Foo\\Provider', $manager->withProvider('invalid'));
+        $this->assertInstanceOf('PodPoint\\Reviews\\Providers\\Foo\\Provider', $reviews->withProvider('invalid'));
     }
 
     /**
@@ -69,14 +69,14 @@ class ManagerTest extends TestCase
      */
     public function testGetProviderConfig()
     {
-        $manager = new Manager($this->config);
+        $reviews = new Reviews($this->config);
 
         $expectedConfig = [
             'some_key' => 'API_KEY',
             'other_key' => 'SECRET_KEY',
         ];
 
-        $this->assertEquals($expectedConfig, $manager->getProviderConfig('foo'));
+        $this->assertEquals($expectedConfig, $reviews->getProviderConfig('foo'));
     }
 
     /**
@@ -86,15 +86,15 @@ class ManagerTest extends TestCase
     {
         $this->expectException(ProviderConfigNotFoundException::class);
 
-        $manager = new Manager($this->config);
-        $manager->getProviderConfig('bar');
+        $reviews = new Reviews($this->config);
+        $reviews->getProviderConfig('bar');
     }
 
 
     public function testGetProviderClassName()
     {
-        $manager = new Manager($this->config);
-        $actualClassName = $manager->getProviderClassName('reviews_io');
+        $reviews = new Reviews($this->config);
+        $actualClassName = $reviews->getProviderClassName('reviews_io');
         $expectedClassName = 'PodPoint\\Reviews\\Providers\\ReviewsIo\\Provider';
 
         $this->assertEquals($expectedClassName, $actualClassName);
@@ -105,8 +105,8 @@ class ManagerTest extends TestCase
      */
     public function test__callMagicMethod()
     {
-        $manager = new Manager($this->config);
-        $foo = $manager->foo();
+        $reviews = new Reviews($this->config);
+        $foo = $reviews->foo();
 
         $this->assertInstanceOf(ProviderInterface::class, $foo);
     }

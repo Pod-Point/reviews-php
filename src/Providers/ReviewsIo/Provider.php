@@ -42,7 +42,7 @@ class Provider implements ProviderInterface
      */
     public function service(): ActionsInterface
     {
-        return (new ServiceActions($this->apiClient))->setStore($this->config['store']);
+        return (new MerchantActions($this->apiClient))->setStore($this->config['store']);
     }
 
     /**

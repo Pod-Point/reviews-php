@@ -10,10 +10,10 @@ use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\EmailInviteRequest;
 use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\FindReviewRequest;
 
 /**
- * Class ServiceActions
+ * Class MerchantActions
  * @package PodPoint\Reviews\Providers\ReviewsIo
  */
-class ServiceActions implements ActionsInterface
+class MerchantActions implements ActionsInterface
 {
     /**
      * @var ApiClientInterface
@@ -56,7 +56,7 @@ class ServiceActions implements ActionsInterface
      * @return array|mixed
      * @throws ValidationException
      */
-    public function getReviews(array $options)
+    public function getReviews(array $options = [])
     {
         $options['store'] = $this->store;
 

@@ -18,12 +18,12 @@ class TrustpilotApiClient extends AbstractApiClient
     /**
      * @var string
      */
-    protected $apiKey;
+    protected $clientId;
 
     /**
      * @var string
      */
-    protected $secretKey;
+    protected $clientSecret;
 
     /**
      * @var string
@@ -38,17 +38,17 @@ class TrustpilotApiClient extends AbstractApiClient
     /**
      * TrustpilotApiClient constructor.
      *
-     * @param string $apiKey
-     * @param string $secretKey
+     * @param string $clientId
+     * @param string $clientSecret
      * @param string $username
      * @param string $password
      */
-    public function __construct(string $apiKey, string $secretKey, string $username, string $password)
+    public function __construct(string $clientId, string $clientSecret, string $username, string $password)
     {
         parent::__construct();
 
-        $this->apiKey = $apiKey;
-        $this->secretKey = $secretKey;
+        $this->clientId = $clientId;
+        $this->clientSecret = $clientSecret;
         $this->username = $username;
         $this->password = $password;
     }
@@ -63,8 +63,8 @@ class TrustpilotApiClient extends AbstractApiClient
     public function getAccessToken(): AccessToken
     {
         $options = [
-            AccessTokenRequest::API_KEY => $this->apiKey,
-            AccessTokenRequest::API_SECRET => $this->secretKey,
+            AccessTokenRequest::CLIENT_ID => $this->clientId,
+            AccessTokenRequest::CLIENT_SECRET => $this->clientSecret,
             AccessTokenRequest::USERNAME => $this->username,
             AccessTokenRequest::PASSWORD => $this->password,
         ];
@@ -89,7 +89,7 @@ class TrustpilotApiClient extends AbstractApiClient
         if ($withAuthentication) {
             $accessToken = $this->getAccessToken();
 
-            $request->withHeader('authorization', "Bearer {$accessToken->accessToken}");
+            $request->withHeader('Authorization', "Bearer {$accessToken->accessToken}");
         }
 
         return $this->httpClient->send($request);
@@ -100,9 +100,9 @@ class TrustpilotApiClient extends AbstractApiClient
      *
      * @return string
      */
-    public function getApiKey(): string
+    public function getClientId(): string
     {
-        return $this->apiKey;
+        return $this->clientId;
     }
 
     /**
@@ -110,9 +110,9 @@ class TrustpilotApiClient extends AbstractApiClient
      *
      * @return string
      */
-    public function getSecretKey(): string
+    public function getClientSecret(): string
     {
-        return $this->secretKey;
+        return $this->clientSecret;
     }
 
     /**

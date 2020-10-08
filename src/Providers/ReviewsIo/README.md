@@ -6,8 +6,8 @@
 #### Create a ReviewsIO client
 Any PHP Application
 ```
-$manager = new \PodPoint\Reviews\Manager();
-$reviewsIo = $manager->withProvider('reviews_io')
+$reviews = new \PodPoint\Reviews\Reviews();
+$reviewsIo = $reviews->withProvider('reviews_io')
 ```
 Laravel:
 ```php

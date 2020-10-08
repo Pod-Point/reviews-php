@@ -28,15 +28,15 @@ class AccessTokenRequestTest extends TestCase
     protected function setUp(): void
     {
         $this->requiredFields = [
-            'apiKey',
-            'apiSecret',
+            'client_id',
+            'client_secret',
             'username',
             'password'
         ];
 
         $this->options = [
-            'apiKey' => 'api-key',
-            'apiSecret' => 'api-secret-123',
+            'client_id' => 'api-key',
+            'client_secret' => 'api-secret-123',
             'username' => 'api-user',
             'password' => 'api-password',
         ];
@@ -87,6 +87,10 @@ class AccessTokenRequestTest extends TestCase
         $this->assertEquals('api.trustpilot.com', $request->getUri()->getHost());
         $this->assertEquals('/v1/oauth/oauth-business-users-for-applications/accesstoken', $request->getUri()->getPath());
         $this->assertEquals('', $request->getUri()->getQuery());
+
+        // Testing payload
+        $expectedPayload = "grant_type=password&username=api-user&password=api-password";
+        $this->assertEquals($expectedPayload, $request->getBody()->getContents());
     }
 
     /**

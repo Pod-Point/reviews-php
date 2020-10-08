@@ -4,6 +4,7 @@ namespace PodPoint\Reviews\Providers\Trustpilot;
 
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ProviderInterface;
+use PodPoint\Reviews\Providers\Trustpilot\Request\AccessTokenRequest;
 
 /**
  * Class Provider
@@ -30,11 +31,12 @@ class Provider implements ProviderInterface
     {
         $this->config = $config;
 
+
         $this->apiClient = new TrustpilotApiClient(
-            $config['api_key'],
-            $config['api_secret'],
-            $config['username'],
-            $config['password']
+            $config[AccessTokenRequest::CLIENT_ID],
+            $config[AccessTokenRequest::CLIENT_SECRET],
+            $config[AccessTokenRequest::USERNAME],
+            $config[AccessTokenRequest::PASSWORD]
         );
     }
 
@@ -45,7 +47,7 @@ class Provider implements ProviderInterface
      */
     public function service(): ActionsInterface
     {
-        return (new ServiceActions($this->apiClient))->setBusinessUnitId($this->config['business_unit_id']);
+        return (new MerchantActions($this->apiClient))->setMerchantId($this->config['business_unit_id']);
     }
 
     /**

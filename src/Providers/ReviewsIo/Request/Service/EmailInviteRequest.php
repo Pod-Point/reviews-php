@@ -21,11 +21,10 @@ class EmailInviteRequest extends BaseRequest
     {
         $store = $this->getOption('store');
 
-        $uri = new Uri('https://api.reviews.co.uk/merchant/invitation');
-        $header = [];
+        $uri = 'https://api.reviews.co.uk/merchant/invitation';
         $body = \GuzzleHttp\json_encode($this->options + ['store' => $store]);
 
-        return new Request('POST', $uri, $header, $body);
+        return new Request('POST', $uri, [], $body);
     }
 
     /**

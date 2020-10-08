@@ -15,8 +15,8 @@ return [
     'trustpilot' => [
         'username' => env('TRUSTPILOT_USERNAME'),
         'password' => env('TRUSTPILOT_PASSWORD'),
-        'api_secret' => env('TRUSTPILOT_SECRET_KEY'),
-        'api_key' => env('TRUSTPILOT_API_KEY'),
+        'client_secret' => env('TRUSTPILOT_SECRET_KEY'),
+        'client_id' => env('TRUSTPILOT_CLIENT_ID'),
         'business_unit_id' => env('TRUSTPILOT_BUSINESS_ID'),
         'api_base_host' => env('TRUSTPILOT_API_BASE_HOST'),
         'api_invitation_host' => env('TRUSTPILOT_API_INVITATION_HOST'),

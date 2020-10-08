@@ -33,7 +33,7 @@ class LaravelServiceProvider extends \Illuminate\Support\ServiceProvider
         );
 
         $this->app->singleton('reviews', function () {
-            return new Manager(config('review-providers'));
+            return new Reviews(config('review-providers'));
         });
     }
 }

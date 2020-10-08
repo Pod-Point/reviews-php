@@ -10,10 +10,10 @@ use PodPoint\Reviews\Providers\Trustpilot\Request\Service\GetReviewsRequest;
 use PodPoint\Reviews\ActionsInterface;
 
 /**
- * Class ServiceActions
+ * Class MerchantActions
  * @package PodPoint\Reviews\Providers\Trustpilot
  */
-class ServiceActions implements ActionsInterface
+class MerchantActions implements ActionsInterface
 {
     /**
      * @var ApiClientInterface
@@ -23,10 +23,10 @@ class ServiceActions implements ActionsInterface
     /**
      * @var string
      */
-    protected $businessUnitId;
+    protected $merchantId;
 
     /**
-     * ServiceActions constructor.
+     * MerchantActions constructor.
      * @param ApiClientInterface $apiClient
      */
     public function __construct(ApiClientInterface $apiClient)
@@ -43,7 +43,7 @@ class ServiceActions implements ActionsInterface
      */
     public function invite(array $options)
     {
-        $options['businessUnitId'] = $this->businessUnitId;
+        $options['businessUnitId'] = $this->merchantId;
         $request = new InviteRequest($this->apiClient, $options);
 
         return $request->send();
@@ -57,9 +57,9 @@ class ServiceActions implements ActionsInterface
      * @return mixed
      * @throws ValidationException
      */
-    public function getReviews(array $options)
+    public function getReviews(array $options = [])
     {
-        $options['businessUnitId'] = $this->businessUnitId;
+        $options['businessUnitId'] = $this->merchantId;
         $request = new GetReviewsRequest($this->apiClient, $options);
 
         return $request->send();
@@ -85,25 +85,25 @@ class ServiceActions implements ActionsInterface
     }
 
     /**
-     * Sets business unit id and returns itself.
+     * Sets merchant id which is equivalent to business unit id and returns itself.
      *
-     * @param $businessUnitId
+     * @param $merchantId
      * @return $this
      */
-    public function setBusinessUnitId(string $businessUnitId): ServiceActions
+    public function setMerchantId(string $merchantId): MerchantActions
     {
-        $this->businessUnitId = $businessUnitId;
+        $this->merchantId = $merchantId;
 
         return $this;
     }
 
     /**
-     * Returns business unit id.
+     * Returns merchant id which is equivalent business unit id.
      *
      * @return string
      */
-    public function getBusinessUnitId()
+    public function getMerchantId()
     {
-        return $this->businessUnitId;
+        return $this->merchantId;
     }
 }
