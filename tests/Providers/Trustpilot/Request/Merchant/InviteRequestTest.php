@@ -17,7 +17,6 @@ class InviteRequestTest extends TestCase
             'consumerEmail' => 'customer@example.com',
             'consumerName' => 'John Smith',
             'businessUnitId' => 'store-321',
-            'preferredSendTime' => '2013-09-07T13:37:00',
         ];
     }
 
@@ -38,7 +37,6 @@ class InviteRequestTest extends TestCase
             'consumerEmail' => 'customer@example.com',
             'consumerName' => 'John Smith',
             'businessUnitId' => 'store-321',
-            'preferredSendTime' => '2013-09-07T13:37:00',
         ];
 
         $this->assertEquals($expectedOptions, $request->getOptions());
@@ -59,7 +57,6 @@ class InviteRequestTest extends TestCase
             'referenceNumber',
             'consumerEmail',
             'consumerName',
-            'preferredSendTime',
         ];
 
         $this->assertEquals($expectedRequiredFields, $request->requiredFields());

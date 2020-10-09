@@ -28,11 +28,12 @@ class InviteRequest extends BaseRequest
     {
         $businessUnitId = $this->getOption('businessUnitId');
 
-        $this->options['serviceReviewInvitation'] = [
-            'preferredSendTime' => $this->options['preferredSendTime']
-        ];
+        $preferredSendTime = isset($this->options['preferredSendTime']) ?
+            $this->options['preferredSendTime'] : (new \DateTime())->format('m/d/Y h:i:s a');
 
-        unset($this->options['preferredSendTime']);
+        $this->options['serviceReviewInvitation'] = [
+            'preferredSendTime' => $preferredSendTime,
+        ];
 
         $uri = "{$this->baseUri}/v1/private/business-units/{$businessUnitId}/email-invitations";
         $body = \GuzzleHttp\json_encode($this->options);
@@ -67,7 +68,6 @@ class InviteRequest extends BaseRequest
             'referenceNumber',
             'consumerEmail',
             'consumerName',
-            'preferredSendTime',
         ];
     }
 }
