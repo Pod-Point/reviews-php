@@ -12,9 +12,9 @@ class BaseRequestTest extends TestCase
     /**
      * Instance of a mocked abstract BaseRequest.
      *
-     * @var BaseRequest|__anonymous@455
+     * @var \Mockery\Expectation|\Mockery\ExpectationInterface|\Mockery\HigherOrderMessage
      */
-    protected $request;
+    protected $mockedRequest;
 
     /**
      * Instance of mocked AbstractApiClient.
@@ -30,22 +30,15 @@ class BaseRequestTest extends TestCase
     {
         $this->mockedApiClient = $this->getMockedApiClient();
 
-        $this->request = new class($this->mockedApiClient, ['foo-required' => 'bar']) extends BaseRequest {
-            public function requiredFields(): array
-            {
-                return ['foo-required'];
-            }
-
-            public function getRequest(): Request
-            {
-                //
-            }
-
-            public function send()
-            {
-                //
-            }
-        };
+        $this->mockedRequest = $this->getMockedBaseRequest($this->mockedApiClient, [
+            'username' => 'sample-user',
+            'password' => 'sample-pa55w0rd',
+            'apiKey' => 'sample-api-key',
+        ], [
+            'username',
+            'password',
+            'apiKey',
+        ]);
     }
 
     /**
@@ -53,8 +46,17 @@ class BaseRequestTest extends TestCase
      */
     public function testConstruct()
     {
-        $this->assertEquals($this->mockedApiClient, $this->request->getHttpClient());
-        $this->assertEquals(['foo-required' => 'bar'], $this->request->getOptions());
+        $this->mockedRequest = $this->getMockedBaseRequest($this->mockedApiClient, [
+            'username' => 'sample-user',
+            'password' => 'sample-pa55w0rd',
+            'apiKey' => 'sample-api-key',
+        ], [
+            'username',
+            'password',
+            'apiKey',
+        ]);
+
+        $this->assertEquals($this->mockedApiClient, $this->mockedRequest->getHttpClient());
     }
 
     /**
@@ -63,7 +65,7 @@ class BaseRequestTest extends TestCase
      */
     public function testGivenValidOptionsValidateShouldReturnTrue()
     {
-        $this->assertTrue($this->request->validate());
+        $this->assertTrue($this->mockedRequest->validate());
     }
 
     /**
