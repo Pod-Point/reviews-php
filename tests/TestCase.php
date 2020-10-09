@@ -4,6 +4,7 @@ namespace PodPoint\Reviews\Tests;
 
 use Mockery;
 use PodPoint\Reviews\AbstractApiClient;
+use PodPoint\Reviews\Request\BaseRequest;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -16,7 +17,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      */
     public function mockReviewProviderProvider(string $provider): void
     {
-        Mockery::mock('alias:PodPoint\\Reviews\\Providers\\' . $provider . '\\Provider', 'PodPoint\\Reviews\\ProviderInterface');
+        Mockery::mock("alias:PodPoint\\Reviews\\Providers\\{$provider}\\Provider", 'PodPoint\\Reviews\\ProviderInterface');
     }
 
     /**
@@ -51,5 +52,23 @@ class TestCase extends \PHPUnit\Framework\TestCase
     public function getMockedApiClient()
     {
         return Mockery::mock(AbstractApiClient::class)->makePartial();
+    }
+
+    /**
+     * @param AbstractApiClient $client
+     * @param array $options
+     * @param array $requiredFields
+     * @return Mockery\Mock
+     */
+    public function getMockedBaseRequest(AbstractApiClient  $client, array $options = [], $requiredFields = [])
+    {
+        $mock = Mockery::mock(BaseRequest::class, array($client, $options))
+            ->makePartial();
+
+        $mock->shouldReceive('requiredFields')
+            ->withNoArgs()
+            ->andReturn($requiredFields);
+
+        return $mock;
     }
 }

@@ -3,13 +3,13 @@
 namespace PodPoint\Reviews\Providers\Trustpilot\Request\Merchant;
 
 use GuzzleHttp\Psr7\Request;
-use PodPoint\Reviews\Request\BaseRequest;
+use PodPoint\Reviews\Request\BaseRequestWrapper;
 
 /**
  * Class InviteRequest
  * @package PodPoint\Reviews\Providers\Trustpilot\Request\Service
  */
-class InviteRequest extends BaseRequest
+class InviteRequest extends BaseRequestWrapper
 {
     /**
      * The base invitation URL, this different the base URL the ApiClient has, it will be override the

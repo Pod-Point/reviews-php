@@ -3,13 +3,13 @@
 namespace PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant;
 
 use GuzzleHttp\Psr7\Request;
-use PodPoint\Reviews\Request\BaseRequest;
+use PodPoint\Reviews\Request\BaseRequestWrapper;
 
 /**
  * Class EmailInviteRequest
  * @package PodPoint\Reviews\Providers\ReviewsIo\Request\Service
  */
-class EmailInviteRequest extends BaseRequest
+class EmailInviteRequest extends BaseRequestWrapper
 {
     /**
      * Builds the request.

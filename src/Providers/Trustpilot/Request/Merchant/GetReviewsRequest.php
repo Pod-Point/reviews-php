@@ -4,13 +4,13 @@ namespace PodPoint\Reviews\Providers\Trustpilot\Request\Merchant;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
-use \PodPoint\Reviews\Request\BaseRequest;
+use PodPoint\Reviews\Request\BaseRequestWrapper;
 
 /**
  * Class GetReviewsRequest
  * @package PodPoint\Reviews\Providers\Trustpilot\Request\Service
  */
-class GetReviewsRequest extends BaseRequest
+class GetReviewsRequest extends BaseRequestWrapper
 {
     /**
      * List of required fields.

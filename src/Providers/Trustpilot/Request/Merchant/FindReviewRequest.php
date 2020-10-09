@@ -3,13 +3,13 @@
 namespace PodPoint\Reviews\Providers\Trustpilot\Request\Merchant;
 
 use GuzzleHttp\Psr7\Request;
-use \PodPoint\Reviews\Request\BaseRequest;
+use PodPoint\Reviews\Request\BaseRequestWrapper;
 
 /**
  * Class FindReviewRequest
  * @package PodPoint\Reviews\Providers\Trustpilot\Request\Service
  */
-class FindReviewRequest extends BaseRequest
+class FindReviewRequest extends BaseRequestWrapper
 {
     /**
      * List of required fields.
