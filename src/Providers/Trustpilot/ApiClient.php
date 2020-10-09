@@ -15,6 +15,10 @@ use PodPoint\Reviews\AbstractApiClient;
  */
 class ApiClient extends AbstractApiClient
 {
+    protected $defaultRequestHeaders = [
+        'content-type' => 'application/json'
+    ];
+
     /**
      * @var string
      */

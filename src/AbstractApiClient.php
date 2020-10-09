@@ -71,12 +71,15 @@ abstract class AbstractApiClient implements ApiClientInterface
     /**
      * Retrieves the JSON from a HTTP response.
      *
+     * When the response content body is empty, json encode will fail and return empty array instead.
+     *
      * @param ResponseInterface $response
      * @return array
      */
     public function getResponseJson(ResponseInterface $response): array
     {
         $body = $response->getBody()->getContents();
+        $body = empty($body) ? '{}' : $body;
 
         return \GuzzleHttp\json_decode($body, true);
     }

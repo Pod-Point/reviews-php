@@ -30,4 +30,18 @@ class AbstractApiClientTest extends TestCase
             'foo' => 'bar'
         ], $response);
     }
+
+    /**
+     * Making sure that getResponse converts json response into an array and not throw exception when the response
+     * body is empty.
+     */
+    public function testGetResponseJsonWithEmptyBody()
+    {
+        $apiClient = $this->getMockedApiClient();
+
+        $mockedResponse = $this->getMockedResponse('');
+        $response = $apiClient->getResponseJson($mockedResponse);
+
+        $this->assertEquals([], $response);
+    }
 }
