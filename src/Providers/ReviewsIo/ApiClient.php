@@ -2,9 +2,7 @@
 
 namespace PodPoint\Reviews\Providers\ReviewsIo;
 
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
-use Psr\Http\Message\ResponseInterface;
 use PodPoint\Reviews\AbstractApiClient;
 
 /**

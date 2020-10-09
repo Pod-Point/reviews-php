@@ -2,9 +2,7 @@
 
 namespace PodPoint\Reviews\Tests\Request;
 
-use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\Exceptions\ValidationException;
-use PodPoint\Reviews\Request\BaseRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
 class BaseRequestTest extends TestCase
@@ -29,16 +27,7 @@ class BaseRequestTest extends TestCase
     protected function setUp(): void
     {
         $this->mockedApiClient = $this->getMockedApiClient();
-
-        $this->mockedRequest = $this->getMockedBaseRequest($this->mockedApiClient, [
-            'username' => 'sample-user',
-            'password' => 'sample-pa55w0rd',
-            'apiKey' => 'sample-api-key',
-        ], [
-            'username',
-            'password',
-            'apiKey',
-        ]);
+        $this->mockedRequest = $this->getMockedBaseRequest($this->mockedApiClient, ['foo-required' => 'bar'], ['foo-required']);
     }
 
     /**
@@ -46,17 +35,7 @@ class BaseRequestTest extends TestCase
      */
     public function testConstruct()
     {
-        $this->mockedRequest = $this->getMockedBaseRequest($this->mockedApiClient, [
-            'username' => 'sample-user',
-            'password' => 'sample-pa55w0rd',
-            'apiKey' => 'sample-api-key',
-        ], [
-            'username',
-            'password',
-            'apiKey',
-        ]);
-
-        $this->assertEquals($this->mockedApiClient, $this->mockedRequest->getHttpClient());
+        $this->assertEquals(['foo-required' => 'bar'], $this->mockedRequest->getOptions());
     }
 
     /**
@@ -75,31 +54,18 @@ class BaseRequestTest extends TestCase
     {
         $this->expectException(ValidationException::class);
 
-        $options = [
-            'invalid' => 'test-user-1',
-            'foo' => 'testPassword1',
-        ];
-
-        $request = new class($this->mockedApiClient, $options) extends BaseRequest {
-            public function requiredFields(): array
-            {
-                return [
-                    'username',
-                    'password',
-                    'apiKey',
-                ];
-            }
-
-            public function getRequest(): Request
-            {
-                //
-            }
-
-            public function send()
-            {
-                //
-            }
-        };
+        $request = $this->getMockedBaseRequest(
+            $this->mockedApiClient,
+            [
+                'invalid' => 'test-user-1',
+                'foo' => 'testPassword1',
+            ],
+            [
+                'username',
+                'password',
+                'apiKey',
+            ]
+        );
 
         $request->validate();
     }

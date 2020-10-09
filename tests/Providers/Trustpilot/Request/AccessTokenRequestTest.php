@@ -86,7 +86,6 @@ class AccessTokenRequestTest extends TestCase
         $this->assertEquals('/v1/oauth/oauth-business-users-for-applications/accesstoken', $request->getUri()->getPath());
         $this->assertEquals('', $request->getUri()->getQuery());
 
-        // Testing payload
         $expectedPayload = "grant_type=password&username=api-user&password=api-password";
         $this->assertEquals($expectedPayload, $request->getBody()->getContents());
     }
