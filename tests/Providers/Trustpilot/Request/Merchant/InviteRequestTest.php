@@ -17,6 +17,8 @@ class InviteRequestTest extends TestCase
             'consumerEmail' => 'customer@example.com',
             'consumerName' => 'John Smith',
             'businessUnitId' => 'store-321',
+            'replyTo' => 'no-reply@example.com',
+            'redirectUri' => 'http://example.com',
         ];
     }
 
@@ -37,6 +39,8 @@ class InviteRequestTest extends TestCase
             'consumerEmail' => 'customer@example.com',
             'consumerName' => 'John Smith',
             'businessUnitId' => 'store-321',
+            'replyTo' => 'no-reply@example.com',
+            'redirectUri' => 'http://example.com',
         ];
 
         $this->assertEquals($expectedOptions, $request->getOptions());
@@ -49,7 +53,6 @@ class InviteRequestTest extends TestCase
      */
     public function testRequiredFields()
     {
-
         $mockedApiClient = $this->getMockedApiClient();
         $request = new InviteRequest($mockedApiClient, $this->requestOptions);
 

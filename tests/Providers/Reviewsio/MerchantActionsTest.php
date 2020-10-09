@@ -15,23 +15,10 @@ class MerchantActionsTest extends TestCase
      */
     public function testConstruct()
     {
-        $action = new Mocked_MerchantActions($this->getMockedApiClient());
+        $action = new Mocked_MerchantActions($this->getMockedApiClient(), []);
 
         $this->assertInstanceOf(ActionsInterface::class, $action);
         $this->assertInstanceOf(ApiClientInterface::class, $action->getApiClient());
-    }
-
-    /**
-     *  Making sure business id is setters and getters setting property as expected.
-     */
-    public function testStore()
-    {
-        $action = new MerchantActions($this->getMockedApiClient());
-
-        $store = 'foo-bar-123';
-        $action->setStore($store);
-
-        $this->assertEquals('foo-bar-123', $action->getStore());
     }
 
     /**
@@ -52,8 +39,9 @@ class MerchantActionsTest extends TestCase
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $action = new MerchantActions($apiClient);
-        $action->setStore('store-number-123');
+        $action = new MerchantActions($apiClient, [
+            'store' => 'store-number-123'
+        ]);
 
         $inviteResponse = $action->invite($options);
 
@@ -77,8 +65,9 @@ class MerchantActionsTest extends TestCase
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $action = new MerchantActions($apiClient);
-        $action->setStore('store-number-123');
+        $action = new MerchantActions($apiClient, [
+            'store' => 'store-number-123'
+        ]);
 
         $getReviewsResponse = $action->getReviews([]);
 
@@ -104,8 +93,9 @@ class MerchantActionsTest extends TestCase
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $action = new MerchantActions($apiClient);
-        $action->setStore('store-number-123');
+        $action = new MerchantActions($apiClient, [
+            'store' => 'store-number-123'
+        ]);
 
         $findReviewResponse = $action->findReview($reviewId);
 
@@ -126,13 +116,5 @@ class Mocked_MerchantActions extends MerchantActions
     public function getApiClient()
     {
         return $this->apiClient;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStore(): string
-    {
-        return $this->store;
     }
 }

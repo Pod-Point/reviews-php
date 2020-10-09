@@ -12,18 +12,29 @@ use PodPoint\Reviews\ActionsInterface;
 class ProductActions implements ActionsInterface
 {
     /**
+     * Api Client.
+     *
      * @var ApiClientInterface
      */
     protected $apiClient;
 
     /**
+     * Provider config.
+     *
+     * @var array
+     */
+    protected $config;
+
+    /**
      * ProductReview constructor.
      *
      * @param ApiClientInterface $apiClient
+     * @param array $config
      */
-    public function __construct(ApiClientInterface $apiClient)
+    public function __construct(ApiClientInterface $apiClient, array $config)
     {
         $this->apiClient = $apiClient;
+        $this->config = $config;
     }
 
     /**

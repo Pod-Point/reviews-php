@@ -16,9 +16,18 @@ use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\FindReviewRequest;
 class MerchantActions implements ActionsInterface
 {
     /**
+     * Api Client.
+     *
      * @var ApiClientInterface
      */
     protected $apiClient;
+
+    /**
+     * Provider config.
+     *
+     * @var array
+     */
+    protected $config;
 
     /**
      * @var string
@@ -28,11 +37,13 @@ class MerchantActions implements ActionsInterface
     /**
      * ServiceReview constructor.
      *
-     * @param $apiClient
+     * @param ApiClientInterface $apiClient
+     * @param array $config
      */
-    public function __construct(ApiClientInterface $apiClient)
+    public function __construct(ApiClientInterface $apiClient, array $config)
     {
         $this->apiClient = $apiClient;
+        $this->config = $config;
     }
 
     /**
@@ -43,7 +54,7 @@ class MerchantActions implements ActionsInterface
      */
     public function invite(array $options)
     {
-        $options['store'] = $this->store;
+        $options['store'] = $this->config['store'];
 
         $request = new EmailInviteRequest($this->apiClient, $options);
 
@@ -58,7 +69,7 @@ class MerchantActions implements ActionsInterface
      */
     public function getReviews(array $options = [])
     {
-        $options['store'] = $this->store;
+        $options['store'] = $this->config['store'];
 
         $request = new GetMerchantReviews($this->apiClient, $options);
 
@@ -83,28 +94,5 @@ class MerchantActions implements ActionsInterface
         $request = new FindReviewRequest($this->apiClient, $options);
 
         return $request->send();
-    }
-
-    /**
-     * Sets store id and returns itself.
-     *
-     * @param string $store
-     * @return $this
-     */
-    public function setStore(string $store): self
-    {
-        $this->store = $store;
-
-        return $this;
-    }
-
-    /**
-     * Returns store id.
-     *
-     * @return string
-     */
-    public function getStore(): string
-    {
-        return $this->store;
     }
 }

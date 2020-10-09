@@ -14,7 +14,7 @@ class ProductActionsTest extends TestCase
     public function testConstruct()
     {
         $apiClient = $this->getMockedApiClient();
-        $productAction = new ProductActions($apiClient);
+        $productAction = new ProductActions($apiClient, []);
 
         $this->assertInstanceOf(ActionsInterface::class, $productAction);
     }
