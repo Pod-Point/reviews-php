@@ -34,7 +34,7 @@ class ProductActions implements ActionsInterface
      */
     public function invite(array $options)
     {
-        // TODO: Implement invite() method.
+        //
     }
 
     /**
@@ -45,7 +45,7 @@ class ProductActions implements ActionsInterface
      */
     public function getReviews(array $options = [])
     {
-        // TODO: Implement getReviews() method.
+        //
     }
 
     /**
@@ -57,6 +57,6 @@ class ProductActions implements ActionsInterface
      */
     public function findReview(string $reviewId)
     {
-        // TODO: Implement findReview() method.
+        //
     }
 }
