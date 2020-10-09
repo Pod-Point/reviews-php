@@ -1,11 +1,11 @@
 <?php
 
-namespace PodPoint\Reviews\Tests\Providers\ReviewsIo\Request\Service;
+namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request\Merchant;
 
-use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\GetServiceReviews;
+use PodPoint\Reviews\Providers\Trustpilot\Request\Merchant\GetReviewsRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
-class GetServiceReviewsTest extends TestCase
+class GetReviewsRequestTest extends TestCase
 {
     /**
      * Test construct to make sure properties are set.
@@ -14,15 +14,12 @@ class GetServiceReviewsTest extends TestCase
      */
     public function testConstruct()
     {
+        $options = ['foo' => 'bar'];
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new GetServiceReviews($mockedApiClient, [
-            'store' => 'store-id-321',
-        ]);
+        $request = new GetReviewsRequest($mockedApiClient, $options);
 
         $this->assertEquals($mockedApiClient, $request->getHttpClient());
-        $this->assertEquals([
-            'store' => 'store-id-321',
-        ], $request->getOptions());
+        $this->assertEquals($options, $request->getOptions());
     }
 
     /**
@@ -32,12 +29,11 @@ class GetServiceReviewsTest extends TestCase
      */
     public function testRequiredFields()
     {
+        $options = ['foo' => 'bar'];
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new GetServiceReviews($mockedApiClient, [
-            'store' => 'store-id-321',
-        ]);
+        $request = new GetReviewsRequest($mockedApiClient, $options);
 
-        $this->assertEquals(['store'], $request->requiredFields());
+        $this->assertEquals([], $request->requiredFields());
     }
 
     /**
@@ -47,38 +43,39 @@ class GetServiceReviewsTest extends TestCase
      */
     public function testGetRequest()
     {
+        $options = ['foo' => 'bar', 'businessUnitId' => 'business-123'];
+
         $mockedApiClient = $this->getMockedApiClient();
-        $serviceReviewRequest = new GetServiceReviews($mockedApiClient, [
-            'store' => 'store-id-321',
-        ]);
+        $serviceReviewRequest = new GetReviewsRequest($mockedApiClient, $options);
 
         $request = $serviceReviewRequest->getRequest();
 
         $this->assertInstanceOf(\Psr\Http\Message\RequestInterface::class, $request);
 
         $this->assertEquals('https', $request->getUri()->getScheme());
-        $this->assertEquals('api.reviews.co.uk', $request->getUri()->getHost());
-        $this->assertEquals('/merchant/reviews', $request->getUri()->getPath());
-        $this->assertEquals('store=store-id-321', $request->getUri()->getQuery());
+        $this->assertEquals('api.trustpilot.com', $request->getUri()->getHost());
+        $this->assertEquals('/v1/private/business-units/business-123/reviews', $request->getUri()->getPath());
+        $this->assertEquals('foo=bar&businessUnitId=business-123', $request->getUri()->getQuery());
     }
 
     /**
      * Send should return an array by converting the json response.
+     *
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testSend()
     {
-        $response = $this->getMockedResponse('{"status": "OK", "message": "successful"}');
+        $options = ['foo' => 'bar', 'businessUnitId' => 'business-123'];
+
+        $responseBody = file_get_contents('tests/stubs/trustpilot/business_unit_private_reviews_response.json');
+        $expectedResponse = \GuzzleHttp\json_decode($responseBody, true);
+
+        $response = $this->getMockedResponse($responseBody);
         $mockedApiClient = $this->getMockedApiClient();
         $mockedApiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $request = new GetServiceReviews($mockedApiClient, [
-            'store' => 'store-id-321',
-        ]);
+        $request = new GetReviewsRequest($mockedApiClient, $options);
 
-        $this->assertEquals([
-            'status' => 'OK',
-            'message' => 'successful',
-        ], $request->send());
+        $this->assertEquals($expectedResponse, $request->send());
     }
 }

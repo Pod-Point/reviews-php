@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Tests\Providers\ReviewsIo\Request\Service;
+namespace PodPoint\Reviews\Tests\Providers\ReviewsIo\Request\Merchant;
 
 use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\FindReviewRequest;
 use PodPoint\Reviews\Tests\TestCase;

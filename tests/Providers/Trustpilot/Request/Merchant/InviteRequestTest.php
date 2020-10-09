@@ -1,12 +1,26 @@
 <?php
 
-namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request;
+namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request\Merchant;
 
 use PodPoint\Reviews\Providers\Trustpilot\Request\Merchant\InviteRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
 class InviteRequestTest extends TestCase
 {
+
+    protected $requestOptions;
+
+    public function setUp()
+    {
+        $this->requestOptions = [
+            'referenceNumber' => 'reference-123',
+            'consumerEmail' => 'customer@example.com',
+            'consumerName' => 'John Smith',
+            'businessUnitId' => 'store-321',
+            'preferredSendTime' => '2013-09-07T13:37:00',
+        ];
+    }
+
     /**
      * Test construct to make sure properties are set.
      *
@@ -14,18 +28,20 @@ class InviteRequestTest extends TestCase
      */
     public function testConstruct()
     {
-        $options = [
+        $mockedApiClient = $this->getMockedApiClient();
+        $request = new InviteRequest($mockedApiClient, $this->requestOptions);
+
+        $this->assertEquals($mockedApiClient, $request->getHttpClient());
+
+        $expectedOptions = [
             'referenceNumber' => 'reference-123',
             'consumerEmail' => 'customer@example.com',
             'consumerName' => 'John Smith',
             'businessUnitId' => 'store-321',
+            'preferredSendTime' => '2013-09-07T13:37:00',
         ];
 
-        $mockedApiClient = $this->getMockedApiClient();
-        $request = new InviteRequest($mockedApiClient, $options);
-
-        $this->assertEquals($mockedApiClient, $request->getHttpClient());
-        $this->assertEquals($options, $request->getOptions());
+        $this->assertEquals($expectedOptions, $request->getOptions());
     }
 
     /**
@@ -35,19 +51,15 @@ class InviteRequestTest extends TestCase
      */
     public function testRequiredFields()
     {
-        $options = [
-            'referenceNumber' => 'reference-123',
-            'consumerEmail' => 'customer@example.com',
-            'consumerName' => 'John Smith',
-        ];
 
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new InviteRequest($mockedApiClient, $options);
+        $request = new InviteRequest($mockedApiClient, $this->requestOptions);
 
         $expectedRequiredFields = [
             'referenceNumber',
             'consumerEmail',
             'consumerName',
+            'preferredSendTime',
         ];
 
         $this->assertEquals($expectedRequiredFields, $request->requiredFields());
@@ -60,15 +72,9 @@ class InviteRequestTest extends TestCase
      */
     public function testGetRequest()
     {
-        $options = [
-            'referenceNumber' => 'reference-123',
-            'consumerEmail' => 'customer@example.com',
-            'consumerName' => 'John Smith',
-            'businessUnitId' => 'store-321',
-        ];
 
         $mockedApiClient = $this->getMockedApiClient();
-        $serviceReviewRequest = new InviteRequest($mockedApiClient, $options);
+        $serviceReviewRequest = new InviteRequest($mockedApiClient, $this->requestOptions);
 
         $request = $serviceReviewRequest->getRequest();
 
@@ -82,21 +88,16 @@ class InviteRequestTest extends TestCase
 
     /**
      * Send should return an array by converting the json response.
+     *
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */
     public function testSend()
     {
-        $options = [
-            'referenceNumber' => 'reference-123',
-            'consumerEmail' => 'customer@example.com',
-            'consumerName' => 'John Smith',
-            'businessUnitId' => 'store-321',
-        ];
-
         $response = $this->getMockedResponse('{}');
         $mockedApiClient = $this->getMockedApiClient();
         $mockedApiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $request = new InviteRequest($mockedApiClient, $options);
+        $request = new InviteRequest($mockedApiClient, $this->requestOptions);
 
         $this->assertEquals([], $request->send());
     }

@@ -21,6 +21,12 @@ class InviteRequest extends BaseRequest
     {
         $businessUnitId = $this->getOption('businessUnitId');
 
+        $this->options['serviceReviewInvitation'] = [
+            'preferredSendTime' => $this->options['preferredSendTime']
+        ];
+
+        unset($this->options['preferredSendTime']);
+
         $uri = "https://invitations-api.trustpilot.com/v1/private/business-units/{$businessUnitId}/email-invitations";
         $body = \GuzzleHttp\json_encode($this->options);
 
@@ -54,6 +60,7 @@ class InviteRequest extends BaseRequest
             'referenceNumber',
             'consumerEmail',
             'consumerName',
+            'preferredSendTime',
         ];
     }
 }

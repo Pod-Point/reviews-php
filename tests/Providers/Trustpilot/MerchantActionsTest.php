@@ -45,9 +45,10 @@ class MerchantActionsTest extends TestCase
             'referenceNumber' => 'reference-number-321',
             'consumerEmail' => 'customer@email.com',
             'consumerName' => 'Customer Name',
+            'preferredSendTime' => '2013-09-07T13:37:00',
         ];
 
-        $response = $this->getMockedResponse('{"data": [], "message": "accepted"}');
+        $response = $this->getMockedResponse('');
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
@@ -56,12 +57,7 @@ class MerchantActionsTest extends TestCase
 
         $inviteResponse = $action->invite($options);
 
-        $expectedResult = [
-            "data" => [],
-            "message" => "accepted",
-        ];
-
-        $this->assertEquals($expectedResult, $inviteResponse);
+        $this->assertEquals([], $inviteResponse);
     }
 
     /**
