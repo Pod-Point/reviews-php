@@ -4,6 +4,7 @@ namespace PodPoint\Reviews;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 
@@ -52,8 +53,19 @@ abstract class AbstractApiClient implements ApiClientInterface
      * @param bool $withAuthentication
      *
      * @return ResponseInterface
+     *
+     * @throws GuzzleException|\PodPoint\Reviews\Exceptions\ValidationException
      */
-    abstract public function sendRequest(Request $request, bool $withAuthentication);
+    public function sendRequest(Request $request, bool $withAuthentication = false): ResponseInterface
+    {
+        if ($withAuthentication) {
+            $this->addAuthenticationHeader($request);
+        }
+
+        $this->addDefaultRequestHeaders($request);
+
+        return $this->httpClient->send($request);
+    }
 
     /**
      * @return Client|ClientInterface

@@ -37,27 +37,6 @@ class ApiClient extends AbstractApiClient
     }
 
     /**
-     * Sends request to API with or without pre authentication and returns response.
-     *
-     * @param Request $request
-     * @param bool $withAuthentication
-     *
-     * @return ResponseInterface
-     *
-     * @throws GuzzleException
-     */
-    public function sendRequest(Request $request, bool $withAuthentication = false): ResponseInterface
-    {
-        if ($withAuthentication) {
-            $this->addAuthenticationHeader($request);
-        }
-
-        $this->addDefaultRequestHeaders($request);
-
-        return $this->httpClient->send($request);
-    }
-
-    /**
      * Adding authentication header
      *
      * @param Request $request
