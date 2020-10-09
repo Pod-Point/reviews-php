@@ -17,7 +17,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      */
     public function mockReviewProviderProvider(string $provider): void
     {
-        Mockery::mock("alias:PodPoint\\Reviews\\Providers\\{$provider}\\Provider', 'PodPoint\\Reviews\\ProviderInterface");
+        Mockery::mock("alias:PodPoint\\Reviews\\Providers\\{$provider}\\Provider", 'PodPoint\\Reviews\\ProviderInterface');
     }
 
     /**

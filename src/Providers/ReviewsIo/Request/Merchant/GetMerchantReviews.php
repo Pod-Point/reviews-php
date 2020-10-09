@@ -3,14 +3,13 @@
 namespace PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant;
 
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Uri;
-use \PodPoint\Reviews\Request\BaseRequest;
+use PodPoint\Reviews\Request\BaseRequestWrapper;
 
 /**
  * Class GetMerchantReviews
  * @package PodPoint\Reviews\Providers\ReviewsIo\Request\Service
  */
-class GetMerchantReviews extends BaseRequest
+class GetMerchantReviews extends BaseRequestWrapper
 {
     /**
      * List of required fields.

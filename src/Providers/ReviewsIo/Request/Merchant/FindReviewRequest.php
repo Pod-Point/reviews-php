@@ -3,14 +3,13 @@
 namespace PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant;
 
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Uri;
-use \PodPoint\Reviews\Request\BaseRequest;
+use PodPoint\Reviews\Request\BaseRequestWrapper;
 
 /**
  * Class FindReviewRequest
  * @package PodPoint\Reviews\Providers\ReviewsIo\Request\Service
  */
-class FindReviewRequest extends BaseRequest
+class FindReviewRequest extends BaseRequestWrapper
 {
     /**
      * Builds the request.
