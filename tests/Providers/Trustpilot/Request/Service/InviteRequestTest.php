@@ -2,7 +2,7 @@
 
 namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request;
 
-use PodPoint\Reviews\Providers\Trustpilot\Request\Service\InviteRequest;
+use PodPoint\Reviews\Providers\Trustpilot\Request\Merchant\InviteRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
 class InviteRequestTest extends TestCase

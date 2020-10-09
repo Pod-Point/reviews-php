@@ -1,16 +1,15 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\ReviewsIo\Request\Service;
+namespace PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant;
 
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Uri;
-use \PodPoint\Reviews\Request\BaseRequest;
+use PodPoint\Reviews\Request\BaseRequest;
 
 /**
- * Class FindReviewRequest
+ * Class EmailInviteRequest
  * @package PodPoint\Reviews\Providers\ReviewsIo\Request\Service
  */
-class FindReviewRequest extends BaseRequest
+class EmailInviteRequest extends BaseRequest
 {
     /**
      * Builds the request.
@@ -19,13 +18,12 @@ class FindReviewRequest extends BaseRequest
      */
     public function getRequest(): Request
     {
-        $uri = new Uri('https://api.reviews.co.uk/merchant/reviews');
-        $uri = Uri::withQueryValues(
-            $uri,
-            ['store' => $this->getOption('store'), 'review_id' => $this->getOption('reviewId')]
-        );
+        $store = $this->getOption('store');
 
-        return new Request('GET', $uri);
+        $uri = 'https://api.reviews.co.uk/merchant/invitation';
+        $body = \GuzzleHttp\json_encode($this->options + ['store' => $store]);
+
+        return new Request('POST', $uri, [], $body);
     }
 
     /**
@@ -36,7 +34,10 @@ class FindReviewRequest extends BaseRequest
     public function requiredFields(): array
     {
         return [
-            'reviewId'
+            'name',
+            'email',
+            'order_id',
+            'store',
         ];
     }
 

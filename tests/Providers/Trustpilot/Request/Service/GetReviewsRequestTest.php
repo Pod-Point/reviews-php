@@ -2,7 +2,7 @@
 
 namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request\Service;
 
-use PodPoint\Reviews\Providers\Trustpilot\Request\Service\GetReviewsRequest;
+use PodPoint\Reviews\Providers\Trustpilot\Request\Merchant\GetReviewsRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
 class GetReviewsRequestTest extends TestCase

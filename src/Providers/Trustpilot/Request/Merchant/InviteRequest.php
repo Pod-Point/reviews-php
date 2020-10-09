@@ -1,6 +1,6 @@
 <?php
 
-namespace PodPoint\Reviews\Providers\Trustpilot\Request\Service;
+namespace PodPoint\Reviews\Providers\Trustpilot\Request\Merchant;
 
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\Request\BaseRequest;

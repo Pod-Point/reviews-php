@@ -2,7 +2,7 @@
 
 namespace PodPoint\Reviews\Tests\Providers\ReviewsIo\Request\Service;
 
-use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\FindReviewRequest;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\FindReviewRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
 class FindReviewRequestTest extends TestCase

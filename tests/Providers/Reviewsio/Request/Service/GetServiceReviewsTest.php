@@ -2,7 +2,7 @@
 
 namespace PodPoint\Reviews\Tests\Providers\ReviewsIo\Request\Service;
 
-use PodPoint\Reviews\Providers\ReviewsIo\Request\Service\GetServiceReviews;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\GetServiceReviews;
 use PodPoint\Reviews\Tests\TestCase;
 
 class GetServiceReviewsTest extends TestCase

@@ -4,9 +4,9 @@ namespace PodPoint\Reviews\Providers\Trustpilot;
 
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
-use PodPoint\Reviews\Providers\Trustpilot\Request\Service\FindReviewRequest;
-use PodPoint\Reviews\Providers\Trustpilot\Request\Service\InviteRequest;
-use PodPoint\Reviews\Providers\Trustpilot\Request\Service\GetReviewsRequest;
+use PodPoint\Reviews\Providers\Trustpilot\Request\Merchant\FindReviewRequest;
+use PodPoint\Reviews\Providers\Trustpilot\Request\Merchant\InviteRequest;
+use PodPoint\Reviews\Providers\Trustpilot\Request\Merchant\GetReviewsRequest;
 use PodPoint\Reviews\ActionsInterface;
 
 /**
