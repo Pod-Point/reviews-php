@@ -12,6 +12,14 @@ use PodPoint\Reviews\Request\BaseRequest;
 class InviteRequest extends BaseRequest
 {
     /**
+     * The base invitation URL, this different the base URL the ApiClient has, it will be override the
+     * ApiClient baseUri;
+     *
+     * @var string
+     */
+    protected $baseUri = 'https://invitations-api.trustpilot.com';
+
+    /**
      * Builds the request.
      *
      * @return Request
@@ -26,7 +34,7 @@ class InviteRequest extends BaseRequest
 
         unset($this->options['preferredSendTime']);
 
-        $uri = "https://invitations-api.trustpilot.com/v1/private/business-units/{$businessUnitId}/email-invitations";
+        $uri = "{$this->baseUri}/v1/private/business-units/{$businessUnitId}/email-invitations";
         $body = \GuzzleHttp\json_encode($this->options);
 
         return new Request('POST', $uri, [], $body);
