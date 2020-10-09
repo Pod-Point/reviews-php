@@ -33,17 +33,22 @@ composer require pod-point/reviews-php
 The Reviews class takes an array as the first parameter, see example of config file below:
 ```php
 return [
-      /*
+        /*
         |--------------------------------------------------------------------------
         | Review provider configurations
         |--------------------------------------------------------------------------
         */
+        'reviews_io' => [
+            'store' => env('REVIEWS_CO_UK_STORE'),
+            'api_key' => env('REVIEWS_CO_UK_API_KEY'),
+        ],
+        
         'trustpilot' => [
-            'username' => '',
-            'password' => '',
-            'api_secret' => '',
-            'api_key' => '',
-            'business_unit_id' => '',
+            'username' => env('TRUSTPILOT_USERNAME'),
+            'password' => env('TRUSTPILOT_PASSWORD'),
+            'client_secret' => env('TRUSTPILOT_SECRET_KEY'),
+            'client_id' => env('TRUSTPILOT_CLIENT_ID'),
+            'business_unit_id' => env('TRUSTPILOT_BUSINESS_ID'),
         ],
 ];
 ```

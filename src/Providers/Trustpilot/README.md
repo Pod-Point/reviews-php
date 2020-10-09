@@ -4,14 +4,32 @@
 ## Usage
 
 #### Create a trustpilot client
+
+The ``\PodPoint\Reviews\Reviews`` class requires, configuration array to be passed in the constructor.   
+
+Example config:
+```php
+$config = [
+    'trustpilot' => [
+        'username' => env('TRUSTPILOT_USERNAME'),
+        'password' => env('TRUSTPILOT_PASSWORD'),
+        'client_secret' => env('TRUSTPILOT_SECRET_KEY'),
+        'client_id' => env('TRUSTPILOT_CLIENT_ID'),
+        'business_unit_id' => env('TRUSTPILOT_BUSINESS_ID'),
+    ],
+];
+```
+
+
 Any PHP Application
 ```
-$reviews = new \PodPoint\Reviews\Reviews();
+$reviews = new \PodPoint\Reviews\Reviews($config);
 $trustpilot = $reviews->withProvider('trustpilot')
 ```
+
 Laravel:
 ```php
-$trustpilot = Reviews::trustpilot();
+$trustpilot = \PodPoint\Reviews\Facade\Reviews::trustpilot();
 ```
 
 #### Send a merchant invite

@@ -4,14 +4,27 @@
 ## Usage
 
 #### Create a ReviewsIO client
+
+The ``\PodPoint\Reviews\Reviews`` class requires, configuration array to be passed in the constructor.   
+
+Example config:
+```php
+$config = [
+    'reviews_io' => [
+        'store' => env('REVIEWS_CO_UK_STORE'),
+        'api_key' => env('REVIEWS_CO_UK_API_KEY'),
+    ],
+];
+```
+  
 Any PHP Application
 ```
-$reviews = new \PodPoint\Reviews\Reviews();
+$reviews = new \PodPoint\Reviews\Reviews($config);
 $reviewsIo = $reviews->withProvider('reviews_io');
 ```
 Laravel:
 ```php
-$reviewsIo = Reviews::reviews_io();
+$reviewsIo = \PodPoint\Reviews\Facade\Reviews::reviews_io();
 ```
 
 #### Send a service invite
