@@ -12,7 +12,7 @@ List of supported reviews providers:
 ## Glossary
 
 A review is an evaluation of a publication, product, or company for example. In this package we have a clear differentiation of types of reviews that can be for: 
-* `Service`: it can be company/business/merchant/service review.
+* `Merchant`: it can be company/business/merchant/service review.
 * `Product`: a product review, meaning it has a clear link to a product.
 
 ## Installation
@@ -56,14 +56,14 @@ $trustpilot = $reviews->trustpilot();
 ```
 Laravel Example:
 ```php
-$trustpilot = Reviews::trustpilot()
+$trustpilot = Reviews::trustpilot();
 ```
 
-Here is a example of the provided interface that is shared across the supported review providers.
+Here is an example of the provided interface that is shared across the supported review providers.
 ```php
-$trustpilot->service()->invite((array) $serviceInviteOptions);
-$trustpilot->service()->findReview((string) $reviewId);
-$trustpilot->service()->getReviews((array) $serviceReviewsFilterOptions);
+$trustpilot->merchant()->invite((array) $serviceInviteOptions);
+$trustpilot->merchant()->findReview((string) $reviewId);
+$trustpilot->merchant()->getReviews((array) $serviceReviewsFilterOptions);
 ```
 
 For more details about each provider options see:

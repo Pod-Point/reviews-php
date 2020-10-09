@@ -10,10 +10,10 @@ use Psr\Http\Message\ResponseInterface;
 use PodPoint\Reviews\AbstractApiClient;
 
 /**
- * Class TrustpilotApiClient
+ * Class ApiClient
  * @package PodPoint\Reviews\Providers\Trustpilot
  */
-class TrustpilotApiClient extends AbstractApiClient
+class ApiClient extends AbstractApiClient
 {
     /**
      * @var string
@@ -36,7 +36,7 @@ class TrustpilotApiClient extends AbstractApiClient
     protected $password;
 
     /**
-     * TrustpilotApiClient constructor.
+     * ApiClient constructor.
      *
      * @param string $clientId
      * @param string $clientSecret

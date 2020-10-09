@@ -3,7 +3,6 @@
 namespace PodPoint\Reviews\Providers\Trustpilot\Request\Service;
 
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Uri;
 use PodPoint\Reviews\Request\BaseRequest;
 
 /**
@@ -21,12 +20,10 @@ class InviteRequest extends BaseRequest
     {
         $businessUnitId = $this->getOption('businessUnitId');
 
-        $method = 'POST';
-        $uri = new Uri("https://invitations-api.trustpilot.com/v1/private/business-units/{$businessUnitId}/email-invitations");
-        $header = [];
-        $body = \GuzzleHttp\json_encode($this->options);
+        $uri = "https://invitations-api.trustpilot.com/v1/private/business-units/{$businessUnitId}/email-invitations";
+        $body = http_build_query($this->options);
 
-        return new Request($method, $uri, $header, $body);
+        return new Request('POST', $uri, [], $body);
     }
 
     /**

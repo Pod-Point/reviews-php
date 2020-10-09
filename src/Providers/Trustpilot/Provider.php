@@ -18,7 +18,7 @@ class Provider implements ProviderInterface
     protected $config;
 
     /**
-     * @var TrustpilotApiClient
+     * @var ApiClient
      */
     protected $apiClient;
 
@@ -32,7 +32,7 @@ class Provider implements ProviderInterface
         $this->config = $config;
 
 
-        $this->apiClient = new TrustpilotApiClient(
+        $this->apiClient = new ApiClient(
             $config[AccessTokenRequest::CLIENT_ID],
             $config[AccessTokenRequest::CLIENT_SECRET],
             $config[AccessTokenRequest::USERNAME],
@@ -45,7 +45,7 @@ class Provider implements ProviderInterface
      *
      * @return ActionsInterface
      */
-    public function service(): ActionsInterface
+    public function merchant(): ActionsInterface
     {
         return (new MerchantActions($this->apiClient))->setMerchantId($this->config['business_unit_id']);
     }

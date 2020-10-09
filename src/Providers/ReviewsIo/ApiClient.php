@@ -8,10 +8,10 @@ use Psr\Http\Message\ResponseInterface;
 use PodPoint\Reviews\AbstractApiClient;
 
 /**
- * Class ReviewsCoUkApiClient
+ * Class ApiClient
  * @package PodPoint\Reviews\Providers\ReviewsIo
  */
-class ReviewsCoUkApiClient extends AbstractApiClient
+class ApiClient extends AbstractApiClient
 {
     /**
      * @var string
@@ -19,7 +19,7 @@ class ReviewsCoUkApiClient extends AbstractApiClient
     protected $apiKey;
 
     /**
-     * ReviewsCoUkApiClient constructor.
+     * ApiClient constructor.
      *
      * @param string $apiKey
      */

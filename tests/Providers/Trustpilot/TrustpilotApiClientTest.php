@@ -8,17 +8,17 @@ use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AccessToken;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
-use PodPoint\Reviews\Providers\Trustpilot\TrustpilotApiClient;
+use PodPoint\Reviews\Providers\Trustpilot\ApiClient;
 use PodPoint\Reviews\Tests\TestCase;
 use Mockery;
 use Psr\Http\Message\ResponseInterface;
 
-class TrustpilotApiClientTest extends TestCase
+class ApiClientTest extends TestCase
 {
     /**
-     * Instance of TrustpilotApiClient.
+     * Instance of ApiClient.
 
-     * @var TrustpilotApiClient
+     * @var ApiClient
      */
     protected $apiClient;
 
@@ -32,7 +32,7 @@ class TrustpilotApiClientTest extends TestCase
         $username = 'api-username';
         $password = 'api-password';
 
-        $this->apiClient = new TrustpilotApiClient(
+        $this->apiClient = new ApiClient(
             $clientId,
             $clientSecret,
             $username,

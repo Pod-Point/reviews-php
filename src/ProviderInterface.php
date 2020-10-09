@@ -20,5 +20,5 @@ interface ProviderInterface
      *
      * @return ActionsInterface
      */
-    public function service(): ActionsInterface;
+    public function merchant(): ActionsInterface;
 }

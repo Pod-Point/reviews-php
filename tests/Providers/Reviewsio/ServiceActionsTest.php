@@ -120,7 +120,7 @@ class MerchantActionsTest extends TestCase
 class Mocked_MerchantActions extends MerchantActions
 {
     /**
-     * @return \PodPoint\Reviews\Providers\ReviewsIo\ReviewsCoUkApiClient
+     * @return \PodPoint\Reviews\Providers\ReviewsIo\ApiClient
      */
     public function getApiClient()
     {

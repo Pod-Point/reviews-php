@@ -17,7 +17,7 @@ class Provider implements ProviderInterface
     protected $config;
 
     /**
-     * @var ReviewsCoUkApiClient
+     * @var ApiClient
      */
     protected $apiClient;
 
@@ -30,7 +30,7 @@ class Provider implements ProviderInterface
     {
         $this->config = $config;
 
-        $this->apiClient = new ReviewsCoUkApiClient(
+        $this->apiClient = new ApiClient(
             $config['api_key']
         );
     }
@@ -40,7 +40,7 @@ class Provider implements ProviderInterface
      *
      * @return ActionsInterface
      */
-    public function service(): ActionsInterface
+    public function merchant(): ActionsInterface
     {
         return (new MerchantActions($this->apiClient))->setStore($this->config['store']);
     }

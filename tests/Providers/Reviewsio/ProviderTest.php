@@ -40,11 +40,11 @@ class ProviderTest extends TestCase
     }
 
     /**
-     * The service method should return an instance of ActionsInterface.
+     * The merchant method should return an instance of ActionsInterface.
      */
-    public function testService()
+    public function testMerchant()
     {
-        $this->assertInstanceOf(ActionsInterface::class, $this->provider->service());
+        $this->assertInstanceOf(ActionsInterface::class, $this->provider->merchant());
     }
 
     /**

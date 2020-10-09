@@ -7,7 +7,7 @@
 Any PHP Application
 ```
 $reviews = new \PodPoint\Reviews\Reviews();
-$reviewsIo = $reviews->withProvider('reviews_io')
+$reviewsIo = $reviews->withProvider('reviews_io');
 ```
 Laravel:
 ```php
@@ -21,7 +21,7 @@ Required Fields:
 * email
 
 ```php
-$reviewsIo->service()->invite([
+$reviewsIo->merchant()->invite([
      'store': 'my-company',
      'apikey': '######APIKEY######',
      'name': 'Mr David Jones',
@@ -37,7 +37,7 @@ See all the supported parameters
 #### Get service reviews
 
 ```php
-$reviewsIo->service()->getReviews([
+$reviewsIo->merchant()->getReviews([
  'min_date' => '2013-09-07',
  'max_date' => '2013-09-20',
 ]);
@@ -47,7 +47,7 @@ See all supported query parameters and responses:
 
 #### Find service review
 ```php
-$reviewsIo->service()->findReview($reviewId);
+$reviewsIo->merchant()->findReview($reviewId);
 ```
 See response example:
 [Api docs](https://api.reviews.io/documentation/#api-Merchant_Reviews-Get_Latest_Merchant_Reviews)

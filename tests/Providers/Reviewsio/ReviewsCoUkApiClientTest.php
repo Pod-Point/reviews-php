@@ -4,19 +4,18 @@ namespace PodPoint\Reviews\Tests\Providers\ReviewsIo;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Request;
-use PodPoint\Reviews\AccessToken;
 use PodPoint\Reviews\ApiClientInterface;
-use PodPoint\Reviews\Providers\ReviewsIo\ReviewsCoUkApiClient;
+use PodPoint\Reviews\Providers\ReviewsIo\ApiClient;
 use PodPoint\Reviews\Tests\TestCase;
 use Mockery;
 use Psr\Http\Message\ResponseInterface;
 
-class ReviewsCoUkApiClientTest extends TestCase
+class ApiClientTest extends TestCase
 {
     /**
-     * Instance of a ReviewsCoUkApiClient.
+     * Instance of a ApiClient.
      *
-     * @var ReviewsCoUkApiClient
+     * @var ApiClient
      */
     protected $apiClient;
 
@@ -25,7 +24,7 @@ class ReviewsCoUkApiClientTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->apiClient = new ReviewsCoUkApiClient('api-key-123');
+        $this->apiClient = new ApiClient('api-key-123');
     }
 
     /**
