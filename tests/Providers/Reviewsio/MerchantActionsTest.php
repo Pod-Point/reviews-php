@@ -2,6 +2,7 @@
 
 namespace PodPoint\Reviews\Tests\Providers\ReviewsIo;
 
+use Illuminate\Http\Response;
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Providers\ReviewsIo\MerchantActions;
@@ -47,7 +48,7 @@ class MerchantActionsTest extends TestCase
             'order_id' => 'order-number-321',
         ];
 
-        $response = $this->getMockedResponse('{"status": "200", "message": "accepted"}');
+        $response = $this->getMockedResponse('{"data": [], "message": "accepted"}');
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
@@ -57,7 +58,7 @@ class MerchantActionsTest extends TestCase
         $inviteResponse = $action->invite($options);
 
         $expectedResult = [
-            "status" => "200",
+            "data" => [],
             "message" => "accepted",
         ];
 
@@ -72,7 +73,7 @@ class MerchantActionsTest extends TestCase
      */
     public function testGetReviews()
     {
-        $response = $this->getMockedResponse('{"status": "200", "message": "successful"}');
+        $response = $this->getMockedResponse('{"data": [], "message": "successful"}');
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
@@ -82,7 +83,7 @@ class MerchantActionsTest extends TestCase
         $getReviewsResponse = $action->getReviews([]);
 
         $expectedResult = [
-            "status" => "200",
+            "data" => [],
             "message" => "successful",
         ];
 
@@ -99,7 +100,7 @@ class MerchantActionsTest extends TestCase
     {
         $reviewId = 'review-id-123';
 
-        $response = $this->getMockedResponse('{"status": "200", "message": "successful"}');
+        $response = $this->getMockedResponse('{"data": [], "message": "successful"}');
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
@@ -109,7 +110,7 @@ class MerchantActionsTest extends TestCase
         $findReviewResponse = $action->findReview($reviewId);
 
         $expectedResult = [
-            "status" => "200",
+            "data" => [],
             "message" => "successful",
         ];
 

@@ -67,6 +67,56 @@ class ApiClientTest extends TestCase
     }
 
     /**
+     * Should add default api request headers without override request headers.
+     */
+    public function testAddDefaultRequestHeadersToRequest()
+    {
+        $requestHeaders = [
+            'foo' => 'bar',
+            'content-type' => 'application/x-foo',
+        ];
+
+        $request = new Request('GET', 'http://example.com', $requestHeaders);
+
+        $this->apiClient->addDefaultRequestHeaders($request);
+
+        $expectedHeaders = [
+            'Host' => [
+                'example.com'
+            ],
+            'foo' => [
+                'bar'
+            ],
+            'content-type' => [
+                'application/x-foo'
+            ],
+        ];
+
+        $this->assertEquals($expectedHeaders, $request->getHeaders());
+    }
+
+    /**
+     * Should add default api request header content-type application json.
+     */
+    public function testAddDefaultRequestHeaders()
+    {
+        $request = new Request('GET', 'http://example.com');
+
+        $this->apiClient->addDefaultRequestHeaders($request);
+
+        $expectedHeaders = [
+            'Host' => [
+                'example.com'
+            ],
+            'content-type' => [
+                'application/json'
+            ],
+        ];
+
+        $this->assertEquals($expectedHeaders, $request->getHeaders());
+    }
+
+    /**
      * The sendRequest method should return response.
      *
      * @throws \GuzzleHttp\Exception\GuzzleException

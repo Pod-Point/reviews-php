@@ -21,11 +21,20 @@ abstract class AbstractApiClient implements ApiClientInterface
     protected $httpClient;
 
     /**
-     * AbstractApiClient constructor, creates an instance of http client.
+     * Default headers, attached to every request.
+     *
+     * @var string[]
      */
-    public function __construct()
+    protected $defaultRequestHeaders = [];
+
+    /**
+     * AbstractApiClient constructor, creates an instance of http client.
+     *
+     * @param ClientInterface|null $httpClient
+     */
+    public function __construct(ClientInterface $httpClient = null)
     {
-        $this->httpClient = new Client();
+        $this->httpClient = $httpClient ?? new Client();
     }
 
     /**
@@ -71,4 +80,24 @@ abstract class AbstractApiClient implements ApiClientInterface
 
         return \GuzzleHttp\json_decode($body, true);
     }
+
+    /**
+     * Adds required default headers.
+     *
+     * @param Request $request
+     */
+    public function addDefaultRequestHeaders(Request &$request)
+    {
+        /**
+         * Adding default headers, if not overridden.
+         */
+        foreach ($this->defaultRequestHeaders as $headerKey => $headerValue)
+        {
+            if(!$request->hasHeader($headerKey)) {
+                $request = $request->withHeader($headerKey, $headerValue);
+            }
+        }
+    }
+
+    public abstract function addAuthenticationHeader(Request &$request);
 }

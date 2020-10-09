@@ -87,10 +87,10 @@ class ApiClient extends AbstractApiClient
     public function sendRequest(Request $request, bool $withAuthentication = false): ResponseInterface
     {
         if ($withAuthentication) {
-            $accessToken = $this->getAccessToken();
-
-            $request = $request->withHeader('Authorization', "Bearer {$accessToken->accessToken}");
+            $this->addAuthenticationHeader($request);
         }
+
+        $this->addDefaultRequestHeaders($request);
 
         return $this->httpClient->send($request);
     }
@@ -133,5 +133,19 @@ class ApiClient extends AbstractApiClient
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    /**
+     * Pre authenticates the app and attaches access token to all.
+     *
+     * @param Request $request
+     * @throws GuzzleException
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
+     */
+    public function addAuthenticationHeader(Request &$request)
+    {
+        $accessToken = $this->getAccessToken();
+
+        $request = $request->withHeader('Authorization', "Bearer {$accessToken->accessToken}");
     }
 }

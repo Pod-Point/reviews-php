@@ -47,7 +47,7 @@ class MerchantActionsTest extends TestCase
             'consumerName' => 'Customer Name',
         ];
 
-        $response = $this->getMockedResponse('{"status": "200", "message": "accepted"}');
+        $response = $this->getMockedResponse('{"data": [], "message": "accepted"}');
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
@@ -57,7 +57,7 @@ class MerchantActionsTest extends TestCase
         $inviteResponse = $action->invite($options);
 
         $expectedResult = [
-            "status" => "200",
+            "data" => [],
             "message" => "accepted",
         ];
 
@@ -74,7 +74,7 @@ class MerchantActionsTest extends TestCase
     {
         $options = [];
 
-        $response = $this->getMockedResponse('{"status": "200", "message": "successful"}');
+        $response = $this->getMockedResponse('{"data": [], "message": "successful"}');
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
@@ -84,7 +84,7 @@ class MerchantActionsTest extends TestCase
         $getReviewsResponse = $action->getReviews($options);
 
         $expectedResult = [
-            "status" => "200",
+            "data" => [],
             "message" => "successful",
         ];
 
@@ -101,7 +101,7 @@ class MerchantActionsTest extends TestCase
     {
         $reviewId = 'review-id-123';
 
-        $response = $this->getMockedResponse('{"status": "200", "message": "successful"}');
+        $response = $this->getMockedResponse('{"data": [], "message": "successful"}');
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
@@ -111,7 +111,7 @@ class MerchantActionsTest extends TestCase
         $findReviewResponse = $action->findReview($reviewId);
 
         $expectedResult = [
-            "status" => "200",
+            "data" => [],
             "message" => "successful",
         ];
 

@@ -18,6 +18,10 @@ class ApiClient extends AbstractApiClient
      */
     protected $apiKey;
 
+    protected $defaultRequestHeaders = [
+        'content-type' => 'application/json'
+    ];
+
     /**
      * ApiClient constructor.
      *
@@ -43,10 +47,22 @@ class ApiClient extends AbstractApiClient
     public function sendRequest(Request $request, bool $withAuthentication = false): ResponseInterface
     {
         if ($withAuthentication) {
-            $request = $request->withHeader('apikey', $this->apiKey);
+            $this->addAuthenticationHeader($request);
         }
 
+        $this->addDefaultRequestHeaders($request);
+
         return $this->httpClient->send($request);
+    }
+
+    /**
+     * Adding authentication header
+     *
+     * @param Request $request
+     */
+    public function addAuthenticationHeader(Request &$request)
+    {
+        $request = $request->withHeader('apikey', $this->apiKey);
     }
 
     /**

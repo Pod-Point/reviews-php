@@ -14,6 +14,16 @@ use PodPoint\Reviews\Exceptions\ValidationException;
  */
 abstract class BaseRequest
 {
+
+    /**
+     * Default headers to attach all requests.
+     *
+     * @var string[]
+     */
+    protected $header = [
+        'Content-type' => 'application/json',
+    ];
+
     /** @var array $option */
     protected $options;
 

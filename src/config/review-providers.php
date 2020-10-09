@@ -12,6 +12,7 @@ return [
         'api_key' => env('REVIEWS_CO_UK_API_KEY'),
         'api_base_host' => env('REVIEWS_CO_UK_API_BASE_HOST'),
     ],
+    
     'trustpilot' => [
         'username' => env('TRUSTPILOT_USERNAME'),
         'password' => env('TRUSTPILOT_PASSWORD'),
