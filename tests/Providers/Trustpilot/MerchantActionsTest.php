@@ -14,23 +14,10 @@ class MerchantActionsTest extends TestCase
      */
     public function testConstruct()
     {
-        $action = new Mocked_MerchantActions($this->getMockedApiClient());
+        $action = new Mocked_MerchantActions($this->getMockedApiClient(), []);
 
         $this->assertInstanceOf(ActionsInterface::class, $action);
         $this->assertInstanceOf(ApiClientInterface::class, $action->getApiClient());
-    }
-
-    /**
-     * Making sure business id is setters and getters setting property as expected.
-     */
-    public function testBusinessUnitId()
-    {
-        $action = new MerchantActions($this->getMockedApiClient());
-
-        $businessId = 'foo-bar-123';
-        $action->setMerchantId($businessId);
-
-        $this->assertEquals('foo-bar-123', $action->getMerchantId());
     }
 
     /**
@@ -52,8 +39,11 @@ class MerchantActionsTest extends TestCase
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $action = new MerchantActions($apiClient);
-        $action->setMerchantId('foo-bar-321');
+        $action = new MerchantActions($apiClient, [
+            'business_unit_id' => 'foo-bar-321',
+            'invite_redirect_uri' => 'http://example.com',
+            'invite_reply_to_email' => 'no-reply@example.com',
+        ]);
 
         $inviteResponse = $action->invite($options);
 
@@ -74,8 +64,11 @@ class MerchantActionsTest extends TestCase
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $action = new MerchantActions($apiClient);
-        $action->setMerchantId('foo-bar-321');
+        $action = new MerchantActions($apiClient, [
+            'business_unit_id' => 'foo-bar-321',
+            'invite_redirect_uri' => 'http://example.com',
+            'invite_reply_to_email' => 'no-reply@example.com',
+        ]);
 
         $getReviewsResponse = $action->getReviews($options);
 
@@ -101,8 +94,11 @@ class MerchantActionsTest extends TestCase
         $apiClient = $this->getMockedApiClient();
         $apiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $action = new MerchantActions($apiClient);
-        $action->setMerchantId('foo-bar-321');
+        $action = new MerchantActions($apiClient, [
+            'business_unit_id' => 'foo-bar-321',
+            'invite_redirect_uri' => 'http://example.com',
+            'invite_reply_to_email' => 'no-reply@example.com',
+        ]);
 
         $findReviewResponse = $action->findReview($reviewId);
 

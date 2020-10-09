@@ -16,22 +16,28 @@ use PodPoint\Reviews\ActionsInterface;
 class MerchantActions implements ActionsInterface
 {
     /**
+     * Api Client.
+     *
      * @var ApiClientInterface
      */
     protected $apiClient;
 
     /**
-     * @var string
+     * Provider config.
+     *
+     * @var array
      */
-    protected $merchantId;
+    protected $config;
 
     /**
      * MerchantActions constructor.
      * @param ApiClientInterface $apiClient
+     * @param array $config
      */
-    public function __construct(ApiClientInterface $apiClient)
+    public function __construct(ApiClientInterface $apiClient, array $config)
     {
         $this->apiClient = $apiClient;
+        $this->config = $config;
     }
 
     /**
@@ -43,7 +49,14 @@ class MerchantActions implements ActionsInterface
      */
     public function invite(array $options)
     {
-        $options['businessUnitId'] = $this->merchantId;
+        $requiredOptions = [
+            'businessUnitId' => $this->config['business_unit_id'],
+            'redirectUri' => $this->config['invite_redirect_uri'],
+            'replyTo' => $this->config['invite_reply_to_email'],
+        ];
+
+        $options = $options + $requiredOptions;
+
         $request = new InviteRequest($this->apiClient, $options);
 
         return $request->send();
@@ -59,7 +72,7 @@ class MerchantActions implements ActionsInterface
      */
     public function getReviews(array $options = [])
     {
-        $options['businessUnitId'] = $this->merchantId;
+        $options['businessUnitId'] = $this->config['business_unit_id'];
         $request = new GetReviewsRequest($this->apiClient, $options);
 
         return $request->send();
@@ -82,28 +95,5 @@ class MerchantActions implements ActionsInterface
         $request = new FindReviewRequest($this->apiClient, $options);
 
         return $request->send();
-    }
-
-    /**
-     * Sets merchant id which is equivalent to business unit id and returns itself.
-     *
-     * @param $merchantId
-     * @return $this
-     */
-    public function setMerchantId(string $merchantId): MerchantActions
-    {
-        $this->merchantId = $merchantId;
-
-        return $this;
-    }
-
-    /**
-     * Returns merchant id which is equivalent business unit id.
-     *
-     * @return string
-     */
-    public function getMerchantId()
-    {
-        return $this->merchantId;
     }
 }

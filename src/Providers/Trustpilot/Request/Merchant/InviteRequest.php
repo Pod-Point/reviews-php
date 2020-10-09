@@ -33,6 +33,8 @@ class InviteRequest extends BaseRequestWrapper
 
         $this->options['serviceReviewInvitation'] = [
             'preferredSendTime' => $preferredSendTime,
+            'redirectUri' => $this->options['redirectUri'],
+            'replyTo' => $this->options['replyTo'],
         ];
 
         $uri = "{$this->baseUri}/v1/private/business-units/{$businessUnitId}/email-invitations";

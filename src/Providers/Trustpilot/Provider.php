@@ -47,7 +47,7 @@ class Provider implements ProviderInterface
      */
     public function merchant(): ActionsInterface
     {
-        return (new MerchantActions($this->apiClient))->setMerchantId($this->config['business_unit_id']);
+        return new MerchantActions($this->apiClient, $this->config);
     }
 
     /**
@@ -57,7 +57,7 @@ class Provider implements ProviderInterface
      */
     public function product(): ActionsInterface
     {
-        return new ProductActions($this->apiClient);
+        return new ProductActions($this->apiClient, $this->config);
     }
 
     /**
