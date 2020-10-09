@@ -7,10 +7,10 @@ use GuzzleHttp\Psr7\Uri;
 use \PodPoint\Reviews\Request\BaseRequest;
 
 /**
- * Class GetServiceReviews
+ * Class GetMerchantReviews
  * @package PodPoint\Reviews\Providers\ReviewsIo\Request\Service
  */
-class GetServiceReviews extends BaseRequest
+class GetMerchantReviews extends BaseRequest
 {
     /**
      * List of required fields.
@@ -31,10 +31,9 @@ class GetServiceReviews extends BaseRequest
     {
         $store = $this->getOption('store');
 
-        $uri = new Uri('https://api.reviews.co.uk/merchant/reviews');
-        $uri = Uri::withQueryValues($uri, $this->options + ['store' => $store]);
+        $query = http_build_query($this->options + ['store' => $store]);
 
-        return new Request('GET', $uri);
+        return new Request('GET', '/merchant/reviews?' . $query);
     }
 
     /**

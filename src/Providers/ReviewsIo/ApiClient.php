@@ -22,6 +22,8 @@ class ApiClient extends AbstractApiClient
         'content-type' => 'application/json'
     ];
 
+    protected $baseUri = 'https://api.reviews.co.uk';
+
     /**
      * ApiClient constructor.
      *

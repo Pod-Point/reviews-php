@@ -83,8 +83,6 @@ class AccessTokenRequestTest extends TestCase
 
         $this->assertInstanceOf(\Psr\Http\Message\RequestInterface::class, $request);
 
-        $this->assertEquals('https', $request->getUri()->getScheme());
-        $this->assertEquals('api.trustpilot.com', $request->getUri()->getHost());
         $this->assertEquals('/v1/oauth/oauth-business-users-for-applications/accesstoken', $request->getUri()->getPath());
         $this->assertEquals('', $request->getUri()->getQuery());
 

@@ -3,7 +3,6 @@
 namespace PodPoint\Reviews\Providers\Trustpilot\Request\Merchant;
 
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
 use PodPoint\Reviews\Request\BaseRequest;
 
 /**

@@ -55,8 +55,6 @@ class FindReviewRequestTest extends TestCase
 
         $this->assertInstanceOf(\Psr\Http\Message\RequestInterface::class, $request);
 
-        $this->assertEquals('https', $request->getUri()->getScheme());
-        $this->assertEquals('api.trustpilot.com', $request->getUri()->getHost());
         $this->assertEquals('/v1/private/reviews/review-id-123', $request->getUri()->getPath());
         $this->assertEquals('', $request->getUri()->getQuery());
     }

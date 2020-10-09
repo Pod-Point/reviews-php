@@ -19,13 +19,12 @@ class FindReviewRequest extends BaseRequest
      */
     public function getRequest(): Request
     {
-        $uri = new Uri('https://api.reviews.co.uk/merchant/reviews');
-        $uri = Uri::withQueryValues(
-            $uri,
-            ['store' => $this->getOption('store'), 'review_id' => $this->getOption('reviewId')]
-        );
+        $query = http_build_query([
+            'store' => $this->getOption('store'),
+            'review_id' => $this->getOption('reviewId'),
+        ]);
 
-        return new Request('GET', $uri);
+        return new Request('GET', '/merchant/reviews?' . $query);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace PodPoint\Reviews\Tests\Providers\ReviewsIo;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Uri;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Providers\ReviewsIo\ApiClient;
 use PodPoint\Reviews\Tests\TestCase;
@@ -33,8 +34,19 @@ class ApiClientTest extends TestCase
     public function testConstruct()
     {
         $this->assertInstanceOf(ApiClientInterface::class, $this->apiClient);
-
         $this->assertEquals('api-key-123', $this->apiClient->getApiKey());
+
+        $httpClient = $this->apiClient->getHttpClient();
+
+        $this->assertInstanceOf(ClientInterface::class, $httpClient);
+
+        /**
+         * @var $apiUri Uri
+         */
+        $apiUri = $httpClient->getConfig('base_uri');
+
+        $this->assertEquals('api.reviews.co.uk', $apiUri->getHost());
+        $this->assertEquals('https', $apiUri->getScheme());
     }
 
 
@@ -55,7 +67,7 @@ class ApiClientTest extends TestCase
 
         $this->apiClient->setHttpClient($mockedHttpClient);
 
-        $mockedRequest = Mockery::mock(Request::class, ["GET", "https://example.com"])->makePartial();
+        $mockedRequest = Mockery::mock(Request::class, ["GET", "/foo/bar"])->makePartial();
         $mockedRequest->shouldReceive('withHeader')
             ->once()
             ->withArgs(['apikey', 'api-key-123'])
@@ -76,14 +88,11 @@ class ApiClientTest extends TestCase
             'content-type' => 'application/x-foo',
         ];
 
-        $request = new Request('GET', 'http://example.com', $requestHeaders);
+        $request = new Request('GET', '/foo/bar', $requestHeaders);
 
         $this->apiClient->addDefaultRequestHeaders($request);
 
         $expectedHeaders = [
-            'Host' => [
-                'example.com'
-            ],
             'foo' => [
                 'bar'
             ],
@@ -100,14 +109,11 @@ class ApiClientTest extends TestCase
      */
     public function testAddDefaultRequestHeaders()
     {
-        $request = new Request('GET', 'http://example.com');
+        $request = new Request('GET', '/foo/bar');
 
         $this->apiClient->addDefaultRequestHeaders($request);
 
         $expectedHeaders = [
-            'Host' => [
-                'example.com'
-            ],
             'content-type' => [
                 'application/json'
             ],
@@ -123,7 +129,7 @@ class ApiClientTest extends TestCase
      */
     public function testSendRequestWithoutAuthentication()
     {
-        $mockedRequest = Mockery::mock(Request::class, ["GET", "https://example.com"])->makePartial();
+        $mockedRequest = Mockery::mock(Request::class, ["GET", "/foo/bar"])->makePartial();
 
         $response = $this->apiClient->sendRequest($mockedRequest, false);
 

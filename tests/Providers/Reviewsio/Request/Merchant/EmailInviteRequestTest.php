@@ -73,8 +73,6 @@ class EmailInviteRequestTest extends TestCase
 
         $this->assertInstanceOf(\Psr\Http\Message\RequestInterface::class, $request);
 
-        $this->assertEquals('https', $request->getUri()->getScheme());
-        $this->assertEquals('api.reviews.co.uk', $request->getUri()->getHost());
         $this->assertEquals('/merchant/invitation', $request->getUri()->getPath());
         $this->assertEquals('', $request->getUri()->getQuery());
     }

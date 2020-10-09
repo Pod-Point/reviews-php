@@ -19,6 +19,8 @@ class ApiClient extends AbstractApiClient
         'content-type' => 'application/json'
     ];
 
+    protected $baseUri = 'https://api.trustpilot.com';
+
     /**
      * @var string
      */

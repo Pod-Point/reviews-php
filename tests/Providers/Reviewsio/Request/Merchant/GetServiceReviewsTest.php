@@ -2,10 +2,10 @@
 
 namespace PodPoint\Reviews\Tests\Providers\ReviewsIo\Request\Merchant;
 
-use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\GetServiceReviews;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\GetMerchantReviews;
 use PodPoint\Reviews\Tests\TestCase;
 
-class GetServiceReviewsTest extends TestCase
+class GetMerchantReviewsTest extends TestCase
 {
     /**
      * Test construct to make sure properties are set.
@@ -15,7 +15,7 @@ class GetServiceReviewsTest extends TestCase
     public function testConstruct()
     {
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new GetServiceReviews($mockedApiClient, [
+        $request = new GetMerchantReviews($mockedApiClient, [
             'store' => 'store-id-321',
         ]);
 
@@ -33,7 +33,7 @@ class GetServiceReviewsTest extends TestCase
     public function testRequiredFields()
     {
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new GetServiceReviews($mockedApiClient, [
+        $request = new GetMerchantReviews($mockedApiClient, [
             'store' => 'store-id-321',
         ]);
 
@@ -48,7 +48,7 @@ class GetServiceReviewsTest extends TestCase
     public function testGetRequest()
     {
         $mockedApiClient = $this->getMockedApiClient();
-        $serviceReviewRequest = new GetServiceReviews($mockedApiClient, [
+        $serviceReviewRequest = new GetMerchantReviews($mockedApiClient, [
             'store' => 'store-id-321',
         ]);
 
@@ -56,8 +56,6 @@ class GetServiceReviewsTest extends TestCase
 
         $this->assertInstanceOf(\Psr\Http\Message\RequestInterface::class, $request);
 
-        $this->assertEquals('https', $request->getUri()->getScheme());
-        $this->assertEquals('api.reviews.co.uk', $request->getUri()->getHost());
         $this->assertEquals('/merchant/reviews', $request->getUri()->getPath());
         $this->assertEquals('store=store-id-321', $request->getUri()->getQuery());
     }
@@ -72,7 +70,7 @@ class GetServiceReviewsTest extends TestCase
         $mockedApiClient = $this->getMockedApiClient();
         $mockedApiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $request = new GetServiceReviews($mockedApiClient, [
+        $request = new GetMerchantReviews($mockedApiClient, [
             'store' => 'store-id-321',
         ]);
 

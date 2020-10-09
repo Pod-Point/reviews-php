@@ -30,7 +30,7 @@ class FindReviewRequest extends BaseRequest
      */
     public function getRequest(): Request
     {
-        $uri = "https://api.trustpilot.com/v1/private/reviews/{$this->getOption('reviewId')}";
+        $uri = "/v1/private/reviews/{$this->getOption('reviewId')}";
 
         return new Request('GET', $uri);
     }

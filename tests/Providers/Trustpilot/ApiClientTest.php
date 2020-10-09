@@ -5,6 +5,7 @@ namespace PodPoint\Reviews\Tests\Providers\Trustpilot;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Uri;
 use PodPoint\Reviews\AccessToken;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
@@ -51,6 +52,19 @@ class ApiClientTest extends TestCase
         $this->assertEquals('api-secret-key-123', $this->apiClient->getClientSecret());
         $this->assertEquals('api-username', $this->apiClient->getUsername());
         $this->assertEquals('api-password', $this->apiClient->getPassword());
+
+
+        $httpClient = $this->apiClient->getHttpClient();
+
+        $this->assertInstanceOf(ClientInterface::class, $httpClient);
+
+        /**
+         * @var $apiUri Uri
+         */
+        $apiUri = $httpClient->getConfig('base_uri');
+
+        $this->assertEquals('api.trustpilot.com', $apiUri->getHost());
+        $this->assertEquals('https', $apiUri->getScheme());
     }
 
     /**

@@ -28,13 +28,21 @@ abstract class AbstractApiClient implements ApiClientInterface
     protected $defaultRequestHeaders = [];
 
     /**
+     * The base uri that will be used to make request.
+     * @var
+     */
+    protected $baseUri;
+
+    /**
      * AbstractApiClient constructor, creates an instance of http client.
      *
      * @param ClientInterface|null $httpClient
      */
     public function __construct(ClientInterface $httpClient = null)
     {
-        $this->httpClient = $httpClient ?? new Client();
+        $this->httpClient = $httpClient ?? new Client([
+            'base_uri' => $this->baseUri,
+        ]);
     }
 
     /**

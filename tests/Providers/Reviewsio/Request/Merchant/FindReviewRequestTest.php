@@ -60,8 +60,6 @@ class FindReviewRequestTest extends TestCase
 
         $this->assertInstanceOf(\Psr\Http\Message\RequestInterface::class, $request);
 
-        $this->assertEquals('https', $request->getUri()->getScheme());
-        $this->assertEquals('api.reviews.co.uk', $request->getUri()->getHost());
         $this->assertEquals('/merchant/reviews', $request->getUri()->getPath());
         $this->assertEquals('store=store-id-321&review_id=review-id-123', $request->getUri()->getQuery());
     }
