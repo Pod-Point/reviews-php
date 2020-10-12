@@ -39,9 +39,6 @@ class ApiClientTest extends TestCase
 
         $this->assertInstanceOf(ClientInterface::class, $httpClient);
 
-        /**
-         * @var $apiUri Uri
-         */
         $apiUri = $httpClient->getConfig('base_uri');
 
         $this->assertEquals('api.reviews.co.uk', $apiUri->getHost());
