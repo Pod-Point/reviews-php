@@ -13,7 +13,6 @@ use PodPoint\Reviews\Exceptions\ValidationException;
  */
 abstract class BaseRequest
 {
-
     /**
      * Default headers to attach all requests.
      *
@@ -40,7 +39,7 @@ abstract class BaseRequest
     public function __construct(ApiClientInterface $client, array $options)
     {
         $this->httpClient = $client;
-        $this->options =
+        $this->options = $options;
 
     /**
      * Get http client.
