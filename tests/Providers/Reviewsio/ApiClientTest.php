@@ -63,7 +63,7 @@ class ApiClientTest extends TestCase
 
         $this->apiClient->setHttpClient($mockedHttpClient);
 
-        $mockedRequest = Mockery::mock(Request::class, ["GET", "/foo/bar"])->makePartial();
+        $mockedRequest = Mockery::mock(Request::class, ['GET', '/foo/bar'])->makePartial();
         $mockedRequest->shouldReceive('withHeader')
             ->once()
             ->withArgs(['apiKey', 'api-key-123'])
@@ -90,10 +90,10 @@ class ApiClientTest extends TestCase
 
         $expectedHeaders = [
             'foo' => [
-                'bar'
+                'bar',
             ],
             'content-type' => [
-                'application/x-foo'
+                'application/x-foo',
             ],
         ];
 
@@ -111,7 +111,7 @@ class ApiClientTest extends TestCase
 
         $expectedHeaders = [
             'content-type' => [
-                'application/json'
+                'application/json',
             ],
         ];
 
@@ -125,7 +125,7 @@ class ApiClientTest extends TestCase
      */
     public function testSendRequestWithoutAuthentication()
     {
-        $mockedRequest = Mockery::mock(Request::class, ["GET", "/foo/bar"])->makePartial();
+        $mockedRequest = Mockery::mock(Request::class, ['GET', '/foo/bar'])->makePartial();
 
         $response = $this->apiClient->sendRequest($mockedRequest, false);
 

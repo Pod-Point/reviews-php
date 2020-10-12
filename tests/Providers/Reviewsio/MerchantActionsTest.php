@@ -2,7 +2,6 @@
 
 namespace PodPoint\Reviews\Tests\Providers\ReviewsIo;
 
-use Illuminate\Http\Response;
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Providers\ReviewsIo\MerchantActions;
@@ -11,7 +10,7 @@ use PodPoint\Reviews\Tests\TestCase;
 class MerchantActionsTest extends TestCase
 {
     /**
-     * Constructor should be instance of APiClientInterface and it should assign to apiClient property.
+     * Constructor should be instance of APIClientInterface and it should assign to apiClient property.
      */
     public function testConstruct()
     {
@@ -22,7 +21,7 @@ class MerchantActionsTest extends TestCase
     }
 
     /**
-     * Making sure the invite method to make sure it returns the response as expected.
+     * Making sure the invite method returns the response as expected.
      *
      * @return array|mixed
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
@@ -46,15 +45,15 @@ class MerchantActionsTest extends TestCase
         $inviteResponse = $action->invite($options);
 
         $expectedResult = [
-            "data" => [],
-            "message" => "accepted",
+            'data' => [],
+            'message' => 'accepted',
         ];
 
         $this->assertEquals($expectedResult, $inviteResponse);
     }
 
     /**
-     * Making sure the getReviews method to make sure it returns the response as expected.
+     * Making sure the getReviews method returns the response as expected.
      *
      * @return array|mixed
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
@@ -72,15 +71,15 @@ class MerchantActionsTest extends TestCase
         $getReviewsResponse = $action->getReviews([]);
 
         $expectedResult = [
-            "data" => [],
-            "message" => "successful",
+            'data' => [],
+            'message' => 'successful',
         ];
 
         $this->assertEquals($expectedResult, $getReviewsResponse);
     }
 
     /**
-     * Making sure the findReview method to make sure it returns the response as expected.
+     * Making sure the findReview method returns the response as expected.
      *
      * @return array|mixed
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
@@ -100,8 +99,8 @@ class MerchantActionsTest extends TestCase
         $findReviewResponse = $action->findReview($reviewId);
 
         $expectedResult = [
-            "data" => [],
-            "message" => "successful",
+            'data' => [],
+            'message' => 'successful',
         ];
 
         $this->assertEquals($expectedResult, $findReviewResponse);
