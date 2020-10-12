@@ -117,18 +117,4 @@ class ApiClientTest extends TestCase
 
         $this->assertEquals($expectedHeaders, $request->getHeaders());
     }
-
-    /**
-     * The sendRequest method should return response.
-     *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function testSendRequestWithoutAuthentication()
-    {
-        $mockedRequest = Mockery::mock(Request::class, ['GET', '/foo/bar'])->makePartial();
-
-        $response = $this->apiClient->sendRequest($mockedRequest, false);
-
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-    }
 }

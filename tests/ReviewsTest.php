@@ -90,7 +90,9 @@ class ReviewsTest extends TestCase
         $reviews->getProviderConfig('bar');
     }
 
-
+    /**
+     * Test that getProviderClassName function returns the correct classname given a provider name.
+     */
     public function testGetProviderClassName()
     {
         $reviews = new Reviews($this->config);

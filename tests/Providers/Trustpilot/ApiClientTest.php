@@ -5,7 +5,6 @@ namespace PodPoint\Reviews\Tests\Providers\Trustpilot;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Uri;
 use PodPoint\Reviews\AccessToken;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
@@ -18,7 +17,7 @@ class ApiClientTest extends TestCase
 {
     /**
      * Instance of ApiClient.
-
+     *
      * @var ApiClient
      */
     protected $apiClient;
@@ -53,14 +52,10 @@ class ApiClientTest extends TestCase
         $this->assertEquals('api-username', $this->apiClient->getUsername());
         $this->assertEquals('api-password', $this->apiClient->getPassword());
 
-
         $httpClient = $this->apiClient->getHttpClient();
 
         $this->assertInstanceOf(ClientInterface::class, $httpClient);
 
-        /**
-         * @var $apiUri Uri
-         */
         $apiUri = $httpClient->getConfig('base_uri');
 
         $this->assertEquals('api.trustpilot.com', $apiUri->getHost());
@@ -107,27 +102,13 @@ class ApiClientTest extends TestCase
 
         $this->apiClient->setHttpClient($mockedHttpClient);
 
-        $mockedRequest = Mockery::mock(Request::class, ["GET", "https://example.com"])->makePartial();
+        $mockedRequest = Mockery::mock(Request::class, ['GET', 'https://example.com'])->makePartial();
         $mockedRequest->shouldReceive('withHeader')
             ->once()
             ->withArgs(['authorization', 'Bearer ey12easdwrsyeud6if7gohoji8hp97o68fi'])
             ->andReturnSelf();
 
         $response = $this->apiClient->sendRequest($mockedRequest, true);
-
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-    }
-
-    /**
-     * The sendRequest method should return response.
-     *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function testSendRequestWithoutAuthentication()
-    {
-        $mockedRequest = Mockery::mock(Request::class, ["GET", "https://example.com"])->makePartial();
-
-        $response = $this->apiClient->sendRequest($mockedRequest, false);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
     }
