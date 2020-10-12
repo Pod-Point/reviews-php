@@ -5,8 +5,7 @@ namespace PodPoint\Reviews\Facade;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class Reviews
- * @package PodPoint\Reviews\Facade
+ * Class Reviews.
  */
 class Reviews extends Facade
 {

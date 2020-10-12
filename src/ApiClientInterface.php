@@ -3,8 +3,7 @@
 namespace PodPoint\Reviews;
 
 /**
- * Interface ApiClientInterface
- * @package PodPoint\Reviews
+ * Interface ApiClientInterface.
  */
 interface ApiClientInterface
 {

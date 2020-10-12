@@ -9,8 +9,7 @@ use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class AbstractApiClient
- * @package PodPoint\Reviews
+ * Class AbstractApiClient. Holds functions used by the APIClients in each provider.
  */
 abstract class AbstractApiClient implements ApiClientInterface
 {
@@ -68,6 +67,8 @@ abstract class AbstractApiClient implements ApiClientInterface
     }
 
     /**
+     * Returns the httpClient from the instantiated ApiClient.
+     *
      * @return Client|ClientInterface
      */
     public function getHttpClient(): ClientInterface
@@ -111,9 +112,6 @@ abstract class AbstractApiClient implements ApiClientInterface
      */
     public function addDefaultRequestHeaders(Request &$request)
     {
-        /**
-         * Adding default headers, if not overridden.
-         */
         foreach ($this->defaultRequestHeaders as $headerKey => $headerValue)
         {
             if(!$request->hasHeader($headerKey)) {

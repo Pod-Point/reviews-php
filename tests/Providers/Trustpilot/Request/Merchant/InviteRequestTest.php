@@ -7,7 +7,6 @@ use PodPoint\Reviews\Tests\TestCase;
 
 class InviteRequestTest extends TestCase
 {
-
     protected $requestOptions;
 
     public function setUp()
@@ -60,6 +59,7 @@ class InviteRequestTest extends TestCase
             'referenceNumber',
             'consumerEmail',
             'consumerName',
+            'businessUnitId',
         ];
 
         $this->assertEquals($expectedRequiredFields, $request->requiredFields());

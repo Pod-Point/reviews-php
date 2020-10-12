@@ -6,8 +6,7 @@ use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\Request\BaseRequestWrapper;
 
 /**
- * Class GetMerchantReviews
- * @package PodPoint\Reviews\Providers\ReviewsIo\Request\Service
+ * Class GetMerchantReviews.
  */
 class GetMerchantReviews extends BaseRequestWrapper
 {

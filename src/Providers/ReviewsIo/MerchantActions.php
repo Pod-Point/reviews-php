@@ -10,8 +10,7 @@ use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\EmailInviteRequest;
 use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\FindReviewRequest;
 
 /**
- * Class MerchantActions
- * @package PodPoint\Reviews\Providers\ReviewsIo
+ * Class MerchantActions.
  */
 class MerchantActions implements ActionsInterface
 {
@@ -30,6 +29,9 @@ class MerchantActions implements ActionsInterface
     protected $config;
 
     /**
+     * Store value to pass as option when making request.
+     * The store value is typically tied to the apiKey.
+     *
      * @var string
      */
     protected $store;
@@ -47,6 +49,8 @@ class MerchantActions implements ActionsInterface
     }
 
     /**
+     * Sends out review invite email.
+     *
      * @param array $options
      *
      * @return array|mixed
@@ -62,6 +66,8 @@ class MerchantActions implements ActionsInterface
     }
 
     /**
+     * Get all reviews, with filter if $options specified.
+     *
      * @param array $options
      *
      * @return array|mixed

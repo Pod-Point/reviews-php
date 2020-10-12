@@ -7,8 +7,7 @@ use PodPoint\Reviews\ProviderInterface;
 use PodPoint\Reviews\Providers\Trustpilot\Request\AccessTokenRequest;
 
 /**
- * Class Provider
- * @package PodPoint\Reviews\Providers\Trustpilot
+ * Class Provider.
  */
 class Provider implements ProviderInterface
 {
@@ -30,7 +29,6 @@ class Provider implements ProviderInterface
     public function __construct(array $config)
     {
         $this->config = $config;
-
 
         $this->apiClient = new ApiClient(
             $config[AccessTokenRequest::CLIENT_ID],

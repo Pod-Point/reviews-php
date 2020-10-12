@@ -7,14 +7,33 @@ use PodPoint\Reviews\AccessToken;
 use PodPoint\Reviews\Request\BaseRequest;
 
 /**
- * Class AccessTokenRequest
- * @package PodPoint\Reviews\Providers\Trustpilot\Request
+ * Class AccessTokenRequest.
  */
 class AccessTokenRequest extends BaseRequest
 {
+    /**
+     * @var string
+     */
     const CLIENT_ID = 'client_id';
+
+	/**
+     * @var ApiClient
+     */
     const CLIENT_SECRET = 'client_secret';
+
+    /**
+     * @var ApiClient
+     */
+    const URI = '/v1/oauth/oauth-business-users-for-applications/accesstoken';
+
+    /**
+     * @var ApiClient
+     */
     const USERNAME = 'username';
+
+    /**
+     * @var ApiClient
+     */
     const PASSWORD = 'password';
 
     public function requiredFields(): array
@@ -37,7 +56,6 @@ class AccessTokenRequest extends BaseRequest
         $key = base64_encode("{$this->getOption(self::CLIENT_ID)}:{$this->getOption(self::CLIENT_SECRET)}");
 
         $method = 'POST';
-        $uri = '/v1/oauth/oauth-business-users-for-applications/accesstoken';
         $header = [
             'Authorization' => "Basic {$key}",
             'Content-Type' => 'application/x-www-form-urlencoded'
@@ -49,7 +67,7 @@ class AccessTokenRequest extends BaseRequest
             self::PASSWORD => $this->getOption(self::PASSWORD),
         ]);
 
-        return new Request($method, $uri, $header, $body);
+        return new Request($method, self::URI, $header, $body);
     }
 
     /**

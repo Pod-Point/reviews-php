@@ -6,8 +6,7 @@ use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
 
 /**
- * Class BaseRequestWrapper
- * @package PodPoint\Reviews\Request
+ * Class BaseRequestWrapper.
  */
 abstract class BaseRequestWrapper extends BaseRequest
 {

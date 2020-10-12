@@ -6,8 +6,7 @@ use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ProviderInterface;
 
 /**
- * Class Provider
- * @package PodPoint\Reviews\Providers\ReviewsIo
+ * Class Provider.
  */
 class Provider implements ProviderInterface
 {

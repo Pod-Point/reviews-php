@@ -5,8 +5,7 @@ namespace PodPoint\Reviews\Exceptions;
 use Throwable;
 
 /**
- * Class ValidationException
- * @package PodPoint\Reviews\Exceptions
+ * Class ValidationException.
  */
 class ValidationException extends \Exception
 {

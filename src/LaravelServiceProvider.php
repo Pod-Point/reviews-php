@@ -3,8 +3,7 @@
 namespace PodPoint\Reviews;
 
 /**
- * Class ServiceProvider
- * @package PodPoint\ReviewsLaravel
+ * Class ServiceProvider.
  */
 class LaravelServiceProvider extends \Illuminate\Support\ServiceProvider
 {

@@ -3,8 +3,7 @@
 namespace PodPoint\Reviews;
 
 /**
- * Interface ProviderInterface
- * @package PodPoint\Reviews
+ * Interface ProviderInterface.
  */
 interface ProviderInterface
 {

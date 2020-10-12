@@ -5,8 +5,7 @@ namespace PodPoint\Reviews\Exceptions;
 use Throwable;
 
 /**
- * Class ProviderNotFoundException
- * @package PodPoint\Reviews\Exceptions
+ * Class ProviderNotFoundException.
  */
 class ProviderNotFoundException extends \Exception
 {

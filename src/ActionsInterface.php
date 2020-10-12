@@ -3,13 +3,12 @@
 namespace PodPoint\Reviews;
 
 /**
- * Interface ActionsInterface
- * @package PodPoint\Reviews
+ * Interface ActionsInterface.
  */
 interface ActionsInterface
 {
     /**
-     * Invite consumers.
+     * Send out review invite.
      *
      * @param array $options
      *

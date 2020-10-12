@@ -6,8 +6,7 @@ use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\Request\BaseRequestWrapper;
 
 /**
- * Class InviteRequest
- * @package PodPoint\Reviews\Providers\Trustpilot\Request\Service
+ * Class InviteRequest.
  */
 class InviteRequest extends BaseRequestWrapper
 {
@@ -70,6 +69,7 @@ class InviteRequest extends BaseRequestWrapper
             'referenceNumber',
             'consumerEmail',
             'consumerName',
+            'businessUnitId',
         ];
     }
 }

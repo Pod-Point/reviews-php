@@ -6,9 +6,7 @@ use PodPoint\Reviews\Exceptions\ProviderConfigNotFoundException;
 use PodPoint\Reviews\Exceptions\ProviderNotFoundException;
 
 /**
- * Class Reviews
- *
- * @package PodPoint\Reviews
+ * Reviews Class. Acts as the entrypoint to the package.
  */
 class Reviews
 {

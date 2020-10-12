@@ -10,8 +10,7 @@ use PodPoint\Reviews\Providers\Trustpilot\Request\Merchant\GetReviewsRequest;
 use PodPoint\Reviews\ActionsInterface;
 
 /**
- * Class MerchantActions
- * @package PodPoint\Reviews\Providers\Trustpilot
+ * Class MerchantActions.
  */
 class MerchantActions implements ActionsInterface
 {

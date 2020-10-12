@@ -40,6 +40,7 @@ class BaseRequestTest extends TestCase
 
     /**
      * Making sure validate returns true when
+     *
      * @throws ValidationException
      */
     public function testGivenValidOptionsValidateShouldReturnTrue()

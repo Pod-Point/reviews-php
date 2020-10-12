@@ -6,8 +6,7 @@ use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ApiClientInterface;
 
 /**
- * Class ProductActions
- * @package PodPoint\Reviews\Providers\ReviewsIo
+ * Class ProductActions.
  */
 class ProductActions implements ActionsInterface
 {

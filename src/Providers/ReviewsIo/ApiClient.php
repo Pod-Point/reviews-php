@@ -6,8 +6,7 @@ use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AbstractApiClient;
 
 /**
- * Class ApiClient
- * @package PodPoint\Reviews\Providers\ReviewsIo
+ * Class ApiClient.
  */
 class ApiClient extends AbstractApiClient
 {
@@ -35,7 +34,7 @@ class ApiClient extends AbstractApiClient
     }
 
     /**
-     * Adding authentication header
+     * Adding authentication header.
      *
      * @param Request $request
      */

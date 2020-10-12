@@ -6,8 +6,7 @@ use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\Request\BaseRequestWrapper;
 
 /**
- * Class FindReviewRequest
- * @package PodPoint\Reviews\Providers\Trustpilot\Request\Service
+ * Class FindReviewRequest.
  */
 class FindReviewRequest extends BaseRequestWrapper
 {

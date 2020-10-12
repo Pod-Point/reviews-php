@@ -9,8 +9,7 @@ use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
 
 /**
- * Class BaseRequest
- * @package PodPoint\Reviews\Request
+ * Class BaseRequest. Holds functionality shared by all Request classes across the package.
  */
 abstract class BaseRequest
 {
@@ -41,8 +40,7 @@ abstract class BaseRequest
     public function __construct(ApiClientInterface $client, array $options)
     {
         $this->httpClient = $client;
-        $this->options = $options;
-    }
+        $this->options =
 
     /**
      * Get http client.
