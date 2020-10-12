@@ -7,7 +7,7 @@ use PodPoint\Reviews\ApiClientInterface;
 class AbstractApiClientTest extends TestCase
 {
     /**
-     * Making suer client is set when instance is  constructed.
+     * Making sure client is set when instance is  constructed.
      */
     public function testConstruct()
     {
