@@ -13,10 +13,16 @@ use PodPoint\Reviews\AbstractApiClient;
  */
 class ApiClient extends AbstractApiClient
 {
+    /**
+     * @var array
+     */
     protected $defaultRequestHeaders = [
         'content-type' => 'application/json'
     ];
 
+    /**
+     * @var string
+     */
     protected $baseUri = 'https://api.trustpilot.com';
 
     /**
