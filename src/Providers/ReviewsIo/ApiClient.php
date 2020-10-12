@@ -15,10 +15,16 @@ class ApiClient extends AbstractApiClient
      */
     protected $apiKey;
 
+    /**
+     * @var array
+     */
     protected $defaultRequestHeaders = [
         'content-type' => 'application/json'
     ];
 
+    /**
+     * @var string
+     */
     protected $baseUri = 'https://api.reviews.co.uk';
 
     /**

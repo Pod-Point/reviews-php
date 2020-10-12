@@ -5,9 +5,9 @@ namespace PodPoint\Reviews\Providers\ReviewsIo;
 use PodPoint\Reviews\ActionsInterface;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
-use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\GetMerchantReviews;
 use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\EmailInviteRequest;
 use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\FindReviewRequest;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\GetMerchantReviews;
 
 /**
  * Class MerchantActions.
