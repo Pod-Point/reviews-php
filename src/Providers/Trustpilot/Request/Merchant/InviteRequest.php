@@ -54,7 +54,6 @@ class InviteRequest extends BaseRequestWrapper
             true
         );
 
-
         return $this->httpClient->getResponseJson($response);
     }
 
