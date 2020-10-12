@@ -66,7 +66,7 @@ class ApiClientTest extends TestCase
         $mockedRequest = Mockery::mock(Request::class, ["GET", "/foo/bar"])->makePartial();
         $mockedRequest->shouldReceive('withHeader')
             ->once()
-            ->withArgs(['apikey', 'api-key-123'])
+            ->withArgs(['apiKey', 'api-key-123'])
             ->andReturnSelf();
 
         $response = $this->apiClient->sendRequest($mockedRequest, true);
