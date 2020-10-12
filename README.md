@@ -5,13 +5,13 @@
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg?style=flat-square)](https://php.net/)
 
 A reviews service manager for PHP applications. This package provides a shared interface to use different reviews providers.
-List of supported reviews providers: 
- * [Trustpilot](https://trustpilot.com) 
+List of supported reviews providers:
+ * [Trustpilot](https://trustpilot.com)
  * [ReviewsIO](https://reviews.co.uk/)
 
 ## Glossary
 
-A review is an evaluation of a publication, product, or company for example. In this package we have a clear differentiation of types of reviews that can be for: 
+A review is an evaluation of a publication, product, or company for example. In this package we have a clear differentiation of types of reviews that can be for:
 * `Merchant`: it can be company/business/merchant/service review.
 * `Product`: a product review, meaning it has a clear link to a product.
 
@@ -19,9 +19,9 @@ A review is an evaluation of a publication, product, or company for example. In 
 
  1. Add the following in the repository section of the composer.json
 ```json
-{  
-    "type": "git",  
-    "url": "git@github.com:pod-point/reviews-php.git"  
+{
+    "type": "git",
+    "url": "git@github.com:pod-point/reviews-php.git"
 }
 ```
 2. Run the following command inside of the the desired project workspace.
@@ -42,18 +42,20 @@ return [
             'store' => env('REVIEWS_CO_UK_STORE'),
             'api_key' => env('REVIEWS_CO_UK_API_KEY'),
         ],
-        
+
         'trustpilot' => [
             'username' => env('TRUSTPILOT_USERNAME'),
             'password' => env('TRUSTPILOT_PASSWORD'),
             'client_secret' => env('TRUSTPILOT_SECRET_KEY'),
             'client_id' => env('TRUSTPILOT_CLIENT_ID'),
             'business_unit_id' => env('TRUSTPILOT_BUSINESS_ID'),
+            'invite_reply_to_email' => env('TRUSTPILOT_INVITE_REPLY_TO_EMAIL'),
+            'invite_redirect_uri' => env('TRUSTPILOT_INVITE_REDIRECT_URI')
         ],
 ];
 ```
 
-All the providers should respect the same interface. 
+All the providers should respect the same interface.
 
 ```php
 $reviews = new \PodPoint\Reviews\Reviews($config);
@@ -72,7 +74,7 @@ $trustpilot->merchant()->getReviews((array) $serviceReviewsFilterOptions);
 ```
 
 For more details about each provider options see:
- * [Trustpilot](https://github.com/Pod-Point/reviews-php/Providers/Trustpilot/README.md) 
+ * [Trustpilot](https://github.com/Pod-Point/reviews-php/Providers/Trustpilot/README.md)
 
 ## Semantic versioning
 Reviews PHP follows [semantic versioning](https://semver.org/) specifications.
