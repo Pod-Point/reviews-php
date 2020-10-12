@@ -25,7 +25,7 @@ abstract class BaseRequest
     /** @var array $option */
     protected $options;
 
-    /** @var Client $httpClient */
+    /** @var ApiClientInterface $httpClient */
     protected $httpClient;
 
     /**
@@ -40,6 +40,7 @@ abstract class BaseRequest
     {
         $this->httpClient = $client;
         $this->options = $options;
+    }
 
     /**
      * Get http client.
