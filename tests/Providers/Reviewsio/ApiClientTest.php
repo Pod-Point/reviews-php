@@ -4,12 +4,11 @@ namespace PodPoint\Reviews\Tests\Providers\ReviewsIo;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Uri;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Providers\ReviewsIo\ApiClient;
 use PodPoint\Reviews\Tests\TestCase;
-use Mockery;
 use Psr\Http\Message\ResponseInterface;
+use Mockery;
 
 class ApiClientTest extends TestCase
 {
