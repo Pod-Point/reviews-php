@@ -77,7 +77,7 @@ class ApiClientTest extends TestCase
     /**
      * Should add default api request headers without override request headers.
      */
-    public function testAddDefaultRequestHeadersToRequest()
+    public function testOverrideDefaultRequestHeaders()
     {
         $requestHeaders = [
             'foo' => 'bar',
