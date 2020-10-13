@@ -1,0 +1,34 @@
+{
+    "name": "pod-point/reviews-php",
+    "description": "A review service for PHP.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pod Point Software Team",
+            "email": "software@pod-point.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5",
+        "mockery/mockery": "^1.3",
+        "orchestra/testbench": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "PodPoint\\Reviews\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PodPoint\\Reviews\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit"
+    }
+}
