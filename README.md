@@ -29,7 +29,7 @@ A review is an evaluation of a publication, product, or company for example. In 
 composer require pod-point/reviews-php
 ```
 
-Laravel - Publish the configuration
+##### Publish the configuration - Laravel
 1. Add the provider to the list of providers on config/app.php
 ```php
 PodPoint\Reviews\LaravelServiceProvider::class
@@ -40,7 +40,6 @@ PodPoint\Reviews\LaravelServiceProvider::class
 ```php
 php artisan vendor:publish
 ```
-
 
 ## Usage
 The Reviews class takes an array as the first parameter, see example of config file below:
