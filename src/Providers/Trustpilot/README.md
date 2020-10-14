@@ -40,13 +40,13 @@ Required Fields:
 
 ```php
 $trustpilot->merchant()->invite([
-    'consumerEmail' => 'john.doe@trustpilot.com', 
-    'consumerName'=> 'John Doe',
+    'consumerEmail' => 'john.doe@trustpilot.com',
+    'consumerName' => 'John Doe',
     'replyTo' => 'john.doe@trustpilot.com',
     'referenceNumber' => 'inv00001',
     'locale' => 'en-US',
     'senderEmail' => 'john.doe@trustpilot.com',
-    'serviceReviewInvitation' =>  [
+    'serviceReviewInvitation' => [
         'preferredSendTime' => '2013-09-07T13:37:00',
         'redirectUri' => "http://trustpilot.com',
         'tags'=>  [
@@ -63,8 +63,8 @@ $trustpilot->merchant()->invite([
 
 ```php
 $trustpilot->merchant()->getReviews([
- 'startDateTime' => '2013-09-07T13:37:00',
- 'endDateTime' => '2013-09-20T13:37:00',
+    'startDateTime' => '2013-09-07T13:37:00',
+    'endDateTime' => '2013-09-20T13:37:00',
 ]);
 ```
 See all supported query parameters and responses:

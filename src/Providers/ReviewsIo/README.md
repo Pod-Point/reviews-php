@@ -35,12 +35,12 @@ Required Fields:
 
 ```php
 $reviewsIo->merchant()->invite([
-     'store': 'my-company',
-     'apikey': '######APIKEY######',
-     'name': 'Mr David Jones',
-     'email': 'david-jones@example.com',
-     'order_id': '12345',
-     'template_id': '934',
+    'store' => 'my-company',
+    'apikey' => '######APIKEY######',
+    'name' => 'Mr David Jones',
+    'email' => 'david-jones@example.com',
+    'order_id' => '12345',
+    'template_id' => '934',
 ]);
 
 ```
@@ -51,8 +51,8 @@ See all the supported parameters
 
 ```php
 $reviewsIo->merchant()->getReviews([
- 'min_date' => '2013-09-07',
- 'max_date' => '2013-09-20',
+    'min_date' => '2013-09-07',
+    'max_date' => '2013-09-20',
 ]);
 ```
 See all supported query parameters and responses:
