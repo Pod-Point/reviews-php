@@ -29,6 +29,18 @@ A review is an evaluation of a publication, product, or company for example. In 
 composer require pod-point/reviews-php
 ```
 
+##### Publish the configuration - Laravel
+1. Add the provider to the list of providers on config/app.php
+```php
+PodPoint\Reviews\LaravelServiceProvider::class
+
+```
+
+2.
+```php
+php artisan vendor:publish
+```
+
 ## Usage
 The Reviews class takes an array as the first parameter, see example of config file below:
 ```php
@@ -73,8 +85,9 @@ $trustpilot->merchant()->findReview((string) $reviewId);
 $trustpilot->merchant()->getReviews((array) $serviceReviewsFilterOptions);
 ```
 
-For more details about each provider options see:
- * [Trustpilot](https://github.com/Pod-Point/reviews-php/Providers/Trustpilot/README.md)
+For more details about each provider request options see:
+ * [Trustpilot](https://github.com/Pod-Point/reviews-php/blob/master/src/Providers/Trustpilot/README.md) 
+ * [ReviewsIO](https://github.com/Pod-Point/reviews-php/blob/master/src/Providers/ReviewsIo/README.md) 
 
 ## Semantic versioning
 Reviews PHP follows [semantic versioning](https://semver.org/) specifications.
