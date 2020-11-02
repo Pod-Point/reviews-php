@@ -4,7 +4,7 @@ namespace PodPoint\Reviews\Tests;
 
 use Mockery;
 use PodPoint\Reviews\AbstractApiClient;
-use PodPoint\Reviews\Request\BaseRequest;
+use PodPoint\Reviews\Request\AbstractBaseRequest;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -60,9 +60,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @param array $requiredFields
      * @return Mockery\Mock
      */
-    public function getMockedBaseRequest(AbstractApiClient  $client, array $options = [], $requiredFields = [])
+    public function getMockedAbstractBaseRequest(AbstractApiClient  $client, array $options = [], $requiredFields = [])
     {
-        $mock = Mockery::mock(BaseRequest::class, array($client, $options))
+        $mock = Mockery::mock(AbstractBaseRequest::class, array($client, $options))
             ->makePartial();
 
         $mock->shouldReceive('requiredFields')

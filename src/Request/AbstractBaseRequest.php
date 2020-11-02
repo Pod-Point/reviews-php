@@ -7,11 +7,12 @@ use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AbstractApiClient;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
+use Psr\SimpleCache\CacheInterface;
 
 /**
  * Class BaseRequest. Holds functionality shared by all Request classes across the package.
  */
-abstract class BaseRequest
+abstract class AbstractBaseRequest
 {
     /**
      * Default headers to attach all requests.
@@ -28,18 +29,21 @@ abstract class BaseRequest
     /** @var ApiClientInterface $httpClient */
     protected $httpClient;
 
+    protected $withAuthentication  = true;
+
     /**
      * BaseRequest constructor.
      *
-     * @param ApiClientInterface $client
      * @param array $options
      *
-     * @throws ValidationException
+     * @param ApiClientInterface $client
+     * @param CacheInterface $cache
      */
-    public function __construct(ApiClientInterface $client, array $options)
+    public function __construct(array $options, ApiClientInterface $client, CacheInterface $cache)
     {
         $this->httpClient = $client;
         $this->options = $options;
+        $this->cache = $cache;
     }
 
     /**

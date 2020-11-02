@@ -4,12 +4,12 @@ namespace PodPoint\Reviews\Providers\Trustpilot\Request;
 
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AccessToken;
-use PodPoint\Reviews\Request\BaseRequest;
+use PodPoint\Reviews\Request\AbstractCacheableRequest;
 
 /**
  * Class AccessTokenRequest.
  */
-class AccessTokenRequest extends BaseRequest
+class AccessTokenRequest extends AbstractCacheableRequest
 {
     /**
      * @var string
@@ -35,6 +35,15 @@ class AccessTokenRequest extends BaseRequest
      * @var ApiClient
      */
     const PASSWORD = 'password';
+
+    /**
+     * The sendRequest withAuthentication parameter must be set to false,
+     * this class is used AccessToken provider if not set to false it will
+     * go into infinite loop.
+     *
+     * @var bool
+     */
+    protected $withAuthentication = false;
 
     public function requiredFields(): array
     {
@@ -77,17 +86,7 @@ class AccessTokenRequest extends BaseRequest
      */
     public function send()
     {
-        /*
-         * The sendRequest withAuthentication parameter must be set to false,
-         * this class is used AccessToken provider if not set to false it will
-         * go into infinite loop.
-         */
-        $response = $this->httpClient->sendRequest(
-            $this->getRequest(),
-            false
-        );
-
-        $json = $this->httpClient->getResponseJson($response);
+        $json = parent::send();
 
         return new AccessToken($json);
     }

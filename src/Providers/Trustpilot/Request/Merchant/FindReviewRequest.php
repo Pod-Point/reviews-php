@@ -43,7 +43,7 @@ class FindReviewRequest extends BaseRequestWrapper
     {
         $response = $this->httpClient->sendRequest(
             $this->getRequest(),
-            true
+            $this->withAuthentication
         );
 
         return $this->httpClient->getResponseJson($response);

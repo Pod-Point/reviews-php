@@ -2,6 +2,9 @@
 
 namespace PodPoint\Reviews;
 
+use PodPoint\Reviews\Cache\LaravelCacheAdapter;
+use Psr\SimpleCache\CacheInterface;
+
 /**
  * Class ServiceProvider.
  */
@@ -20,6 +23,16 @@ class LaravelServiceProvider extends \Illuminate\Support\ServiceProvider
     }
 
     /**
+     * @return mixed
+     */
+    protected function getCacheAdapter(): CacheInterface
+    {
+        $cacheAdapterClass = config('review-providers.cache.adapter');
+
+        return new $cacheAdapterClass;
+    }
+
+    /**
      * Register any application services.
      *
      * @return void
@@ -31,8 +44,9 @@ class LaravelServiceProvider extends \Illuminate\Support\ServiceProvider
             'reviews-providers'
         );
 
+
         $this->app->singleton('reviews', function () {
-            return new Reviews(config('review-providers'));
+            return new Reviews(config('review-providers'), new LaravelCacheAdapter());
         });
     }
 }

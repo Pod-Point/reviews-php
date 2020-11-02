@@ -5,10 +5,10 @@ namespace PodPoint\Reviews\Tests\Request;
 use PodPoint\Reviews\Exceptions\ValidationException;
 use PodPoint\Reviews\Tests\TestCase;
 
-class BaseRequestTest extends TestCase
+class AbstractBaseRequestTest extends TestCase
 {
     /**
-     * Instance of a mocked abstract BaseRequest.
+     * Instance of a mocked AbstractBaseRequest.
      *
      * @var \Mockery\Expectation|\Mockery\ExpectationInterface|\Mockery\HigherOrderMessage
      */
@@ -27,7 +27,7 @@ class BaseRequestTest extends TestCase
     protected function setUp(): void
     {
         $this->mockedApiClient = $this->getMockedApiClient();
-        $this->mockedRequest = $this->getMockedBaseRequest($this->mockedApiClient, ['foo-required' => 'bar'], ['foo-required']);
+        $this->mockedRequest = $this->getMockedAbstractBaseRequest($this->mockedApiClient, ['foo-required' => 'bar'], ['foo-required']);
     }
 
     /**
@@ -55,7 +55,7 @@ class BaseRequestTest extends TestCase
     {
         $this->expectException(ValidationException::class);
 
-        $request = $this->getMockedBaseRequest(
+        $request = $this->getMockedAbstractBaseRequest(
             $this->mockedApiClient,
             [
                 'invalid' => 'test-user-1',
