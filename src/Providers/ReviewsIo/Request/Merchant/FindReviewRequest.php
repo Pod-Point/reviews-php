@@ -16,7 +16,7 @@ class FindReviewRequest extends BaseRequestWrapper
      * @return Request
      */
     public function getRequest(): Request
-    {
+   {
         $query = http_build_query([
             'store' => $this->getOption('store'),
             'review_id' => $this->getOption('reviewId'),
@@ -32,9 +32,7 @@ class FindReviewRequest extends BaseRequestWrapper
      */
     public function requiredFields(): array
     {
-        return [
-            'reviewId'
-        ];
+        return [];
     }
 
     /**
