@@ -29,14 +29,6 @@ class MerchantActions implements ActionsInterface
     protected $config;
 
     /**
-     * Store value to pass as option when making request.
-     * The store value is typically tied to the apiKey.
-     *
-     * @var string
-     */
-    protected $store;
-
-    /**
      * ServiceReview constructor.
      *
      * @param ApiClientInterface $apiClient
@@ -94,7 +86,7 @@ class MerchantActions implements ActionsInterface
     {
         $options = [
             'reviewId' => $reviewId,
-            'store' => $this->store,
+            'store' => $this->config['store'],
         ];
 
         $request = new FindReviewRequest($this->apiClient, $options);
