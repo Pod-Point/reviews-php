@@ -19,7 +19,6 @@ class FindInviteRequest extends BaseRequestWrapper
     {
         $query = http_build_query([
             'store' => $this->getOption('store'),
-            'order_number' => $this->getOption('orderId'),
         ]);
 
         return new Request('GET', '/merchant/invitation?' . $query);

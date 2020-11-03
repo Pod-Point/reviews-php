@@ -106,7 +106,7 @@ class MerchantActions implements ActionsInterface
     public function findInvite(string $orderId)
     {
         $options = [
-            'orderId' => $orderId,
+            'order_number' => $orderId,
             'store' => $this->config['store'],
         ];
 
