@@ -94,24 +94,4 @@ class MerchantActions implements ActionsInterface
 
         return $request->send();
     }
-
-    /**
-     * Find invite by order_id.
-     *
-     * @param string $orderId
-     *
-     * @return array|mixed
-     * @throws ValidationException
-     */
-    public function findInvite(string $orderId)
-    {
-        $options = [
-            'order_number' => $orderId,
-            'store' => $this->config['store'],
-        ];
-
-        $request = new FindInviteRequest($this->apiClient, $options);
-
-        return $request->send();
-    }
 }
