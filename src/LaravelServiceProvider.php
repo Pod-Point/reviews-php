@@ -23,16 +23,6 @@ class LaravelServiceProvider extends \Illuminate\Support\ServiceProvider
     }
 
     /**
-     * @return mixed
-     */
-    protected function getCacheAdapter(): CacheInterface
-    {
-        $cacheAdapterClass = config('review-providers.cache.adapter');
-
-        return new $cacheAdapterClass;
-    }
-
-    /**
      * Register any application services.
      *
      * @return void
@@ -46,7 +36,7 @@ class LaravelServiceProvider extends \Illuminate\Support\ServiceProvider
 
 
         $this->app->singleton('reviews', function () {
-            return new Reviews(config('review-providers'), new LaravelCacheAdapter());
+            return new Reviews(config('review-providers'));
         });
     }
 }

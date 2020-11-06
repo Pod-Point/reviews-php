@@ -37,13 +37,11 @@ abstract class AbstractBaseRequest
      * @param array $options
      *
      * @param ApiClientInterface $client
-     * @param CacheInterface $cache
      */
-    public function __construct(array $options, ApiClientInterface $client, CacheInterface $cache)
+    public function __construct(array $options, ApiClientInterface $client)
     {
         $this->httpClient = $client;
         $this->options = $options;
-        $this->cache = $cache;
     }
 
     /**

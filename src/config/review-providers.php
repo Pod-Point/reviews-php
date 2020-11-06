@@ -1,10 +1,6 @@
 <?php
 
 return [
-    'cache' => [
-        'enabled' => true,
-        'adapter' => '\\PodPoint\\Reviews\\Cache\\LaravelCache',
-    ],
     /*
     |--------------------------------------------------------------------------
     | Review provider configurations
