@@ -4,6 +4,7 @@ namespace PodPoint\Reviews\Providers\Trustpilot;
 
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Cache;
 use PodPoint\Reviews\AccessToken;
 use PodPoint\Reviews\Providers\Trustpilot\Request\AccessTokenRequest;
 use PodPoint\Reviews\AbstractApiClient;
@@ -72,6 +73,14 @@ class ApiClient extends AbstractApiClient
      */
     public function getAccessToken(): AccessToken
     {
+        $cacheKey = 'trustpilot.access_token';
+        $cacheTtl = '3600';
+
+
+        if (Cache::has($cacheKey)) {
+            return Cache::get($cacheKey);
+        }
+
         $options = [
             AccessTokenRequest::CLIENT_ID => $this->clientId,
             AccessTokenRequest::CLIENT_SECRET => $this->clientSecret,
@@ -80,8 +89,16 @@ class ApiClient extends AbstractApiClient
         ];
 
         $request = new AccessTokenRequest($this, $options);
+        $response = $request->send();
 
-        return $request->send();
+        // TODO if authentication fails don't cache;
+        $authenticated = false;
+
+        if ($authenticated) {
+            Cache::put($cacheKey, $response, $cacheTtl);
+        }
+
+        return $response;
     }
 
     /**
