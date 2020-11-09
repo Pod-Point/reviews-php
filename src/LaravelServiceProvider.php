@@ -31,7 +31,6 @@ class LaravelServiceProvider extends \Illuminate\Support\ServiceProvider
             'reviews-providers'
         );
 
-
         $this->app->singleton('reviews', function () {
             return new Reviews(config('review-providers'));
         });

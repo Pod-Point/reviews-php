@@ -29,7 +29,8 @@ abstract class AbstractApiClient implements ApiClientInterface
 
     /**
      * The base uri that will be used to make request.
-     * @var
+     *
+     * @var string
      */
     protected $baseUri;
 

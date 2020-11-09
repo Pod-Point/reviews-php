@@ -6,16 +6,18 @@ use Illuminate\Support\Facades\Cache;
 
 /**
  * Class LaravelCache
- * @package PodPoint\Reviews\Cache
  */
 class LaravelCacheAdapter
 {
     /**
+     * Returns cache by key.
+     *
      * @param string $key
      * @param null $default
+     *
      * @return mixed
      */
-    public function get($key, $default = null)
+    public function get(string $key, $default = null)
     {
         return Cache::get($key, $default);
     }
@@ -31,16 +33,28 @@ class LaravelCacheAdapter
         return Cache::has($key);
     }
 
-    public function set($key, $value, $ttl = null)
+    /**
+     * Sets cache.
+     *
+     * @param string $key
+     * @param $value
+     * @param null $ttl
+     *
+     * @return bool
+     */
+    public function set(string $key, $value, $ttl = null): bool
     {
-        Cache::put($key, $value, $ttl);
+        return Cache::put($key, $value, $ttl);
     }
 
     /**
+     * Deletes cache.
+     *
      * @param string $key
+     *
      * @return bool
      */
-    public function delete($key)
+    public function delete(string $key): bool
     {
         return Cache::forget($key);
     }
@@ -50,7 +64,15 @@ class LaravelCacheAdapter
         //
     }
 
-    public function getMultiple($keys, $default = null)
+    /**
+     * Returns multiple caches.
+     *
+     * @param array $keys
+     * @param null $default
+     *
+     * @return array
+     */
+    public function getMultiple(array $keys, $default = null)
     {
         $cache = [];
 
@@ -61,14 +83,25 @@ class LaravelCacheAdapter
         return $cache;
     }
 
-    public function setMultiple($values, $ttl = null)
+    /**
+     * Sets multiple cache values.
+     *
+     * @param array $values
+     * @param int|null $ttl
+     */
+    public function setMultiple(array $values, int $ttl = null)
     {
         foreach ($values as $value) {
             $this->set($value['key'], $value['value'], $ttl);
         }
     }
 
-    public function deleteMultiple($keys)
+    /**
+     * Deletes multiple cache keys.
+     *
+     * @param array $keys
+     */
+    public function deleteMultiple(array $keys)
     {
         foreach ($keys as $key) {
             $this->delete($key);

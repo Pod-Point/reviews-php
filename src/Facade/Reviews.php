@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Facade;
 class Reviews extends Facade
 {
     /**
-     * @inheritDoc
+     * @return string
      */
     protected static function getFacadeAccessor()
     {

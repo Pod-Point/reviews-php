@@ -4,6 +4,7 @@ namespace PodPoint\Reviews\Request;
 
 use GuzzleHttp\Exception\ClientException;
 use PodPoint\Reviews\ApiClientInterface;
+use PodPoint\Reviews\Cache\CacheProvider;
 use PodPoint\Reviews\Exceptions\UnauthorizedException;
 
 /**
@@ -34,7 +35,7 @@ abstract class AbstractCacheableRequest extends AbstractBaseRequest
     {
         parent::__construct($options, $client);
 
-        $this->cacheAdapter = CacheFactory::getInstance();
+        $this->cacheAdapter = CacheProvider::getInstance();
     }
 
     /**
