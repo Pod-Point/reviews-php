@@ -2,8 +2,9 @@
 
 namespace PodPoint\Reviews\Request;
 
+use GuzzleHttp\Exception\ClientException;
 use PodPoint\Reviews\ApiClientInterface;
-use PodPoint\Reviews\Cache\LaravelCacheAdapter;
+use PodPoint\Reviews\Exceptions\UnauthorizedException;
 
 /**
  * Class CacheableRequest
@@ -31,9 +32,9 @@ abstract class AbstractCacheableRequest extends AbstractBaseRequest
 
     public function __construct(ApiClientInterface $client, array $options)
     {
-        parent::__construct($client, $options);
+        parent::__construct($options, $client);
 
-        $this->cacheAdapter = new LaravelCacheAdapter();
+        $this->cacheAdapter = CacheFactory::getInstance();
     }
 
     /**
@@ -56,20 +57,28 @@ abstract class AbstractCacheableRequest extends AbstractBaseRequest
     public function send()
     {
         $cacheKey = $this->getCacheableKey();
+
         if ($this->cacheAdapter->has($cacheKey)) {
             return $this->cacheAdapter->get($cacheKey);
         }
 
-        $response = $this->httpClient->sendRequest(
-            $this->getRequest(),
-            $this->withAuthentication
-        );
+        try {
+            $response = $this->httpClient->sendRequest(
+                $this->getRequest(),
+                $this->withAuthentication
+            );
 
-        $json = $this->httpClient->getResponseJson($response);
+            $responseBody = $this->httpClient->getResponseJson($response);
 
-        //TODO: Check if the header response is ok, if not don't cache.
-        $this->cacheAdapter->set($this->getCacheableKey(), $json, $this->cacheTtl);
+            $this->cacheAdapter->set($this->getCacheableKey(), $responseBody, $this->cacheTtl);
 
-        return $json;
+            return $responseBody;
+        } catch (ClientException $exception) {
+            if (401 === $exception->getCode()) {
+                throw new UnauthorizedException;
+            }
+
+            throw $exception;
+        }
     }
 }

@@ -2,9 +2,6 @@
 
 namespace PodPoint\Reviews;
 
-use PodPoint\Reviews\Cache\LaravelCacheAdapter;
-use Psr\SimpleCache\CacheInterface;
-
 /**
  * Class ServiceProvider.
  */

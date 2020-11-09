@@ -7,7 +7,6 @@ use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AbstractApiClient;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
-use Psr\SimpleCache\CacheInterface;
 
 /**
  * Class BaseRequest. Holds functionality shared by all Request classes across the package.

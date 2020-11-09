@@ -3,13 +3,12 @@
 namespace PodPoint\Reviews\Cache;
 
 use Illuminate\Support\Facades\Cache;
-use Psr\SimpleCache\CacheInterface;
 
 /**
  * Class LaravelCache
  * @package PodPoint\Reviews\Cache
  */
-class LaravelCacheAdapter implements CacheInterface
+class LaravelCacheAdapter
 {
     /**
      * @param string $key

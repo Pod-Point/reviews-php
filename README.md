@@ -85,6 +85,15 @@ $trustpilot->merchant()->findReview((string) $reviewId);
 $trustpilot->merchant()->getReviews((array) $serviceReviewsFilterOptions);
 ```
 
+Compatibility table
+This package is compatible up to Laravel 7. If used with higher versions of Laravel, the guzzle package needs to be upgraded.  
+
+| Laravel Version | Package Version |
+| ------------- | ------------- |
+| ^5.2  | 0.1.* |
+| ^6.0  | 0.1.* |
+| ^7.0  | 0.1.* |
+
 For more details about each provider request options see:
  * [Trustpilot](https://github.com/Pod-Point/reviews-php/blob/master/src/Providers/Trustpilot/README.md) 
  * [ReviewsIO](https://github.com/Pod-Point/reviews-php/blob/master/src/Providers/ReviewsIo/README.md) 
