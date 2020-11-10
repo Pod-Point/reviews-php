@@ -49,12 +49,12 @@ class InviteRequest extends BaseRequestWrapper
      */
     public function send()
     {
-        $response = $this->httpClient->sendRequest(
+        $response = $this->apiClient->sendRequest(
             $this->getRequest(),
             $this->withAuthentication
         );
 
-        return $this->httpClient->getResponseJson($response);
+        return $this->apiClient->getResponseJson($response);
     }
 
     /**

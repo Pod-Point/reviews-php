@@ -19,7 +19,7 @@ class GetMerchantReviewsTest extends TestCase
             'store' => 'store-id-321',
         ]);
 
-        $this->assertEquals($mockedApiClient, $request->getHttpClient());
+        $this->assertEquals($mockedApiClient, $request->getApiClient());
         $this->assertEquals([
             'store' => 'store-id-321',
         ], $request->getOptions());

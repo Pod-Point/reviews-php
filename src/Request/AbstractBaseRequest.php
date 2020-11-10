@@ -25,8 +25,8 @@ abstract class AbstractBaseRequest
     /** @var array $option */
     protected $options;
 
-    /** @var ApiClientInterface $httpClient */
-    protected $httpClient;
+    /** @var ApiClientInterface $apiClient */
+    protected $apiClient;
 
     protected $withAuthentication  = true;
 
@@ -35,11 +35,11 @@ abstract class AbstractBaseRequest
      *
      * @param array $options
      *
-     * @param ApiClientInterface $client
+     * @param ApiClientInterface $apiClient
      */
-    public function __construct(array $options, ApiClientInterface $client)
+    public function __construct(array $options, ApiClientInterface $apiClient)
     {
-        $this->httpClient = $client;
+        $this->apiClient = $apiClient;
         $this->options = $options;
     }
 
@@ -48,9 +48,9 @@ abstract class AbstractBaseRequest
      *
      * @return Client|AbstractApiClient
      */
-    public function getHttpClient()
+    public function getApiClient()
     {
-        return $this->httpClient;
+        return $this->apiClient;
     }
 
     /**

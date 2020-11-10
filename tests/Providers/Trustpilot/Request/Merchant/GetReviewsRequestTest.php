@@ -18,7 +18,7 @@ class GetReviewsRequestTest extends TestCase
         $mockedApiClient = $this->getMockedApiClient();
         $request = new GetReviewsRequest($mockedApiClient, $options);
 
-        $this->assertEquals($mockedApiClient, $request->getHttpClient());
+        $this->assertEquals($mockedApiClient, $request->getApiClient());
         $this->assertEquals($options, $request->getOptions());
     }
 

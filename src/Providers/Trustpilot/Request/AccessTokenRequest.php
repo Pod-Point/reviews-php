@@ -16,7 +16,7 @@ class AccessTokenRequest extends AbstractCacheableRequest
      */
     const CLIENT_ID = 'client_id';
 
-	/**
+    /**
      * @var ApiClient
      */
     const CLIENT_SECRET = 'client_secret';
@@ -48,11 +48,11 @@ class AccessTokenRequest extends AbstractCacheableRequest
     public function requiredFields(): array
     {
         return [
-            self::CLIENT_ID,
-            self::CLIENT_SECRET,
-            self::USERNAME,
-            self::PASSWORD,
-        ];
+                self::CLIENT_ID,
+                self::CLIENT_SECRET,
+                self::USERNAME,
+                self::PASSWORD,
+               ];
     }
 
     /**
@@ -66,15 +66,15 @@ class AccessTokenRequest extends AbstractCacheableRequest
 
         $method = 'POST';
         $header = [
-            'Authorization' => "Basic {$key}",
-            'Content-Type' => 'application/x-www-form-urlencoded'
-        ];
+                   'Authorization' => "Basic {$key}",
+                   'Content-Type'  => 'application/x-www-form-urlencoded',
+                  ];
 
         $body = http_build_query([
-            'grant_type' => 'password',
-            self::USERNAME => $this->getOption(self::USERNAME),
-            self::PASSWORD => $this->getOption(self::PASSWORD),
-        ]);
+                                  'grant_type'   => 'password',
+                                  self::USERNAME => $this->getOption(self::USERNAME),
+                                  self::PASSWORD => $this->getOption(self::PASSWORD),
+                                 ]);
 
         return new Request($method, self::URI, $header, $body);
     }
@@ -83,6 +83,8 @@ class AccessTokenRequest extends AbstractCacheableRequest
      * Sends request and returns AccessToken model.
      *
      * @return array|mixed|AccessToken
+     *
+     * @throws \PodPoint\Reviews\Exceptions\UnauthorizedException
      */
     public function send()
     {

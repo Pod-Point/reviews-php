@@ -3,6 +3,7 @@
 namespace PodPoint\Reviews\Request;
 
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7\Response;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Cache\CacheProvider;
 use PodPoint\Reviews\Exceptions\UnauthorizedException;
@@ -10,7 +11,6 @@ use PodPoint\Reviews\Exceptions\UnauthorizedException;
 /**
  * Class CacheableRequest
  *
- * @package PodPoint\Reviews\Request
  */
 abstract class AbstractCacheableRequest extends AbstractBaseRequest
 {
@@ -63,23 +63,17 @@ abstract class AbstractCacheableRequest extends AbstractBaseRequest
             return $this->cacheAdapter->get($cacheKey);
         }
 
-        try {
-            $response = $this->httpClient->sendRequest(
-                $this->getRequest(),
-                $this->withAuthentication
-            );
+        $response = $this->apiClient->sendRequest(
+            $this->getRequest(),
+            $this->withAuthentication
+        );
 
-            $responseBody = $this->httpClient->getResponseJson($response);
+        $response->getStatusCode();
 
-            $this->cacheAdapter->set($this->getCacheableKey(), $responseBody, $this->cacheTtl);
+        $responseBody = $this->apiClient->getResponseJson($response);
 
-            return $responseBody;
-        } catch (ClientException $exception) {
-            if (401 === $exception->getCode()) {
-                throw new UnauthorizedException;
-            }
+        $this->cacheAdapter->set($this->getCacheableKey(), $responseBody, $this->cacheTtl);
 
-            throw $exception;
-        }
+        return $responseBody;
     }
 }

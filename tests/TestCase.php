@@ -2,6 +2,7 @@
 
 namespace PodPoint\Reviews\Tests;
 
+use GuzzleHttp\ClientInterface;
 use Mockery;
 use PodPoint\Reviews\AbstractApiClient;
 use PodPoint\Reviews\Request\AbstractBaseRequest;
@@ -51,11 +52,15 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Mocks a abstract Api client.
      *
+     * @param null $httpClient
      * @return Mockery\LegacyMockInterface|Mockery\MockInterface|AbstractApiClient
      */
-    public function getMockedApiClient()
+    public function getMockedApiClient($httpClient = null)
     {
-        return Mockery::mock(AbstractApiClient::class)->makePartial();
+        if (!$httpClient) {
+            $httpClient = Mockery::mock(\GuzzleHttp\ClientInterface::class);
+        }
+        return Mockery::mock(AbstractApiClient::class, [$httpClient])->makePartial();
     }
 
     /**
@@ -72,7 +77,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         array $options = [],
         array $requiredFields = []
     ) {
-        $mock = Mockery::mock(AbstractBaseRequest::class, array($client, $options))
+        $mock = Mockery::mock(AbstractBaseRequest::class, array($options, $client))
             ->makePartial();
 
         $mock->shouldReceive('requiredFields')

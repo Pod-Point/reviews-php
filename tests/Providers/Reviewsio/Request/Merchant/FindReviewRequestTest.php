@@ -20,7 +20,7 @@ class FindReviewRequestTest extends TestCase
             'reviewId' => 'review-id-123'
         ]);
 
-        $this->assertEquals($mockedApiClient, $request->getHttpClient());
+        $this->assertEquals($mockedApiClient, $request->getApiClient());
         $this->assertEquals([
             'store' => 'store-id-321',
             'reviewId' => 'review-id-123',

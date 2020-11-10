@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AccessToken;
 use PodPoint\Reviews\ApiClientInterface;
+use PodPoint\Reviews\Cache\CacheProvider;
 use PodPoint\Reviews\Exceptions\ValidationException;
 use PodPoint\Reviews\Providers\Trustpilot\ApiClient;
 use PodPoint\Reviews\Tests\TestCase;
@@ -74,6 +75,12 @@ class ApiClientTest extends TestCase
         $mockedResponse = $this->getMockedResponse($responseBody);
 
         $mockedHttpClient = Mockery::mock(ClientInterface::class);
+
+        $mockedAdapter = \Mockery::mock('CacheAdapter');
+        $mockedAdapter->shouldReceive('has')->once()->andReturnTrue();
+        $mockedAdapter->shouldReceive('get')->once()->andReturn(\GuzzleHttp\json_decode($responseBody, true));
+
+        CacheProvider::setInstance($mockedAdapter);
 
         $mockedHttpClient->shouldReceive('send')
             ->withAnyArgs()

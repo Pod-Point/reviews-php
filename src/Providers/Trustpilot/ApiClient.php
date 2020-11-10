@@ -128,6 +128,7 @@ class ApiClient extends AbstractApiClient
      * Pre authenticates the app and attaches access token to all.
      *
      * @param Request $request
+     *
      * @throws GuzzleException
      * @throws \PodPoint\Reviews\Exceptions\ValidationException
      */

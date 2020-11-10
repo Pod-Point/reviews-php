@@ -13,7 +13,7 @@ class LaravelCacheAdapter
      * Returns cache by key.
      *
      * @param string $key
-     * @param null $default
+     * @param null   $default
      *
      * @return mixed
      */
@@ -25,8 +25,8 @@ class LaravelCacheAdapter
     /**
      * Check if cache exists.
      *
-     * @param $key
-     * @return bool
+     * @param  $key
+     * @return boolean
      */
     public function has($key): bool
     {
@@ -36,13 +36,12 @@ class LaravelCacheAdapter
     /**
      * Sets cache.
      *
-     * @param string $key
-     * @param $value
-     * @param null $ttl
-     *
-     * @return bool
+     * @param  string $key
+     * @param  $value
+     * @param  null   $ttl
+     * @return boolean
      */
-    public function set(string $key, $value, $ttl = null): bool
+    public function set(string $key, $value, $ttl = null)
     {
         return Cache::put($key, $value, $ttl);
     }
@@ -52,7 +51,7 @@ class LaravelCacheAdapter
      *
      * @param string $key
      *
-     * @return bool
+     * @return boolean
      */
     public function delete(string $key): bool
     {
@@ -68,7 +67,7 @@ class LaravelCacheAdapter
      * Returns multiple caches.
      *
      * @param array $keys
-     * @param null $default
+     * @param null  $default
      *
      * @return array
      */
@@ -86,13 +85,13 @@ class LaravelCacheAdapter
     /**
      * Sets multiple cache values.
      *
-     * @param array $values
-     * @param int|null $ttl
+     * @param array        $values
+     * @param integer|null $ttl
      */
     public function setMultiple(array $values, int $ttl = null)
     {
-        foreach ($values as $value) {
-            $this->set($value['key'], $value['value'], $ttl);
+        foreach ($values as $cacheKey => $value) {
+            $this->set($cacheKey, $value, $ttl);
         }
     }
 
