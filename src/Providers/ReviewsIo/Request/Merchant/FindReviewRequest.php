@@ -32,9 +32,7 @@ class FindReviewRequest extends BaseRequestWrapper
      */
     public function requiredFields(): array
     {
-        return [
-            'reviewId'
-        ];
+        return [];
     }
 
     /**
