@@ -4,6 +4,7 @@ namespace PodPoint\Reviews\Tests\Request;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PodPoint\Reviews\Cache\CacheProvider;
@@ -146,11 +147,19 @@ class AbstractCacheableRequestTest extends TestCase
      */
     public function testSendWithUnauthorizedException()
     {
+        $this->expectException(RequestException::class);
+
+        $response = new Response(401, [], '{"reason":"Authentication Failed"}');
+
         $this->httpClient
             ->shouldReceive('send')
             ->once()
             ->with($this->mockedGuzzleRequest)
-            ->andReturn(new Response(401, ['status' => '401 Unauthorized'], '{"message": "Unauthorized!"}'));
+            ->andThrow(new RequestException(
+                'An error was encountered during the on_headers event',
+                $this->mockedGuzzleRequest,
+                $response
+            ));
 
         $apiClient = $this->getMockedApiClient($this->httpClient);
         $apiClient->shouldReceive('addAuthenticationHeader');
@@ -173,6 +182,6 @@ class AbstractCacheableRequestTest extends TestCase
 
         // Check if any content is cached.
         $actualResponse = $request->send();
-        $this->assertEquals(["message" => "Unauthorized!"], $actualResponse);
+        $this->assertEquals(["reason" => "Authentication Failed"], $actualResponse);
     }
 }
