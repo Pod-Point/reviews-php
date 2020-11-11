@@ -2,7 +2,6 @@
 
 namespace PodPoint\Reviews\Tests;
 
-use GuzzleHttp\ClientInterface;
 use Mockery;
 use PodPoint\Reviews\AbstractApiClient;
 use PodPoint\Reviews\Request\AbstractBaseRequest;
@@ -11,7 +10,6 @@ use Psr\Http\Message\StreamInterface;
 
 /**
  * Class TestCase
- * @package PodPoint\Reviews\Tests
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -28,7 +26,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Mocks a response instance of ResponseInterface.
      *
-     * @param $responseBody
+     * @param  $responseBody
      * @return Mockery\LegacyMockInterface|Mockery\MockInterface|ResponseInterface
      */
     public function getMockedResponse($responseBody)
@@ -52,7 +50,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Mocks a abstract Api client.
      *
-     * @param null $httpClient
+     * @param  null $httpClient
      * @return Mockery\LegacyMockInterface|Mockery\MockInterface|AbstractApiClient
      */
     public function getMockedApiClient($httpClient = null)
@@ -67,8 +65,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * Creates a mocked abstract base request.
      *
      * @param AbstractApiClient $client
-     * @param array $options
-     * @param array $requiredFields
+     * @param array             $options
+     * @param array             $requiredFields
      *
      * @return Mockery\Mock
      */

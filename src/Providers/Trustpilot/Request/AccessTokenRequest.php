@@ -83,8 +83,6 @@ class AccessTokenRequest extends AbstractCacheableRequest
      * Sends request and returns AccessToken model.
      *
      * @return array|mixed|AccessToken
-     *
-     * @throws \PodPoint\Reviews\Exceptions\UnauthorizedException
      */
     public function send()
     {

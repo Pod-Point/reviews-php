@@ -44,9 +44,9 @@ abstract class AbstractBaseRequest
     }
 
     /**
-     * Get http client.
+     * Get apiClient client.
      *
-     * @return Client|AbstractApiClient
+     * @return ApiClientInterface
      */
     public function getApiClient()
     {

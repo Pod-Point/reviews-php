@@ -3,12 +3,10 @@
 namespace PodPoint\Reviews\Tests\Request;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PodPoint\Reviews\Cache\CacheProvider;
-use PodPoint\Reviews\Exceptions\UnauthorizedException;
 use PodPoint\Reviews\Request\AbstractCacheableRequest;
 use PodPoint\Reviews\Tests\TestCase;
 use Psr\SimpleCache\CacheInterface;
@@ -18,11 +16,23 @@ use Psr\SimpleCache\CacheInterface;
  */
 class AbstractCacheableRequestTest extends TestCase
 {
+    /**
+     * Mocked request used for returning getRequest.
+     *
+     * @var Request|\Mockery\LegacyMockInterface|\Mockery\MockInterface
+     */
     protected $mockedGuzzleRequest;
 
+    /**
+     * Mock of Http Client, used to pass to api client for making requests.
+     *
+     * @var \Mockery\Mock
+     */
     protected $httpClient;
 
     /**
+     * Instance of mocked cached Adapter.
+     *
      * @var \Mockery\LegacyMockInterface|\Mockery\MockInterface|CacheInterface
      */
     protected $cacheAdapter;
@@ -40,7 +50,7 @@ class AbstractCacheableRequestTest extends TestCase
     }
 
     /**
-     *
+     * Making sure when the cache key is not set it can auto generate by class name.
      */
     public function testGetCacheableKey()
     {
@@ -64,8 +74,9 @@ class AbstractCacheableRequestTest extends TestCase
         $this->assertEquals($cacheKey, $request->getCacheableKey());
     }
 
+
     /**
-     * @throws UnauthorizedException
+     * Making sure the send method returns content from cache when cache exists.
      */
     public function testSendWithExistingCache()
     {
@@ -103,8 +114,6 @@ class AbstractCacheableRequestTest extends TestCase
 
     /**
      * Making sure when the cache doesn't exist the response is cached and returned.
-     *
-     * @throws UnauthorizedException
      */
     public function testSendWithNoCacheHit()
     {

@@ -18,7 +18,7 @@ class ProviderNotFoundException extends \Exception
      * @param int $code
      * @param Throwable|null $previous
      */
-    public function __construct($class = '', int $code = 0, Throwable $previous = null)
+    public function __construct($class = '', $code = 0, Throwable $previous = null)
     {
         if (empty($class)) {
             $message = $this->message;

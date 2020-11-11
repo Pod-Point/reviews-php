@@ -11,6 +11,11 @@ use PodPoint\Reviews\Tests\TestCase;
  */
 class LaravelCacheAdapterTest extends TestCase
 {
+    /**
+     * Instance of Laravel Cache Adapter.
+     *
+     * @var LaravelCacheAdapter
+     */
     protected $cacheAdapter;
 
     /**
@@ -38,9 +43,9 @@ class LaravelCacheAdapterTest extends TestCase
                             ], $this->cacheAdapter->get('foo'));
     }
 
-    // TOOD:  Do test for none existing cache.
-
-
+    /**
+     * Making sure the has method calls the right laravel cache facade methods.
+     */
     public function testHas()
     {
         Cache::shouldReceive('has')
@@ -107,6 +112,9 @@ class LaravelCacheAdapterTest extends TestCase
                             ], $actualReturn);
     }
 
+    /**
+     * Making sire the set multiple calls the set/put method.
+     */
     public function testSetMultiple()
     {
         $cacheValues = [
@@ -128,6 +136,9 @@ class LaravelCacheAdapterTest extends TestCase
         $this->assertTrue(true);
     }
 
+    /**
+     * Making sure the delete method calls the right laravel cache facade methods.
+     */
     public function testDeleteMultiple()
     {
         $cacheValues = [

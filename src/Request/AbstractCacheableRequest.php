@@ -2,15 +2,11 @@
 
 namespace PodPoint\Reviews\Request;
 
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Psr7\Response;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Cache\CacheProvider;
-use PodPoint\Reviews\Exceptions\UnauthorizedException;
 
 /**
  * Class CacheableRequest
- *
  */
 abstract class AbstractCacheableRequest extends AbstractBaseRequest
 {
@@ -22,12 +18,16 @@ abstract class AbstractCacheableRequest extends AbstractBaseRequest
     protected $cacheKey;
 
     /**
-     * @var
+     * The cache time to live.
+     *
+     * @var int
      */
-    protected $cacheTtl = '3600';
+    protected $cacheTtl = 3600;
 
     /**
-     * @var
+     * Instance of cache adapter.
+     *
+     * @var mixed
      */
     protected $cacheAdapter;
 
@@ -52,8 +52,10 @@ abstract class AbstractCacheableRequest extends AbstractBaseRequest
         return sha1(get_class($this));
     }
 
-    /*
+    /**
      * Caches the request, using the default adapter.
+     *
+     * @return array|mixed
      */
     public function send()
     {
