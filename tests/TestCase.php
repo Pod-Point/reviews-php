@@ -65,13 +65,13 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * Creates a mocked abstract base request.
      *
      * @param AbstractApiClient $client
-     * @param array             $options
-     * @param array             $requiredFields
+     * @param array $options
+     * @param array $requiredFields
      *
      * @return Mockery\Mock
      */
     public function getMockedAbstractBaseRequest(
-        AbstractApiClient  $client,
+        AbstractApiClient $client,
         array $options = [],
         array $requiredFields = []
     ) {
