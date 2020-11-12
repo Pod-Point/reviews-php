@@ -3,7 +3,9 @@
 namespace PodPoint\Reviews\Request;
 
 use PodPoint\Reviews\ApiClientInterface;
+use PodPoint\Reviews\Cache\AbstractHasCacheTtlInResponse;
 use PodPoint\Reviews\Cache\CacheProvider;
+use PodPoint\Reviews\Providers\Trustpilot\Request\AccessTokenRequest;
 
 /**
  * Class CacheableRequest
@@ -74,8 +76,28 @@ abstract class AbstractCacheableRequest extends AbstractBaseRequest
 
         $responseBody = $this->apiClient->getResponseJson($response);
 
-        $this->cacheAdapter->set($this->getCacheableKey(), $responseBody, $this->cacheTtl);
+        $ttl = $this->getCacheableTtl($responseBody);
+
+        $this->cacheAdapter->set($this->getCacheableKey(), $responseBody, $ttl);
 
         return $responseBody;
+    }
+
+    /**
+     * Get cache time to live value.
+     *
+     * @param array|null $responseBody
+     * @return int
+     */
+    public function getCacheableTtl(array $responseBody = null)
+    {
+        if (
+            in_array(AbstractHasCacheTtlInResponse::class, class_parents($this))
+            && $responseBody
+        ) {
+            return $this->getCacheableTtlFromResponse($responseBody);
+        }
+
+        return $this->cacheTtl;
     }
 }

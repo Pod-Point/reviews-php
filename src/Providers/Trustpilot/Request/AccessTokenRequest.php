@@ -4,13 +4,14 @@ namespace PodPoint\Reviews\Providers\Trustpilot\Request;
 
 use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\AccessToken;
-use PodPoint\Reviews\Request\AbstractCacheableRequest;
+use PodPoint\Reviews\Cache\AbstractHasCacheTtlInResponse;
 
 /**
  * Class AccessTokenRequest.
  */
-class AccessTokenRequest extends AbstractCacheableRequest
+class AccessTokenRequest extends AbstractHasCacheTtlInResponse
 {
+
     /**
      * @var string
      */
@@ -44,6 +45,8 @@ class AccessTokenRequest extends AbstractCacheableRequest
      * @var bool
      */
     protected $withAuthentication = false;
+
+    protected $cacheTtlResponseField = 'expires_in';
 
     /**
      * List of required fields.
