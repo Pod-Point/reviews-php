@@ -5,7 +5,6 @@ namespace PodPoint\Reviews\Request;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Cache\AbstractHasCacheTtlInResponse;
 use PodPoint\Reviews\Cache\CacheProvider;
-use PodPoint\Reviews\Providers\Trustpilot\Request\AccessTokenRequest;
 
 /**
  * Class CacheableRequest
@@ -95,7 +94,7 @@ abstract class AbstractCacheableRequest extends AbstractBaseRequest
             in_array(AbstractHasCacheTtlInResponse::class, class_parents($this))
             && $responseBody
         ) {
-            return $this->getCacheableTtlFromResponse($responseBody);
+            return $this->getCacheableTtlFromResponse($responseBody, $this->cacheTtl);
         }
 
         return $this->cacheTtl;

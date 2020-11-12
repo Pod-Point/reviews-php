@@ -1,10 +1,12 @@
 <?php
 
-
 namespace PodPoint\Reviews\Cache;
 
 use PodPoint\Reviews\Request\AbstractCacheableRequest;
 
+/**
+ * Class AbstractHasCacheTtlInResponse
+ */
 abstract class AbstractHasCacheTtlInResponse extends AbstractCacheableRequest
 {
     /**
