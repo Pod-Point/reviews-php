@@ -75,11 +75,11 @@ class AccessTokenRequest extends AbstractHasCacheTtlInResponse
         $method = 'POST';
         $header = [
             'Authorization' => "Basic {$key}",
-            'Content-Type'  => 'application/x-www-form-urlencoded',
+            'Content-Type' => 'application/x-www-form-urlencoded',
         ];
 
         $body = http_build_query([
-            'grant_type'   => 'password',
+            'grant_type' => 'password',
             self::USERNAME => $this->getOption(self::USERNAME),
             self::PASSWORD => $this->getOption(self::PASSWORD),
         ]);

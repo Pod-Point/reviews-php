@@ -7,6 +7,11 @@ namespace PodPoint\Reviews\Cache;
  */
 class CacheProvider
 {
+    /**
+     * Cache instance of driver/adapter.
+     *
+     * @var null
+     */
     private static $instance = null;
 
     /**
