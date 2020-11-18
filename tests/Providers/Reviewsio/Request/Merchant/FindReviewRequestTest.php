@@ -40,7 +40,7 @@ class FindReviewRequestTest extends TestCase
             'reviewId' => 'review-id-123',
         ]);
 
-        $this->assertEquals([], $request->requiredFields());
+        $this->assertEquals(['reviewId'], $request->requiredFields());
     }
 
     /**
