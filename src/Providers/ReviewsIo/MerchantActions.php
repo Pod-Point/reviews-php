@@ -77,12 +77,12 @@ class MerchantActions implements ActionsInterface
     /**
      * Find review by id.
      *
-     * @param string $reviewId
+     * @param array $options
      *
      * @return array|mixed
      * @throws ValidationException
      */
-    public function findReview(string $reviewId)
+    public function findReview(array $options)
     {
         $options['store'] = $this->config['store'];
 

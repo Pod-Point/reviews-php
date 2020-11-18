@@ -80,17 +80,13 @@ class MerchantActions implements ActionsInterface
     /**
      * Find reviews by id.
      *
-     * @param string $reviewId
+     * @param array $options
      *
      * @return mixed
      * @throws ValidationException
      */
     public function findReview(array $options)
     {
-        $options = [
-            'reviewId' => $reviewId,
-        ];
-
         $request = new FindReviewRequest($this->apiClient, $options);
 
         return $request->send();
