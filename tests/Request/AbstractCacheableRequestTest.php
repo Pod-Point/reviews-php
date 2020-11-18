@@ -74,7 +74,6 @@ class AbstractCacheableRequestTest extends TestCase
         $this->assertEquals($cacheKey, $request->getCacheableKey());
     }
 
-
     /**
      * Making sure the send method returns content from cache when cache exists.
      */

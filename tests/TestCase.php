@@ -26,7 +26,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Mocks a response instance of ResponseInterface.
      *
-     * @param  $responseBody
+     * @param $responseBody
      * @return Mockery\LegacyMockInterface|Mockery\MockInterface|ResponseInterface
      */
     public function getMockedResponse($responseBody)
@@ -50,7 +50,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Mocks a abstract Api client.
      *
-     * @param  null $httpClient
+     * @param null $httpClient
      * @return Mockery\LegacyMockInterface|Mockery\MockInterface|AbstractApiClient
      */
     public function getMockedApiClient($httpClient = null)
