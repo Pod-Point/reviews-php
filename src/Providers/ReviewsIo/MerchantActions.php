@@ -82,12 +82,9 @@ class MerchantActions implements ActionsInterface
      * @return array|mixed
      * @throws ValidationException
      */
-    public function findReview(string $reviewId)
+    public function findReview(array $options = [])
     {
-        $options = [
-            'reviewId' => $reviewId,
-            'store' => $this->config['store'],
-        ];
+        $options['store'] = $this->config['store'];
 
         $request = new FindReviewRequest($this->apiClient, $options);
 
