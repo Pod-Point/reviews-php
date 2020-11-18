@@ -95,7 +95,7 @@ class MerchantActions implements ActionsInterface
     }
 
     /**
-     * Find review by order_number.
+     * Find review by order number.
      *
      * @param string $orderNumber
      *

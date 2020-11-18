@@ -48,4 +48,9 @@ class ProductActions implements ActionsInterface
     {
         //
     }
+
+    public function findReviewByOrderNumber(string $orderNumber)
+    {
+        //
+    }
 }

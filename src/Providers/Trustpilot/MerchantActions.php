@@ -95,4 +95,16 @@ class MerchantActions implements ActionsInterface
 
         return $request->send();
     }
+
+    /**
+     * Find reviews by order number.
+     *
+     * @param string $orderNumber
+     *
+     * @return mixed
+     */
+    public function findReviewByOrderNumber(string $orderNumber)
+    {
+        //
+    }
 }

@@ -26,11 +26,20 @@ interface ActionsInterface
     public function getReviews(array $options = []);
 
     /**
-     * Find reviews by id.
+     * Find reviews by review id.
      *
      * @param string $reviewId
      *
      * @return mixed
      */
     public function findReview(string $reviewId);
+
+    /**
+     * Find reviews by order number.
+     *
+     * @param string $orderNumber
+     *
+     * @return mixed
+     */
+    public function findReviewByOrderNumber(string $orderNumber);
 }
