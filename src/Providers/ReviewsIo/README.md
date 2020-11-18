@@ -5,7 +5,7 @@
 
 #### Create a ReviewsIO client
 
-The ``\PodPoint\Reviews\Reviews`` class requires, configuration array to be passed in the constructor.   
+The ``\PodPoint\Reviews\Reviews`` class requires, configuration array to be passed in the constructor.
 
 Example config:
 ```php
@@ -16,7 +16,7 @@ $config = [
     ],
 ];
 ```
-  
+
 Any PHP Application
 ```
 $reviews = new \PodPoint\Reviews\Reviews($config);
@@ -45,7 +45,7 @@ $reviewsIo->merchant()->invite([
 
 ```
 See all the supported parameters
-[Api Docs](https://api.reviews.io/documentation/#api-Queue_Email_Invitations-Queue_Merchant_Review_Invite) 
+[Api Docs](https://api.reviews.io/documentation/#api-Queue_Email_Invitations-Queue_Merchant_Review_Invite)
 
 #### Get service reviews
 
@@ -60,7 +60,17 @@ See all supported query parameters and responses:
 
 #### Find service review
 ```php
-$reviewsIo->merchant()->findReview($reviewId);
+$options = [
+    'review_id' => <review_id>,
+];
+
+// or
+
+$options = [
+    'order_number' => <order_number>,
+];
+
+$reviewsIo->merchant()->findReview($options);
 ```
 See response example:
 [Api docs](https://api.reviews.io/documentation/#api-Merchant_Reviews-Get_Latest_Merchant_Reviews)

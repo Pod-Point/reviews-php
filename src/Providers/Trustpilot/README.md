@@ -5,7 +5,7 @@
 
 #### Create a trustpilot client
 
-The ``\PodPoint\Reviews\Reviews`` class requires, configuration array to be passed in the constructor.   
+The ``\PodPoint\Reviews\Reviews`` class requires, configuration array to be passed in the constructor.
 
 Example config:
 ```php
@@ -72,7 +72,7 @@ See all supported query parameters and responses:
 
 #### Find service review
 ```php
-$trustpilot->merchant()->findReview($reviewId);
+$trustpilot->merchant()->findReview($options);
 ```
 See response example:
 [Api docs](https://documentation-apidocumentation.trustpilot.com/service-reviews-api#get-private-review)

@@ -85,7 +85,7 @@ class MerchantActions implements ActionsInterface
      * @return mixed
      * @throws ValidationException
      */
-    public function findReview(string $reviewId)
+    public function findReview(array $options)
     {
         $options = [
             'reviewId' => $reviewId,

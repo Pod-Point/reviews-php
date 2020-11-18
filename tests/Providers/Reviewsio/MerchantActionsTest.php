@@ -86,7 +86,9 @@ class MerchantActionsTest extends TestCase
      */
     public function testFindReview()
     {
-        $reviewId = 'review-id-123';
+        $options = [
+            'review_id' => 'review-id-123',
+        ];
 
         $response = $this->getMockedResponse('{"data": [], "message": "successful"}');
         $apiClient = $this->getMockedApiClient();
@@ -96,7 +98,7 @@ class MerchantActionsTest extends TestCase
             'store' => 'store-number-123'
         ]);
 
-        $findReviewResponse = $action->findReview($reviewId);
+        $findReviewResponse = $action->findReview($options);
 
         $expectedResult = [
             'data' => [],

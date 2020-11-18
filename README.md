@@ -81,13 +81,13 @@ $trustpilot = Reviews::trustpilot();
 Here is an example of the provided interface that is shared across the supported review providers.
 ```php
 $trustpilot->merchant()->invite((array) $serviceInviteOptions);
-$trustpilot->merchant()->findReview((string) $reviewId);
+$trustpilot->merchant()->findReview((array) $options);
 $trustpilot->merchant()->getReviews((array) $serviceReviewsFilterOptions);
 ```
 
 For more details about each provider request options see:
- * [Trustpilot](https://github.com/Pod-Point/reviews-php/blob/master/src/Providers/Trustpilot/README.md) 
- * [ReviewsIO](https://github.com/Pod-Point/reviews-php/blob/master/src/Providers/ReviewsIo/README.md) 
+ * [Trustpilot](https://github.com/Pod-Point/reviews-php/blob/master/src/Providers/Trustpilot/README.md)
+ * [ReviewsIO](https://github.com/Pod-Point/reviews-php/blob/master/src/Providers/ReviewsIo/README.md)
 
 ## Semantic versioning
 Reviews PHP follows [semantic versioning](https://semver.org/) specifications.

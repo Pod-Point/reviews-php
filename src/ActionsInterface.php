@@ -32,5 +32,5 @@ interface ActionsInterface
      *
      * @return mixed
      */
-    public function findReview(string $reviewId);
+    public function findReview(array $options);
 }

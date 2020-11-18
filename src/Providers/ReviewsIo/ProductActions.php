@@ -44,7 +44,7 @@ class ProductActions implements ActionsInterface
         //
     }
 
-    public function findReview(string $reviewId)
+    public function findReview(array $options)
     {
         //
     }
