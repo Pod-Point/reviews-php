@@ -53,7 +53,7 @@ class FindReviewRequestTest extends TestCase
         $mockedApiClient = $this->getMockedApiClient();
         $serviceReviewRequest = new FindReviewRequest($mockedApiClient, [
             'store' => 'store-id-321',
-            'reviewId' => 'review-id-123',
+            'review_id' => 'review-id-123',
         ]);
 
         $request = $serviceReviewRequest->getRequest();

@@ -21,11 +21,11 @@ class FindReviewRequest extends BaseRequestWrapper
             'store' => $this->getOption('store'),
         ];
 
-        if ($this->getOption('review_id'])) {
+        if ($this->getOption('review_id')) {
             $options['review_id'] = $this->getOption('review_id');
         }
 
-        if ($this->getOption('order_number'])) {
+        if ($this->getOption('order_number')) {
             $options['order_number'] = $this->getOption('order_number');
         }
 

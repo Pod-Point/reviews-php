@@ -73,8 +73,8 @@ class MerchantActionsTest extends TestCase
         $getReviewsResponse = $action->getReviews($options);
 
         $expectedResult = [
-            "data" => [],
-            "message" => "successful",
+            'data' => [],
+            'message' => 'successful',
         ];
 
         $this->assertEquals($expectedResult, $getReviewsResponse);
@@ -89,7 +89,7 @@ class MerchantActionsTest extends TestCase
     public function testFindReview()
     {
         $options = [
-            'review_id' => 'review-id-123',
+            'reviewId' => 'review-id-123',
         ];
 
         $response = $this->getMockedResponse('{"data": [], "message": "successful"}');
@@ -105,8 +105,8 @@ class MerchantActionsTest extends TestCase
         $findReviewResponse = $action->findReview($options);
 
         $expectedResult = [
-            "data" => [],
-            "message" => "successful",
+            'data' => [],
+            'message' => 'successful',
         ];
 
         $this->assertEquals($expectedResult, $findReviewResponse);
