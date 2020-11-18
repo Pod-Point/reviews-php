@@ -17,10 +17,19 @@ class FindReviewRequest extends BaseRequestWrapper
      */
     public function getRequest(): Request
     {
-        $query = http_build_query([
+        $options = [
             'store' => $this->getOption('store'),
-            'review_id' => $this->getOption('reviewId'),
-        ]);
+        ];
+
+        if ($this->getOption('reviewId'])) {
+            $options['review_id'] = $this->getOption('reviewId');
+        }
+
+        if ($this->getOption('orderNumber'])) {
+            $options['order_number'] = $this->getOption('orderNumber');
+        }
+
+        $query = http_build_query($options);
 
         return new Request('GET', '/merchant/reviews?' . $query);
     }

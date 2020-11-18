@@ -77,7 +77,7 @@ class MerchantActions implements ActionsInterface
     /**
      * Find review by id.
      *
-     * @param string $reviewId
+     * @param array $options
      *
      * @return array|mixed
      * @throws ValidationException
