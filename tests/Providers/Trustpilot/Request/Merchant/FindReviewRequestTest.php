@@ -3,7 +3,6 @@
 namespace PodPoint\Reviews\Tests\Providers\Trustpilot\Request\Merchant;
 
 use PodPoint\Reviews\Providers\Trustpilot\Request\Merchant\FindReviewRequest;
-use PodPoint\Reviews\Providers\Trustpilot\Request\Merchant\GetReviewsRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
 class FindReviewRequestTest extends TestCase

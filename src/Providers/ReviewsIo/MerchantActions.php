@@ -93,4 +93,21 @@ class MerchantActions implements ActionsInterface
 
         return $request->send();
     }
+
+    /**
+     * Find review by order number.
+     *
+     * @param string $reviewId
+     *
+     * @return array|mixed
+     * @throws ValidationException
+     */
+    public function findReviews(array $options)
+    {
+        $options['store'] = $this->config['store'];
+
+        $request = new FindReviewsRequest($this->apiClient, $options);
+
+        return $request->send();
+    }
 }

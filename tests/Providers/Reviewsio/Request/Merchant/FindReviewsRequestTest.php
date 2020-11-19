@@ -2,10 +2,10 @@
 
 namespace PodPoint\Reviews\Tests\Providers\ReviewsIo\Request\Merchant;
 
-use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\FindReviewRequest;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\FindReviewsRequest;
 use PodPoint\Reviews\Tests\TestCase;
 
-class FindReviewRequestTest extends TestCase
+class FindReviewsRequestTest extends TestCase
 {
     /**
      * Test construct to make sure properties are set.
@@ -15,15 +15,15 @@ class FindReviewRequestTest extends TestCase
     public function testConstruct()
     {
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new FindReviewRequest($mockedApiClient, [
+        $request = new FindReviewsRequest($mockedApiClient, [
             'store' => 'store-id-321',
-            'reviewId' => 'review-id-123'
+            'review_id' => 'review-id-123'
         ]);
 
         $this->assertEquals($mockedApiClient, $request->getHttpClient());
         $this->assertEquals([
             'store' => 'store-id-321',
-            'reviewId' => 'review-id-123',
+            'review_id' => 'review-id-123',
         ], $request->getOptions());
     }
 
@@ -35,12 +35,9 @@ class FindReviewRequestTest extends TestCase
     public function testRequiredFields()
     {
         $mockedApiClient = $this->getMockedApiClient();
-        $request = new FindReviewRequest($mockedApiClient, [
-            'store' => 'store-id-321',
-            'reviewId' => 'review-id-123',
-        ]);
+        $request = new FindReviewsRequest($mockedApiClient, []);
 
-        $this->assertEquals(['reviewId'], $request->requiredFields());
+        $this->assertEquals([], $request->requiredFields());
     }
 
     /**
@@ -51,9 +48,9 @@ class FindReviewRequestTest extends TestCase
     public function testGetRequest()
     {
         $mockedApiClient = $this->getMockedApiClient();
-        $serviceReviewRequest = new FindReviewRequest($mockedApiClient, [
+        $serviceReviewRequest = new FindReviewsRequest($mockedApiClient, [
             'store' => 'store-id-321',
-            'reviewId' => 'review-id-123',
+            'review_id' => 'review-id-123',
         ]);
 
         $request = $serviceReviewRequest->getRequest();
@@ -62,6 +59,27 @@ class FindReviewRequestTest extends TestCase
 
         $this->assertEquals('/merchant/reviews', $request->getUri()->getPath());
         $this->assertEquals('store=store-id-321&review_id=review-id-123', $request->getUri()->getQuery());
+    }
+
+    /**
+     * Making sure the Request instance is build as expected.
+     *
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException
+     */
+    public function testGetRequestWithOrderNumber()
+    {
+        $mockedApiClient = $this->getMockedApiClient();
+        $serviceReviewRequest = new FindReviewsRequest($mockedApiClient, [
+            'store' => 'store-id-321',
+            'order_number' => 'order-id-123',
+        ]);
+
+        $request = $serviceReviewRequest->getRequest();
+
+        $this->assertInstanceOf(\Psr\Http\Message\RequestInterface::class, $request);
+
+        $this->assertEquals('/merchant/reviews', $request->getUri()->getPath());
+        $this->assertEquals('store=store-id-321&order_number=order-id-123', $request->getUri()->getQuery());
     }
 
     /**
@@ -75,9 +93,9 @@ class FindReviewRequestTest extends TestCase
         $mockedApiClient = $this->getMockedApiClient();
         $mockedApiClient->shouldReceive('sendRequest')->withAnyArgs()->andReturn($response);
 
-        $request = new FindReviewRequest($mockedApiClient, [
+        $request = new FindReviewsRequest($mockedApiClient, [
             'store' => 'store-id-321',
-            'reviewId' => 'review-id-123',
+            'review_id' => 'review-id-123',
         ]);
 
         $this->assertEquals([

@@ -6,9 +6,9 @@ use GuzzleHttp\Psr7\Request;
 use PodPoint\Reviews\Request\BaseRequestWrapper;
 
 /**
- * Class FindReviewRequest.
+ * Class FindReviewsRequest.
  */
-class FindReviewRequest extends BaseRequestWrapper
+class FindReviewsRequest extends BaseRequestWrapper
 {
     /**
      * Builds the request.
@@ -17,10 +17,7 @@ class FindReviewRequest extends BaseRequestWrapper
      */
     public function getRequest(): Request
     {
-        $query = http_build_query([
-            'store' => $this->getOption('store'),
-            'review_id' => $this->getOption('reviewId'),
-        ]);
+        $query = http_build_query($this->getOptions());
 
         return new Request('GET', '/merchant/reviews?' . $query);
     }
@@ -32,9 +29,7 @@ class FindReviewRequest extends BaseRequestWrapper
      */
     public function requiredFields(): array
     {
-        return [
-            'reviewId'
-        ];
+        return [];
     }
 
     /**
