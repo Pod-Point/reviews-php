@@ -33,4 +33,13 @@ interface ActionsInterface
      * @return mixed
      */
     public function findReview(string $reviewId);
+
+    /**
+     * Find reviews by $options.
+     *
+     * @param array $options
+     *
+     * @return mixed
+     */
+    public function findReviews(array $options);
 }

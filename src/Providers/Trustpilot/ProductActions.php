@@ -69,4 +69,16 @@ class ProductActions implements ActionsInterface
     {
         //
     }
+
+    /**
+     * Find review by order number.
+     *
+     * @param array $options
+     *
+     * @return array|mixed
+     */
+    public function findReviews(array $options)
+    {
+        //
+    }
 }

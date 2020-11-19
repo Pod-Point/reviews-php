@@ -7,6 +7,7 @@ use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
 use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\EmailInviteRequest;
 use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\FindReviewRequest;
+use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\FindReviewsRequest;
 use PodPoint\Reviews\Providers\ReviewsIo\Request\Merchant\GetMerchantReviews;
 
 /**
