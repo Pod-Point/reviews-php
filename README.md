@@ -85,6 +85,13 @@ $trustpilot->merchant()->findReview((string) $reviewId);
 $trustpilot->merchant()->getReviews((array) $serviceReviewsFilterOptions);
 ```
 
+The ``PodPoint\Reviews\Providers\Trustpilot\Request\AccessTokenRequest`` requires Cache Adapter/Driver. If you are getting CacheAdapterException you must set a cache driver.
+
+Example:
+```
+CacheProvider::setInstance(new LaravelCacheAdapter());
+```  
+
 ## Compatibility table
 This package is compatible up to Laravel 7. If used with higher versions of Laravel, the guzzle package needs to be upgraded.  
 
