@@ -86,6 +86,7 @@ abstract class AbstractCacheableRequest extends AbstractBaseRequest
      * Get cache time to live value.
      *
      * @param array|null $responseBody
+     *
      * @return int
      */
     public function getCacheableTtl(array $responseBody = null)

@@ -34,7 +34,6 @@ abstract class AbstractBaseRequest
      * BaseRequest constructor.
      *
      * @param array $options
-     *
      * @param ApiClientInterface $apiClient
      */
     public function __construct(array $options, ApiClientInterface $apiClient)

@@ -13,7 +13,7 @@ class LaravelCacheAdapter
      * Returns cache by key.
      *
      * @param string $key
-     * @param null   $default
+     * @param null $default
      *
      * @return mixed
      */
@@ -25,7 +25,8 @@ class LaravelCacheAdapter
     /**
      * Check if cache exists.
      *
-     * @param  $key
+     * @param $key
+     *
      * @return boolean
      */
     public function has($key): bool
@@ -36,9 +37,10 @@ class LaravelCacheAdapter
     /**
      * Sets cache.
      *
-     * @param  string $key
-     * @param  $value
-     * @param  null   $ttl
+     * @param string $key
+     * @param $value
+     * @param null $ttl
+     *
      * @return boolean
      */
     public function set(string $key, $value, $ttl = null)
@@ -67,7 +69,7 @@ class LaravelCacheAdapter
      * Returns multiple caches.
      *
      * @param array $keys
-     * @param null  $default
+     * @param null $default
      *
      * @return array
      */
@@ -85,7 +87,7 @@ class LaravelCacheAdapter
     /**
      * Sets multiple cache values.
      *
-     * @param array        $values
+     * @param array $values
      * @param integer|null $ttl
      */
     public function setMultiple(array $values, int $ttl = null)

@@ -78,7 +78,8 @@ abstract class AbstractApiClient implements ApiClientInterface
     /**
      * Sets httpClient.
      *
-     * @param  ClientInterface $httpClient
+     * @param ClientInterface $httpClient
+     *
      * @return $this
      */
     public function setHttpClient(ClientInterface $httpClient)
@@ -93,7 +94,8 @@ abstract class AbstractApiClient implements ApiClientInterface
      *
      * When the response content body is empty, json encode will fail and return empty array instead.
      *
-     * @param  ResponseInterface $response
+     * @param ResponseInterface $response
+     *
      * @return array
      */
     public function getResponseJson(ResponseInterface $response): array
