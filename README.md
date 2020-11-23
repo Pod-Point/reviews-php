@@ -87,13 +87,17 @@ $trustpilot->merchant()->getReviews((array) $serviceReviewsFilterOptions);
 
 ## Caching
 
-Using this library with Laravel and have it comptable a LaravelCacheAdapter has been added. To cache Request contents extend the request using the AbstractCacheableRequest class, this will automagicly cache the responses.
+Using this library with Laravel and to have it comptable, a LaravelCacheAdapter has been added. To cache Request contents extend the request using the AbstractCacheableRequest class, this will automagicly cache the responses.
 
 The AbstractCacheableRequest has two optinal parameters $cacheTtl and $cacheKey, these can be overriden in demanded request. If no cacheKey is set the getCacheableKey is used to set the cache key and it will hash the class name using sha1 to have unique cacheKey. 
 
 If the Request class requires customised send method, make sure to call the parent::send(); method which does the cache calls. 
 
-If the cache TTL is in the reponse of the api request instead of AbstractCacheableRequest the AbstractHasCacheTtlInResponse class can be used. The AbstractHasCacheTtlInResponse has $cacheTtlResponseField which defines the key that holds the cache TTL in the response. 
+If the cache TTL is in the reponse of the api request instead of using AbstractCacheableRequest use the AbstractHasCacheTtlInResponse class. The AbstractHasCacheTtlInResponse has $cacheTtlResponseField which defines the key that holds the cache TTL in the response and will be used when setting cache. 
+
+
+### Adding new Cache Adapters
+The PodPoint\Reviews\Cache\CacheProvider acts a Cache Adapter/Driver provider, the cache adapter can be replaced using CacheProvider::setInstance or the CacheProvider::getInstance can be updated to return Cache Adapter/Driver. 
 
 
 ## Compatibility table
