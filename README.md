@@ -24,7 +24,7 @@ A review is an evaluation of a publication, product, or company for example. In 
     "url": "git@github.com:pod-point/reviews-php.git"
 }
 ```
-2. Run the following command inside of the the desired project workspace.
+2. Run the following command inside of the desired project workspace.
 ```bash
 composer require pod-point/reviews-php
 ```
@@ -89,11 +89,11 @@ $trustpilot->merchant()->getReviews((array) $serviceReviewsFilterOptions);
 
 Using this library with Laravel and to have it compatible, a **LaravelCacheAdapter** has been added. To cache Request contents extend the request using the **AbstractCacheableRequest** class, this will automatically cache the responses.
 
-The **AbstractCacheableRequest** has two optional parameters ``$cacheTtl`` and ``$cacheKey``, these can be overriden in demanded request. If no ``$cacheKey`` is set the ``getCacheableKey`` is used to set the cache key and it will hash the class name using sha1 to have unique cacheKey. 
+The **AbstractCacheableRequest** has two optional parameters ``$cacheTtl`` and ``$cacheKey``, these can be overridden in demanded request. If no ``$cacheKey`` is set the ``getCacheableKey`` is used to set the cache key and it will hash the class name using sha1 to have unique cacheKey. 
 
-If the Request class requires customised send method, make sure to call the ``parent::send();`` method which does the cache calls. 
+If the Request class requires customisation for send method, make sure to call the ``parent::send();`` method which does the cache calls. 
 
-If the cache TTL is in the reponse of the api request instead of using **AbstractCacheableRequest** use the **AbstractHasCacheTtlInResponse** class. The **AbstractHasCacheTtlInResponse** has ``$cacheTtlResponseField`` which defines the key that holds the cache TTL in the response and will be used when setting cache. 
+If the cache TTL is in the response of the api request instead of using **AbstractCacheableRequest** use the **AbstractHasCacheTtlInResponse** class. The **AbstractHasCacheTtlInResponse** has ``$cacheTtlResponseField`` which defines the key holds the cache TTL in the response and will be used when setting cache. 
 
 
 ### Adding new Cache Adapters
