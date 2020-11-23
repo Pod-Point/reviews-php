@@ -85,21 +85,6 @@ $trustpilot->merchant()->findReview((string) $reviewId);
 $trustpilot->merchant()->getReviews((array) $serviceReviewsFilterOptions);
 ```
 
-## Caching
-
-Using this library with Laravel and to have it compatible, a **LaravelCacheAdapter** has been added. To cache Request contents extend the request using the **AbstractCacheableRequest** class, this will automatically cache the responses.
-
-The **AbstractCacheableRequest** has two optional parameters ``$cacheTtl`` and ``$cacheKey``, these can be overridden in demanded request. If no ``$cacheKey`` is set the ``getCacheableKey`` is used to set the cache key and it will hash the class name using sha1 to have unique cacheKey. 
-
-If the Request class requires customisation for send method, make sure to call the ``parent::send();`` method which does the cache calls. 
-
-If the cache TTL is in the response of the api request instead of using **AbstractCacheableRequest** use the **AbstractHasCacheTtlInResponse** class. The **AbstractHasCacheTtlInResponse** has ``$cacheTtlResponseField`` which defines the key holds the cache TTL in the response and will be used when setting cache. 
-
-
-### Adding new Cache Adapters
-The ``PodPoint\Reviews\Cache\CacheProvider`` acts a Cache Adapter/Driver provider, the cache adapter can be replaced using ``CacheProvider::setInstance`` or the ``CacheProvider::getInstance`` can be updated to return Cache Adapter/Driver. 
-
-
 ## Compatibility table
 This package is compatible up to Laravel 7. If used with higher versions of Laravel, the guzzle package needs to be upgraded.  
 
@@ -120,6 +105,28 @@ Reviews PHP follows [semantic versioning](https://semver.org/) specifications.
 The MIT License (MIT). Please see [License File](https://github.com/Pod-Point/reviews-php/LICENCE) for more information.
 
 ## Development
+
+### Caching
+
+Using this library with Laravel and to have it compatible, a **LaravelCacheAdapter** has been added. To cache Requests response contents, extend the Request class using the **AbstractCacheableRequest** class, this will automatically cache the responses.
+
+The **AbstractCacheableRequest** has two optional parameters ``$cacheTtl`` and ``$cacheKey``, these can be overridden in demanded request. If no ``$cacheKey`` is set the ``getCacheableKey`` is used to set the cache key and it will hash the class name using sha1 to have unique cacheKey. 
+
+If the Request class requires customisation for send method, make sure to call the ``parent::send();`` method which does the cache calls. 
+
+If the cache TTL is in the response of the api request instead of using **AbstractCacheableRequest** use the **AbstractHasCacheTtlInResponse** class. The **AbstractHasCacheTtlInResponse** has ``$cacheTtlResponseField`` which defines the key holds the cache TTL in the response and will be used when setting cache. 
+
+#### CacheProvider
+
+The CacheProvider is a singleton a special class, provides the adapters to be initialized within the ``AbstractCacheableRequest::__construct``.  
+
+#### Adding new Cache Adapters
+The ``PodPoint\Reviews\Cache\CacheProvider`` acts a Cache Adapter/Driver provider, the cache adapter can be replaced using ``CacheProvider::setInstance`` or the ``CacheProvider::getInstance`` can be updated to return Cache Adapter/Driver.
+
+#### Laravel Caching
+
+By default, the ``PodPoint\Reviews\LaravelServiceProvider`` registers the LaravelCacheAdapter as an instance, if needs to be overridden a new extended ServiceProvider can be created to override the protected setCacheAdapter method. 
+
 ### Testing
 
 This project uses PHPUnit, run the following command to run the tests:

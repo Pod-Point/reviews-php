@@ -2,9 +2,7 @@
 
 namespace PodPoint\Reviews\Request;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
-use PodPoint\Reviews\AbstractApiClient;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
 

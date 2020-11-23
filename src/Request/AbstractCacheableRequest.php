@@ -32,6 +32,13 @@ abstract class AbstractCacheableRequest extends AbstractBaseRequest
      */
     protected $cacheAdapter;
 
+    /**
+     * AbstractCacheableRequest constructor.
+     * @param ApiClientInterface $client
+     * @param array $options
+     *
+     * @throws \PodPoint\Reviews\Exceptions\CacheAdapterException
+     */
     public function __construct(ApiClientInterface $client, array $options)
     {
         parent::__construct($options, $client);

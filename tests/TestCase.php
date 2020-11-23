@@ -4,9 +4,11 @@ namespace PodPoint\Reviews\Tests;
 
 use Mockery;
 use PodPoint\Reviews\AbstractApiClient;
+use PodPoint\Reviews\Cache\CacheProvider;
 use PodPoint\Reviews\Request\AbstractBaseRequest;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Psr\SimpleCache\CacheInterface;
 
 /**
  * Class TestCase
@@ -83,5 +85,19 @@ class TestCase extends \PHPUnit\Framework\TestCase
             ->andReturn($requiredFields);
 
         return $mock;
+    }
+
+    /**
+     * Registers the cache adapter.
+     *
+     * @param null $cacheAdapter
+     */
+    protected function registerCacheAdapter($cacheAdapter = null)
+    {
+        if (is_null($cacheAdapter)) {
+            $cacheAdapter = \Mockery::mock(CacheInterface::class);
+        }
+
+        CacheProvider::setInstance($cacheAdapter);
     }
 }

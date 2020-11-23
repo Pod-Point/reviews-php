@@ -2,6 +2,8 @@
 
 namespace PodPoint\Reviews\Cache;
 
+use PodPoint\Reviews\Exceptions\CacheAdapterException;
+
 /**
  * Class CacheProvider
  */
@@ -37,12 +39,13 @@ class CacheProvider
     /**
      * Get instance of Cache Driver/Adapter.
      *
-     * @return LaravelCacheAdapter|null
+     * @return null
+     * @throws CacheAdapterException
      */
     public static function getInstance()
     {
         if (self::$instance == null) {
-            self::$instance = new LaravelCacheAdapter();
+            throw new CacheAdapterException();
         }
 
         return self::$instance;

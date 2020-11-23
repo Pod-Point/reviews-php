@@ -3,7 +3,7 @@
 namespace PodPoint\Reviews\Tests\Cache;
 
 use PodPoint\Reviews\Cache\CacheProvider;
-use PodPoint\Reviews\Cache\LaravelCacheAdapter;
+use PodPoint\Reviews\Exceptions\CacheAdapterException;
 use PodPoint\Reviews\Tests\TestCase;
 
 /**
@@ -12,11 +12,24 @@ use PodPoint\Reviews\Tests\TestCase;
 class CacheProviderTest extends TestCase
 {
     /**
-     * The default instance should return LaravelCacheAdapter.
+     * The should return null when no cache adapter is set.
      */
     public function testGetInstance()
     {
-        $this->assertInstanceOf(LaravelCacheAdapter::class, CacheProvider::getInstance());
+        $this->registerCacheAdapter();
+        $this->assertNotNull(CacheProvider::getInstance());
+    }
+
+    /**
+     * The should throw CacheAdapterException when no cache adapter is set.
+     */
+    public function testGetInstanceGivenNoAdapterIsSetShouldThrowCacheAdapterException()
+    {
+        CacheProvider::setInstance(null);
+
+        $this->expectException(CacheAdapterException::class);
+
+        CacheProvider::getInstance();
     }
 
     /**
