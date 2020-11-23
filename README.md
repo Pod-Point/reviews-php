@@ -85,7 +85,7 @@ $trustpilot->merchant()->findReview((string) $reviewId);
 $trustpilot->merchant()->getReviews((array) $serviceReviewsFilterOptions);
 ```
 
-## Caching
+## Caching
 
 Using this library with Laravel and have it comptable a LaravelCacheAdapter has been added. To cache Request contents extend the request using the AbstractCacheableRequest class, this will automagicly cache the responses.
 
