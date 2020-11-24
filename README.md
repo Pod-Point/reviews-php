@@ -67,8 +67,9 @@ return [
 ];
 ```
 
-The Trustpilot AccessTokenRequest response will be cached using with the TTL of the access tokens expire time. The set cache driver you must implement the following before initialising ``PodPoint\Reviews\Reviews``.  
+The Trustpilot requires the access token to be cached, in order to ensure you do it when consuming this package ensure you need to set the cache driver.
 
+Example:
 ```php
 $cacheAdapter = new \PodPoint\Reviews\Cache\LaravelCacheAdapter();
 \PodPoint\Reviews\Cache\CacheProvider::setInstance($cacheAdapter);
@@ -122,9 +123,7 @@ The MIT License (MIT). Please see [License File](https://github.com/Pod-Point/re
 
 ### Caching
 
-Using this library with Laravel and to have it compatible, a **LaravelCacheAdapter** has been added. To cache Requests response contents, extend the Request class using the **AbstractCacheableRequest** class, this will automatically cache the responses.
-
-The **AbstractCacheableRequest** has two optional parameters ``$cacheTtl`` and ``$cacheKey``, these can be overridden in demanded request. If no ``$cacheKey`` is set the ``getCacheableKey`` is used to set the cache key and it will hash the class name using sha1 to have unique cacheKey. 
+To cache Request's response, you must extend the Request class using the **AbstractCacheableRequest** class, this will automatically cache the response. The **AbstractCacheableRequest** has two optional parameters ``$cacheTtl`` and ``$cacheKey``, these can be overridden in demanded request. If no ``$cacheKey`` is set the ``getCacheableKey`` is used to set the cache key and it will hash the class name using sha1 to have unique cacheKey. 
 
 If the Request class requires customisation for send method, make sure to call the ``parent::send();`` method which does the cache calls. 
 
