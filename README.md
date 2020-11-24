@@ -67,6 +67,13 @@ return [
 ];
 ```
 
+The Trustpilot AccessTokenRequest response will be cached using with the TTL of the access tokens expire time. The set cache driver you must implement the following before initialising ``PodPoint\Reviews\Reviews``.  
+
+```php
+$cacheAdapter = new \PodPoint\Reviews\Cache\LaravelCacheAdapter();
+\PodPoint\Reviews\Cache\CacheProvider::setInstance($cacheAdapter);
+```
+
 All the providers should respect the same interface.
 
 ```php
