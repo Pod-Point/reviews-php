@@ -27,7 +27,9 @@ abstract class AbstractHasCacheTtlInResponse extends AbstractCacheableRequest
     public function getCacheableTtlFromResponse(array $responseBody, int $default = null): int
     {
         if ($this->cacheTtlResponseField && isset($responseBody[$this->cacheTtlResponseField])) {
-            return (int) $responseBody[$this->cacheTtlResponseField];
+            $ttlInSeconds = (int) $responseBody[$this->cacheTtlResponseField];
+
+            return $ttlInSeconds/60;
         }
 
         return $default;
