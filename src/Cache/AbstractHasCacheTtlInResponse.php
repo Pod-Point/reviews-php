@@ -2,9 +2,7 @@
 
 namespace PodPoint\Reviews\Cache;
 
-use PodPoint\Reviews\Exceptions\InvalidTtlResponseFieldUnitException;
 use PodPoint\Reviews\Request\AbstractCacheableRequest;
-use PodPoint\Reviews\TimeUnitConverter;
 
 /**
  * Class AbstractHasCacheTtlInResponse
@@ -19,23 +17,9 @@ abstract class AbstractHasCacheTtlInResponse extends AbstractCacheableRequest
     protected $cacheTtlResponseField;
 
     /**
-     * Unit of the ttl response field. Can be in seconds, minutes, hours.
-     *
-     * @var string
-     */
-    protected $cacheTtlResponseFieldUnit = 'seconds';
-
-    /**
-     * The cache expected time unit for cache driver.
-     *
-     * @var string
-     */
-    protected $cacheAdapterTtlUnit = 'minutes';
-
-    /**
      * Returns the ttl from the body of the response.
      *
-     * @param array|null $responseBody
+     * @param array $responseBody
      * @param int|null $default
      *
      * @return int
@@ -57,24 +41,24 @@ abstract class AbstractHasCacheTtlInResponse extends AbstractCacheableRequest
      * @param int $ttl
      *
      * @return int
-     * @throws InvalidTtlResponseFieldUnitException
-     * @throws \PodPoint\Reviews\Exceptions\InvalidTimeUnitException
      */
     public function convertTtlResponseField(int $ttl): int
     {
-        if (is_null($this->cacheTtlResponseFieldUnit)) {
-            throw new InvalidTtlResponseFieldUnitException();
+        return self::convertFromSecondsToMinutes($ttl);
+    }
+
+    /**
+     * Converts from seconds to minutes.
+     *
+     * @param $value
+     * @return int
+     */
+    public static function convertFromSecondsToMinutes(int $value): int
+    {
+        if ($value <= 0) {
+            return 0;
         }
 
-        if ($this->cacheTtlResponseFieldUnit === $this->cacheAdapterTtlUnit) {
-            return $ttl;
-        }
-
-        return (new TimeUnitConverter())
-            ->convert(
-                $ttl,
-                $this->cacheTtlResponseFieldUnit,
-                $this->cacheAdapterTtlUnit
-            );
+        return (int) $value / 60;
     }
 }
