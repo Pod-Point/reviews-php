@@ -84,11 +84,7 @@ class AbstractHasCacheTtlInResponseTest extends TestCase
             ->with(3600)
             ->andReturn(60);
 
-        $cacheKey = sha1(get_class($request));
-
         $request->send();
-
-        $this->assertEquals($cacheKey, $request->getCacheableKey());
     }
 
 
