@@ -68,7 +68,6 @@ class AbstractHasCacheTtlInResponseTest extends TestCase
             ->withAnyArgs()
             ->andReturn(false);
 
-
         $cacheAdapter->shouldReceive('set')
             ->once()
             ->with($cacheKey, ['expires_in' => 3600], 60)
@@ -83,7 +82,6 @@ class AbstractHasCacheTtlInResponseTest extends TestCase
         $request->shouldReceive('getRequest')
             ->withNoArgs()
             ->andReturn($this->mockedGuzzleRequest);
-
 
         $request->send();
         $this->assertEquals($cacheKey, $request->getCacheableKey());
