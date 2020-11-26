@@ -51,11 +51,13 @@ class AbstractHasCacheTtlInResponseTest extends TestCase
      */
     public function testGetCacheableTtlFromResponse()
     {
+        $cacheKey = 'foo-bar-123';
+
         $this->httpClient
             ->shouldReceive('send')
             ->once()
             ->with($this->mockedGuzzleRequest)
-            ->andReturn(new Response(200, [], '{"expires_in": "36000"}'));
+            ->andReturn(new Response(200, [], '{"expires_in": "3600"}'));
 
         $apiClient = $this->getMockedApiClient($this->httpClient);
         $apiClient->shouldReceive('addAuthenticationHeader');
@@ -66,61 +68,24 @@ class AbstractHasCacheTtlInResponseTest extends TestCase
             ->withAnyArgs()
             ->andReturn(false);
 
+
         $cacheAdapter->shouldReceive('set')
             ->once()
-            ->withAnyArgs()
+            ->with($cacheKey, ['expires_in' => 3600], 60)
             ->andReturn(true);
 
         $this->registerCacheAdapter($cacheAdapter);
 
         $request = \Mockery::mock(AbstractHasCacheTtlInResponse::class, [$apiClient, []])->makePartial();
+        $request->setCacheKey($cacheKey);
+        $request->setCacheTtlResponseField('expires_in');
 
         $request->shouldReceive('getRequest')
             ->withNoArgs()
             ->andReturn($this->mockedGuzzleRequest);
 
-        $request->shouldReceive('convertFromSecondsToMinutes')
-            ->once()
-            ->with(3600)
-            ->andReturn(60);
-
-        $cacheKey = sha1(get_class($request));
 
         $request->send();
         $this->assertEquals($cacheKey, $request->getCacheableKey());
-    }
-
-
-    /**
-     * Data provider for testConvertFromSecondsToMinutes.
-     */
-    public function convertFromSecondsToMinutesDataProvider()
-    {
-        return [
-            'Should pass: should convert seconds into minutes' => [
-                $value = 6720,
-                $expected = 112,
-            ],
-            'Should pass: should return 0 when seconds is negative value' => [
-                $value = -100,
-                $expected = 0,
-            ],
-            'Should pass: should return 0 when seconds is 0' => [
-                $value = 0,
-                $expected = 0,
-            ],
-        ];
-    }
-
-    /**
-     * Making sure seconds are converted into minutes.
-     *
-     * @dataProvider convertFromSecondsToMinutesDataProvider
-     */
-    public function testConvertFromSecondsToMinutes($value, $expected)
-    {
-        $actual = AbstractHasCacheTtlInResponse::convertFromSecondsToMinutes($value);
-
-        $this->assertEquals($expected, $actual);
     }
 }

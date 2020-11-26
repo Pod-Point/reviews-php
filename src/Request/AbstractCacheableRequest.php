@@ -47,6 +47,22 @@ abstract class AbstractCacheableRequest extends AbstractBaseRequest
     }
 
     /**
+     * @return string
+     */
+    public function getCacheKey(): string
+    {
+        return $this->cacheKey;
+    }
+
+    /**
+     * @param string $cacheKey
+     */
+    public function setCacheKey(string $cacheKey): void
+    {
+        $this->cacheKey = $cacheKey;
+    }
+
+    /**
      * Returns the cacheable name of the request.
      *
      * @return string

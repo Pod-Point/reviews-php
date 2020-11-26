@@ -17,6 +17,22 @@ abstract class AbstractHasCacheTtlInResponse extends AbstractCacheableRequest
     protected $cacheTtlResponseField;
 
     /**
+     * @return string
+     */
+    public function getCacheTtlResponseField(): string
+    {
+        return $this->cacheTtlResponseField;
+    }
+
+    /**
+     * @param string $cacheTtlResponseField
+     */
+    public function setCacheTtlResponseField(string $cacheTtlResponseField): void
+    {
+        $this->cacheTtlResponseField = $cacheTtlResponseField;
+    }
+
+    /**
      * Returns the ttl from the body of the response.
      *
      * @param array $responseBody
@@ -29,22 +45,10 @@ abstract class AbstractHasCacheTtlInResponse extends AbstractCacheableRequest
         if ($this->cacheTtlResponseField && isset($responseBody[$this->cacheTtlResponseField])) {
             $ttl = (int) $responseBody[$this->cacheTtlResponseField];
 
-            return $this->convertTtlResponseField($ttl);
+            return $this->convertFromSecondsToMinutes($ttl);
         }
 
         return $default;
-    }
-
-    /**
-     * Converts the TTL response field from time unit.
-     *
-     * @param int $ttl
-     *
-     * @return int
-     */
-    public function convertTtlResponseField(int $ttl): int
-    {
-        return self::convertFromSecondsToMinutes($ttl);
     }
 
     /**
@@ -53,7 +57,7 @@ abstract class AbstractHasCacheTtlInResponse extends AbstractCacheableRequest
      * @param $value
      * @return int
      */
-    public static function convertFromSecondsToMinutes(int $value): int
+    protected function convertFromSecondsToMinutes(int $value): int
     {
         if ($value <= 0) {
             return 0;
