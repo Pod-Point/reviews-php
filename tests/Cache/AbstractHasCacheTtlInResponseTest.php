@@ -66,6 +66,11 @@ class AbstractHasCacheTtlInResponseTest extends TestCase
             ->withAnyArgs()
             ->andReturn(false);
 
+        $cacheAdapter->shouldReceive('set')
+            ->once()
+            ->withAnyArgs()
+            ->andReturn(true);
+
         $this->registerCacheAdapter($cacheAdapter);
 
         $request = \Mockery::mock(AbstractHasCacheTtlInResponse::class, [$apiClient, []])->makePartial();
@@ -74,14 +79,12 @@ class AbstractHasCacheTtlInResponseTest extends TestCase
             ->withNoArgs()
             ->andReturn($this->mockedGuzzleRequest);
 
-        $cacheKey = sha1(get_class($request));
-
-        $cacheAdapter->shouldReceive('set')
+        $request->shouldReceive('convertFromSecondsToMinutes')
             ->once()
-            ->with($cacheKey, [
-                "expires_in" => "36000",
-            ], 60)
-            ->andReturn(true);
+            ->with(3600)
+            ->andReturn(60);
+
+        $cacheKey = sha1(get_class($request));
 
         $request->send();
 
