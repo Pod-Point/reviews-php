@@ -40,6 +40,7 @@ class ProductActions implements ActionsInterface
      * Invite consumers.
      *
      * @param array $options
+     *
      * @return mixed
      */
     public function invite(array $options)
@@ -51,6 +52,7 @@ class ProductActions implements ActionsInterface
      * Get reviews.
      *
      * @param array $options
+     *
      * @return mixed
      */
     public function getReviews(array $options = [])

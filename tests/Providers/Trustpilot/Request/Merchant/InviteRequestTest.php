@@ -31,7 +31,7 @@ class InviteRequestTest extends TestCase
         $mockedApiClient = $this->getMockedApiClient();
         $request = new InviteRequest($mockedApiClient, $this->requestOptions);
 
-        $this->assertEquals($mockedApiClient, $request->getHttpClient());
+        $this->assertEquals($mockedApiClient, $request->getApiClient());
 
         $expectedOptions = [
             'referenceNumber' => 'reference-123',

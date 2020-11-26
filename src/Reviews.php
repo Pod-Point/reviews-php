@@ -105,6 +105,7 @@ class Reviews
      *
      * @param $name
      * @param $arguments
+     *
      * @return ProviderInterface
      * @throws ProviderConfigNotFoundException
      * @throws ProviderNotFoundException

@@ -29,27 +29,26 @@ abstract class AbstractApiClient implements ApiClientInterface
 
     /**
      * The base uri that will be used to make request.
-     * @var
+     *
+     * @var string
      */
     protected $baseUri;
 
     /**
      * AbstractApiClient constructor, creates an instance of http client.
-     *
+
      * @param ClientInterface|null $httpClient
      */
     public function __construct(ClientInterface $httpClient = null)
     {
-        $this->httpClient = $httpClient ?? new Client([
-            'base_uri' => $this->baseUri,
-        ]);
+        $this->httpClient = $httpClient ?? new Client(['base_uri' => $this->baseUri]);
     }
 
     /**
      * Sends request to API with or without pre authentication and returns response.
      *
      * @param Request $request
-     * @param bool $withAuthentication
+     * @param boolean $withAuthentication
      *
      * @return ResponseInterface
      *
@@ -80,6 +79,7 @@ abstract class AbstractApiClient implements ApiClientInterface
      * Sets httpClient.
      *
      * @param ClientInterface $httpClient
+     *
      * @return $this
      */
     public function setHttpClient(ClientInterface $httpClient)
@@ -95,6 +95,7 @@ abstract class AbstractApiClient implements ApiClientInterface
      * When the response content body is empty, json encode will fail and return empty array instead.
      *
      * @param ResponseInterface $response
+     *
      * @return array
      */
     public function getResponseJson(ResponseInterface $response): array
@@ -112,13 +113,12 @@ abstract class AbstractApiClient implements ApiClientInterface
      */
     public function addDefaultRequestHeaders(Request &$request)
     {
-        foreach ($this->defaultRequestHeaders as $headerKey => $headerValue)
-        {
-            if(!$request->hasHeader($headerKey)) {
+        foreach ($this->defaultRequestHeaders as $headerKey => $headerValue) {
+            if (!$request->hasHeader($headerKey)) {
                 $request = $request->withHeader($headerKey, $headerValue);
             }
         }
     }
 
-    public abstract function addAuthenticationHeader(Request &$request);
+    abstract public function addAuthenticationHeader(Request &$request);
 }

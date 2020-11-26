@@ -8,7 +8,7 @@ use PodPoint\Reviews\Exceptions\ValidationException;
 /**
  * Class BaseRequestWrapper.
  */
-abstract class BaseRequestWrapper extends BaseRequest
+abstract class BaseRequestWrapper extends AbstractBaseRequest
 {
     /**
      * BaseRequestWrapper class constructor.
@@ -20,7 +20,7 @@ abstract class BaseRequestWrapper extends BaseRequest
      */
     public function __construct(ApiClientInterface $client, array $options)
     {
-        parent::__construct($client, $options);
+        parent::__construct($options, $client);
         $this->validate();
     }
 }

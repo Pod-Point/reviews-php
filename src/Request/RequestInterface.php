@@ -1,8 +1,6 @@
 <?php
 
-
 namespace PodPoint\Reviews\Request;
-
 
 interface RequestInterface
 {

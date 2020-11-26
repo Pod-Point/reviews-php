@@ -4,10 +4,15 @@ namespace PodPoint\Reviews\Tests;
 
 use Mockery;
 use PodPoint\Reviews\AbstractApiClient;
-use PodPoint\Reviews\Request\BaseRequest;
+use PodPoint\Reviews\Cache\CacheProvider;
+use PodPoint\Reviews\Request\AbstractBaseRequest;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Psr\SimpleCache\CacheInterface;
 
+/**
+ * Class TestCase
+ */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -47,22 +52,32 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Mocks a abstract Api client.
      *
+     * @param null $httpClient
      * @return Mockery\LegacyMockInterface|Mockery\MockInterface|AbstractApiClient
      */
-    public function getMockedApiClient()
+    public function getMockedApiClient($httpClient = null)
     {
-        return Mockery::mock(AbstractApiClient::class)->makePartial();
+        if (!$httpClient) {
+            $httpClient = Mockery::mock(\GuzzleHttp\ClientInterface::class);
+        }
+        return Mockery::mock(AbstractApiClient::class, [$httpClient])->makePartial();
     }
 
     /**
+     * Creates a mocked abstract base request.
+     *
      * @param AbstractApiClient $client
      * @param array $options
      * @param array $requiredFields
+     *
      * @return Mockery\Mock
      */
-    public function getMockedBaseRequest(AbstractApiClient  $client, array $options = [], $requiredFields = [])
-    {
-        $mock = Mockery::mock(BaseRequest::class, array($client, $options))
+    public function getMockedAbstractBaseRequest(
+        AbstractApiClient $client,
+        array $options = [],
+        array $requiredFields = []
+    ) {
+        $mock = Mockery::mock(AbstractBaseRequest::class, array($options, $client))
             ->makePartial();
 
         $mock->shouldReceive('requiredFields')
@@ -70,5 +85,19 @@ class TestCase extends \PHPUnit\Framework\TestCase
             ->andReturn($requiredFields);
 
         return $mock;
+    }
+
+    /**
+     * Registers the cache adapter.
+     *
+     * @param null $cacheAdapter
+     */
+    protected function registerCacheAdapter($cacheAdapter = null)
+    {
+        if (is_null($cacheAdapter)) {
+            $cacheAdapter = \Mockery::mock(CacheInterface::class);
+        }
+
+        CacheProvider::setInstance($cacheAdapter);
     }
 }

@@ -52,7 +52,7 @@ class AccessTokenRequestTest extends TestCase
         $mockedApiClient = $this->getMockedApiClient();
         $request = new AccessTokenRequest($mockedApiClient, $this->options);
 
-        $this->assertEquals($mockedApiClient, $request->getHttpClient());
+        $this->assertEquals($mockedApiClient, $request->getApiClient());
         $this->assertEquals($this->options, $request->getOptions());
     }
 
@@ -93,7 +93,7 @@ class AccessTokenRequestTest extends TestCase
     /**
      * Send should return an array by converting the json response.
      *
-     * @throws \PodPoint\Reviews\Exceptions\ValidationException
+     * @throws \PodPoint\Reviews\Exceptions\ValidationException|\PodPoint\Reviews\Exceptions\UnauthorizedException
      */
     public function testSend()
     {

@@ -2,16 +2,14 @@
 
 namespace PodPoint\Reviews\Request;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
-use PodPoint\Reviews\AbstractApiClient;
 use PodPoint\Reviews\ApiClientInterface;
 use PodPoint\Reviews\Exceptions\ValidationException;
 
 /**
  * Class BaseRequest. Holds functionality shared by all Request classes across the package.
  */
-abstract class BaseRequest
+abstract class AbstractBaseRequest
 {
     /**
      * Default headers to attach all requests.
@@ -25,31 +23,31 @@ abstract class BaseRequest
     /** @var array $option */
     protected $options;
 
-    /** @var ApiClientInterface $httpClient */
-    protected $httpClient;
+    /** @var ApiClientInterface $apiClient */
+    protected $apiClient;
+
+    protected $withAuthentication  = true;
 
     /**
      * BaseRequest constructor.
      *
-     * @param ApiClientInterface $client
      * @param array $options
-     *
-     * @throws ValidationException
+     * @param ApiClientInterface $apiClient
      */
-    public function __construct(ApiClientInterface $client, array $options)
+    public function __construct(array $options, ApiClientInterface $apiClient)
     {
-        $this->httpClient = $client;
+        $this->apiClient = $apiClient;
         $this->options = $options;
     }
 
     /**
-     * Get http client.
+     * Get apiClient client.
      *
-     * @return Client|AbstractApiClient
+     * @return ApiClientInterface
      */
-    public function getHttpClient()
+    public function getApiClient()
     {
-        return $this->httpClient;
+        return $this->apiClient;
     }
 
     /**

@@ -19,7 +19,7 @@ class FindReviewRequestTest extends TestCase
         $mockedApiClient = $this->getMockedApiClient();
         $request = new FindReviewRequest($mockedApiClient, $options);
 
-        $this->assertEquals($mockedApiClient, $request->getHttpClient());
+        $this->assertEquals($mockedApiClient, $request->getApiClient());
         $this->assertEquals($options, $request->getOptions());
     }
 

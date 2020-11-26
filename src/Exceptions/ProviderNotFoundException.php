@@ -14,7 +14,6 @@ class ProviderNotFoundException extends \Exception
     /**
      * Throws message for given class name.
      *
-     * ProviderNotFoundException constructor.
      * @param string $class
      * @param int $code
      * @param Throwable|null $previous

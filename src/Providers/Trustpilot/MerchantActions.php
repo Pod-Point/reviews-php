@@ -43,7 +43,9 @@ class MerchantActions implements ActionsInterface
      * Invite consumers.
      *
      * @param array $options
+     *
      * @return mixed
+     *
      * @throws ValidationException
      */
     public function invite(array $options)
@@ -67,6 +69,7 @@ class MerchantActions implements ActionsInterface
      * @param array $options
      *
      * @return mixed
+     *
      * @throws ValidationException
      */
     public function getReviews(array $options = [])
