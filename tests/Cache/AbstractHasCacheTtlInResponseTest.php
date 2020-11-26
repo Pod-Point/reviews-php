@@ -47,7 +47,7 @@ class AbstractHasCacheTtlInResponseTest extends TestCase
     }
 
     /**
-     * Making sure that the expires_in access token
+     * Making sure that the expires_in is converted in minutes and used as ttl for cache.
      */
     public function testGetCacheableTtlFromResponse()
     {
