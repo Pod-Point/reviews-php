@@ -41,7 +41,7 @@ class ApiClientTest extends TestCase
 
         $apiUri = $httpClient->getConfig('base_uri');
 
-        $this->assertEquals('api.reviews.co.uk', $apiUri->getHost());
+        $this->assertEquals('api.reviews.io', $apiUri->getHost());
         $this->assertEquals('https', $apiUri->getScheme());
     }
 
