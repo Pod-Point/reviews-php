@@ -25,7 +25,7 @@ class ApiClient extends AbstractApiClient
     /**
      * @var string
      */
-    protected $baseUri = 'https://api.reviews.co.uk';
+    protected $baseUri = 'https://api.reviews.io';
 
     /**
      * ApiClient constructor.
